@@ -1,0 +1,30 @@
+[
+    {
+        "email": "sma92878@gmail.com",
+        "firstName": "Steven",
+        "lastName": "Aiello",
+        "password": "qweqpwoeqpworu231-49081209qwudoi23uop[2947",
+        "_id": 1111
+    },
+    {
+        "email": "lbarnett712@gmail.com",
+        "firstName": "Lindsay",
+        "lastName": "Aiello",
+        "password": "qweqpwoeqpworu231-49081209qwudoi23uop[2947",
+        "_id": 2222   
+    },
+    {
+        "email": "saige@gmail.com",
+        "firstName": "Saige",
+        "lastName": "Aiello",
+        "password": "qweqpwoeqpworu231-49081209qwudoi23uop[2947",
+        "_id": 3333
+    },
+    {
+        "email": "frank@gmail.com",
+        "firstName": "Frank",
+        "lastName": "Aiello",
+        "password": "qweqpwoeqpworu231-49081209qwudoi23uop[2947",
+        "_id": 4444
+    }
+]

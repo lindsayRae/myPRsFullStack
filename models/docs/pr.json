@@ -1,0 +1,162 @@
+[
+    {
+        "_id": 14773985731459873459843,
+        "users_id": 1111,
+        "skills" : [
+            {
+                "skillName": "Strict Pull Ups",
+                "skillType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": 100,
+                "id": 1239320845098734343587
+            },
+            {
+                "skillName": "Turkish Get Ups",
+                "skillType": "userDefined",
+                "date": "9/1/2019",
+                "comment": "Some Note",
+                "time": 20,
+                "id": 1239320845098734341111
+            },
+            {
+                "skillName": "Pistols",
+                "skillType": "userDefined",
+                "date": "9/1/2019",
+                "comment": "Some Note",
+                "time": 20,
+                "id": 1239320845098734341111
+            }
+
+        ],
+        "lifts" : [
+            {
+                "liftName": "Back Squat",
+                "liftType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "weight": 100,
+                "id": 1239320
+            },
+            {
+                "liftName": "Front Squat",
+                "liftType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "weight": 110,
+                "id": 1239321
+            },
+            {
+                "liftName": "Deadlift",
+                "liftType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "weight": 200,
+                "id": 1239322
+            },
+            {
+                "liftName": "Bicep Curl",
+                "liftType": "userDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "weight": 50,
+                "id": 1239322
+            }
+            
+        ],
+        "cardio" : [
+        ]
+    },
+    {
+        "_id": 14773985731459873459844,
+        "users_id": 2222,
+        "skills" : [
+            {
+                "skillName": "Hand Stand Push Ups",
+                "skillType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": 100,
+                "id": 6666
+            },
+            {
+                "skillName": "Hand Stand Push Ups",
+                "skillType": "preDefined",
+                "date": "9/1/2019",
+                "comment": "Some Note",
+                "time": 20,
+                "id": 3333
+            },            {
+                "skillName": "Plank",
+                "skillType": "userDefined",
+                "date": "9/1/2019",
+                "comment": "Some Note",
+                "time": 20,
+                "id": 2222
+            },            {
+                "skillName": "Sit Up",
+                "skillType": "userDefined",
+                "date": "9/1/2019",
+                "comment": "Some Note",
+                "time": 20,
+                "id": 1111
+            }
+
+        ],
+        "lifts" : [
+            {
+                "liftName": "Back Squat",
+                "liftType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "weight": 100,
+                "id": 1239320
+            },
+            {
+                "liftName": "Front Squat",
+                "liftType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "weight": 110,
+                "id": 1239321
+            },
+            {
+                "liftName": "Deadlift",
+                "liftType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "weight": 200,
+                "id": 1239322
+            },
+            {
+                "liftName": "Bicep Curl",
+                "liftType": "userDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "weight": 50,
+                "id": 1239322
+            }
+        ],
+        "cardio" : [
+        ]
+    },
+    {
+        "_id": 14773985731459873459844,
+        "users_id": 3333,
+        "skills" : [
+            {
+                "skillName": "Hand Stand Hold",
+                "skillType": "userDefined",
+                "date": "9/1/2019",
+                "comment": "Some Note",
+                "time": 20,
+                "id": 1111
+            }
+        ],
+        "lifts" : [
+
+        ],
+        "cardio" : [
+        ]
+    }
+]
