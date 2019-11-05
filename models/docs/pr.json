@@ -65,6 +65,38 @@
             
         ],
         "cardio" : [
+            {
+                "cardioName": "1 Mile Run",
+                "cardioType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": "8 min",
+                "id": 7789
+            },
+            {
+                "cardioName": "5K Run",
+                "cardioType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": "25 min",
+                "id": 7790
+            },
+            {
+                "cardioName": "1000 Meter Row",
+                "cardioType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": "15 min",
+                "id": 7791
+            },
+            {
+                "cardioName": "1500 Meter Row",
+                "cardioType": "userDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": "20 min",
+                "id": 7792
+            }
         ]
     },
     {
@@ -138,6 +170,38 @@
             }
         ],
         "cardio" : [
+            {
+                "cardioName": "1 Mile Run",
+                "cardioType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": "8 min",
+                "id": 7789
+            },
+            {
+                "cardioName": "5K Run",
+                "cardioType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": "25 min",
+                "id": 7790
+            },
+            {
+                "cardioName": "1000 Meter Row",
+                "cardioType": "preDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": "15 min",
+                "id": 7791
+            },
+            {
+                "cardioName": "1500 Meter Row",
+                "cardioType": "userDefined",
+                "date": "11/2/2019",
+                "comment": "Felt good",
+                "time": "20 min",
+                "id": 7792
+            }
         ]
     },
     {

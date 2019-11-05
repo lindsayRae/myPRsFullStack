@@ -1,24 +1,24 @@
 
-const mongoose = require ('mongoose');
-const helmet = require('helmet');
+let mongoose = require ('mongoose');
+let helmet = require('helmet');
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-const liftsRouter = require('./routes/lifts');
-const skillsRouter = require('./routes/skills');
-const cardioRouter = require('./routes/cardio');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
+let liftsRouter = require('./routes/lifts');
+let skillsRouter = require('./routes/skills');
+let cardioRouter = require('./routes/cardio');
 
 let skillsMenu = require('./routes/skillsMenu');
 let liftsMenu = require('./routes/liftsMenu');
+let cardioMenu = require('./routes/cardioMenu');
 
 
-var app = express();
+let app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,6 +35,7 @@ app.use('/api/cardio', cardioRouter);
 
 app.use('/skillsmenu', skillsMenu);
 app.use('/liftsmenu', liftsMenu);
+app.use('/cardiomenu', cardioMenu);
 
 mongoose.connect('mongodb://localhost/myprs', {
     useNewUrlParser: true,
