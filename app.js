@@ -8,7 +8,8 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let indexRouter = require('./routes/index');
-let usersRouter = require('./routes/users');
+let users = require('./routes/users');
+let auth = require('./routes/auth');
 let liftsRouter = require('./routes/lifts');
 let skillsRouter = require('./routes/skills');
 let cardioRouter = require('./routes/cardio');
@@ -28,10 +29,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 
 app.use('/', indexRouter);
-app.use('/api/users', usersRouter);
 app.use('/api/lifts', liftsRouter);
 app.use('/api/skills', skillsRouter);
 app.use('/api/cardio', cardioRouter);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 app.use('/skillsmenu', skillsMenu);
 app.use('/liftsmenu', liftsMenu);
@@ -60,7 +62,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.send(err.message);
+  res.sendStatus(err.message);
 });
 
 module.exports = app;
