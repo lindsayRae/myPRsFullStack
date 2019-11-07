@@ -1,25 +1,21 @@
-
-let mongoose = require ('mongoose');
-let helmet = require('helmet');
-
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-let indexRouter = require('./routes/index');
-let users = require('./routes/users');
-let auth = require('./routes/auth');
-let liftsRouter = require('./routes/lifts');
-let skillsRouter = require('./routes/skills');
-let cardioRouter = require('./routes/cardio');
-
-let skillsMenu = require('./routes/skillsMenu');
-let liftsMenu = require('./routes/liftsMenu');
-let cardioMenu = require('./routes/cardioMenu');
-
-
-let app = express();
+const config = require('config');
+const mongoose = require ('mongoose');
+const helmet = require('helmet');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const indexRouter = require('./routes/index');
+const users = require('./routes/users');
+const auth = require('./routes/auth');
+const liftsRouter = require('./routes/lifts');
+const skillsRouter = require('./routes/skills');
+const cardioRouter = require('./routes/cardio');
+const skillsMenu = require('./routes/skillsMenu');
+const liftsMenu = require('./routes/liftsMenu');
+const cardioMenu = require('./routes/cardioMenu');
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -39,6 +35,11 @@ app.use('/skillsmenu', skillsMenu);
 app.use('/liftsmenu', liftsMenu);
 app.use('/cardiomenu', cardioMenu);
 
+//! set myPRs_jwtPrivateKey=mySecureKey
+if(!config.get('jwtPrivateKey')) {
+  console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+  process.exit(1)
+}
 mongoose.connect('mongodb://localhost/myprs', {
     useNewUrlParser: true,
     useUnifiedTopology: true,

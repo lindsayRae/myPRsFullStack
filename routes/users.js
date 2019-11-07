@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const { User, validate } = require('../models/user');
@@ -12,6 +14,7 @@ router.get('/', async (req, res) => {
   res.send(user);
 });
 
+//? Create new user 
 //! Below I added salt and hash for password protection in th DB 
 router.post('/', async (req, res) => {
   
@@ -26,8 +29,10 @@ router.post('/', async (req, res) => {
     user.password = await bcrypt.hash(user.password, salt);
     await user.save();
   
+    
+    const token = user.generateAuthToken(); 
     //* pick what you want returned back to the user 
-    res.send(_.pick(user, ['screenName', 'email']));
+    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'screenName', 'email']));
  
 });
 
