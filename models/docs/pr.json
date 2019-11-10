@@ -8,7 +8,7 @@
                 "skillType": "preDefined",
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": 100,
+                "personalRecord": 100,
                 "id": 1239320845098734343587
             },
             {
@@ -16,7 +16,7 @@
                 "skillType": "userDefined",
                 "date": "9/1/2019",
                 "comment": "Some Note",
-                "time": 20,
+                "personalRecord": 20,
                 "id": 1239320845098734341111
             },
             {
@@ -24,7 +24,7 @@
                 "skillType": "userDefined",
                 "date": "9/1/2019",
                 "comment": "Some Note",
-                "time": 20,
+                "personalRecord": 20,
                 "id": 1239320845098734341111
             }
 
@@ -66,35 +66,35 @@
         ],
         "cardio" : [
             {
-                "cardioName": "1 Mile Run",
-                "cardioType": "preDefined",
+                "name": "1 Mile Run",                
+                "preDefined": true,
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": "8 min",
+                "personalRecord": "8 min",
                 "id": 7789
             },
             {
-                "cardioName": "5K Run",
-                "cardioType": "preDefined",
+                "name": "5K Run",
+                "preDefined": true,
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": "25 min",
+                "personalRecord": "25 min",
                 "id": 7790
             },
             {
-                "cardioName": "1000 Meter Row",
-                "cardioType": "preDefined",
+                "name": "1000 Meter Row",
+                "preDefined": true,
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": "15 min",
+                "personalRecord": "15 min",
                 "id": 7791
             },
             {
-                "cardioName": "1500 Meter Row",
-                "cardioType": "userDefined",
+                "name": "1500 Meter Row",
+                "preDefined": false,
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": "20 min",
+                "personalRecord": "20 min",
                 "id": 7792
             }
         ]
@@ -108,7 +108,7 @@
                 "skillType": "preDefined",
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": 100,
+                "personalRecord": 100,
                 "id": 6666
             },
             {
@@ -116,21 +116,21 @@
                 "skillType": "preDefined",
                 "date": "9/1/2019",
                 "comment": "Some Note",
-                "time": 20,
+                "personalRecord": 20,
                 "id": 3333
             },            {
                 "skillName": "Plank",
                 "skillType": "userDefined",
                 "date": "9/1/2019",
                 "comment": "Some Note",
-                "time": 20,
+                "personalRecord": 20,
                 "id": 2222
             },            {
                 "skillName": "Sit Up",
                 "skillType": "userDefined",
                 "date": "9/1/2019",
                 "comment": "Some Note",
-                "time": 20,
+                "personalRecord": 20,
                 "id": 1111
             }
 
@@ -171,35 +171,35 @@
         ],
         "cardio" : [
             {
-                "cardioName": "1 Mile Run",
+                "name": "1 Mile Run",
                 "cardioType": "preDefined",
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": "8 min",
+                "personalRecord": "8 min",
                 "id": 7789
             },
             {
-                "cardioName": "5K Run",
+                "name": "5K Run",
                 "cardioType": "preDefined",
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": "25 min",
+                "personalRecord": "25 min",
                 "id": 7790
             },
             {
-                "cardioName": "1000 Meter Row",
+                "name": "1000 Meter Row",
                 "cardioType": "preDefined",
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": "15 min",
+                "personalRecord": "15 min",
                 "id": 7791
             },
             {
-                "cardioName": "1500 Meter Row",
+                "name": "1500 Meter Row",
                 "cardioType": "userDefined",
                 "date": "11/2/2019",
                 "comment": "Felt good",
-                "time": "20 min",
+                "personalRecord": "20 min",
                 "id": 7792
             }
         ]
@@ -213,7 +213,7 @@
                 "skillType": "userDefined",
                 "date": "9/1/2019",
                 "comment": "Some Note",
-                "time": 20,
+                "personalRecord": 20,
                 "id": 1111
             }
         ],

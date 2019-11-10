@@ -15,7 +15,8 @@ router.post('/', async(req, res) => {
 
     let cardio = new Cardio ({ 
         name: req.body.name,
-        description: req.body.description       
+        description: req.body.description,
+        preDefined: req.body.preDefined      
     })
     cardio = await cardio.save();
 

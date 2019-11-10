@@ -15,6 +15,7 @@ const cardioRouter = require('./routes/cardio');
 const skillsMenu = require('./routes/skillsMenu');
 const liftsMenu = require('./routes/liftsMenu');
 const cardioMenu = require('./routes/cardioMenu');
+const personalRecords = require('./routes/personalRecords');
 const app = express();
 
 app.use(logger('dev'));
@@ -30,13 +31,16 @@ app.use('/api/skills', skillsRouter);
 app.use('/api/cardio', cardioRouter);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/personalrecord', personalRecords);
 
 app.use('/skillsmenu', skillsMenu);
 app.use('/liftsmenu', liftsMenu);
 app.use('/cardiomenu', cardioMenu);
 
 //! set myPRs_jwtPrivateKey=mySecureKey
-if(!config.get('jwtPrivateKey')) {
+const jwtPrivateKey = process.env.jwtPrivateKey;
+
+if(!jwtPrivateKey) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
   process.exit(1)
 }

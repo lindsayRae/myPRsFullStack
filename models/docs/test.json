@@ -1,0 +1,98 @@
+[
+    {
+        "id": "111111111",
+        "name": "Back Squat - 1 Rep",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "preDefined": true,
+        "maxLog": [
+            {
+                "date": "01-01-2019",
+                "weight": "100 lbs"
+            },
+            {
+                "date": "02-01-2019",
+                "weight": "110 lbs"
+            },
+            {
+                "date": "03-01-2019",
+                "weight": "130 lbs"
+            },
+            {
+                "date": "04-01-2019",
+                "weight": "160 lbs"
+            }
+        ]
+    },
+    {
+        "id": "2222222222",
+        "name": "Bench Press - 1 Rep",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "preDefined": true,
+        "maxLog": [
+            {
+                "date": "01-01-2019",
+                "weight": "100 lbs"
+            },
+            {
+                "date": "02-01-2019",
+                "weight": "110 lbs"
+            },
+            {
+                "date": "03-01-2019",
+                "weight": "130 lbs"
+            },
+            {
+                "date": "04-01-2019",
+                "weight": "160 lbs"
+            }
+        ]
+    },
+    {
+        "id": "33333333333333333",
+        "name": "Clean - 1 Rep",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "preDefined": true,
+        "maxLog": [
+            {
+                "date": "01-01-2019",
+                "weight": "100 lbs"
+            },
+            {
+                "date": "02-01-2019",
+                "weight": "110 lbs"
+            },
+            {
+                "date": "03-01-2019",
+                "weight": "130 lbs"
+            },
+            {
+                "date": "04-01-2019",
+                "weight": "160 lbs"
+            }
+        ]
+    },
+    {
+        "id": "444444444444444444",
+        "name": "Clean & Jerk - 1 Rep",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "preDefined": true,
+        "maxLog": [
+            {
+                "date": "01-01-2019",
+                "weight": "100 lbs"
+            },
+            {
+                "date": "02-01-2019",
+                "weight": "110 lbs"
+            },
+            {
+                "date": "03-01-2019",
+                "weight": "130 lbs"
+            },
+            {
+                "date": "04-01-2019",
+                "weight": "160 lbs"
+            }
+        ]
+    }
+]

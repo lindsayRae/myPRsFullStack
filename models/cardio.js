@@ -6,21 +6,25 @@ const Cardio = mongoose.model('Cardio', new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        minlength: 3,
-        maxlength: 50
+        minlength: 1,
+        maxlength: 99
     },
     description: {
         type: String,
         required: true,
-        minlength: 5,
-        maxlength: 50
+        minlength: 1,
+        maxlength: 255
+    },
+    preDefined: {
+        type: Boolean
     }
 }))
 
 function validateCardio(cardio){
     const schema = {
-        name: Joi.string().min(3).required(),
-        description: Joi.string().min(5).required(),
+        name: Joi.string().min(1).max(99).required(),
+        description: Joi.string().min(1).max(99).required(),
+        preDefined: Joi.bool()         
     };
     return Joi.validate(cardio, schema);
 }

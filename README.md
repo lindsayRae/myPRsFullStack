@@ -1,5 +1,10 @@
 "# myPRsFullStack" 
 
+SET UP NOTES:
+    -   Environment Variables
+            - jwtPrivateKey
+            - PORT 
+
 MVP: 
     - Users can create an account 
     - Users can log in 
