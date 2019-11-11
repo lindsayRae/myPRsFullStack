@@ -16,6 +16,9 @@ const skillsMenu = require('./routes/skillsMenu');
 const liftsMenu = require('./routes/liftsMenu');
 const cardioMenu = require('./routes/cardioMenu');
 const personalRecords = require('./routes/personalRecords');
+
+const sandbox = require('./routes/sandbox');
+const sandbox2 = require('./routes/sandbox2');
 const app = express();
 
 app.use(logger('dev'));
@@ -36,6 +39,9 @@ app.use('/api/personalrecord', personalRecords);
 app.use('/skillsmenu', skillsMenu);
 app.use('/liftsmenu', liftsMenu);
 app.use('/cardiomenu', cardioMenu);
+
+app.use('/sandbox', sandbox);
+app.use('/sandbox2', sandbox2);
 
 //! set myPRs_jwtPrivateKey=mySecureKey
 const jwtPrivateKey = process.env.jwtPrivateKey;

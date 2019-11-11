@@ -1,8 +1,6 @@
 const { PersonalRecord } = require('../models/personalRecord');
 const express = require('express');
 const router = express.Router();
-// const url = require('url');
-// const querystring = require('querystring');
 
 router.get('/', async (req, res) => {
     res.send('Welcome to Personal Records Endpoint')
@@ -137,30 +135,5 @@ router.put('/delete/:parent_id', async (req, res) => {
 
 })
 
-//? get entries for 1 movement 
-// router.get('/:id', async (req, res) => {
-//     try {
-       
-//         const id = req.params.id;
-//         const movementId = req.query.movementId;
-//         console.log(movementId)
-//         let record = await PersonalRecord.findById(id);
-//         record.deleteOne({ _id: movementId }, function (err) {
-//             res.send(record)
-//             if (err) return handleError(err);
-//             // deleted at most one tank document
-//           });
-//         // if (movement === 'lifts') {
-//         //     res.send(record.lifts)
-//         // } else if (movement === 'cardio') {
-//         //     res.send(record.cardio)
-//         // } else if (movement === 'skills') {
-//         //     res.send(record.skills)
-//         // }
-
-//     } catch (error) {
-//         res.send(error);
-//     }
-// })
 
 module.exports = router;
