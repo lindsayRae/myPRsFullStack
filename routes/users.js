@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require('bcrypt');
@@ -7,11 +8,18 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
-
+//! NOTE: to log out user
+//! need to be handled on the client, just delete the token because we are not storing the 'generateAuthToken' anywhere on the server
 
 router.get('/', async (req, res) => {
   const user = await User.find();
   res.send(user);
+});
+
+//! added auth middleware
+router.get('/me', auth, async (req, res) => {
+ const user = await User.findById(req.user._id).select('-password');
+ res.send(user);
 });
 
 router.get('/:email', async (req, res) => {

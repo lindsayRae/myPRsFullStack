@@ -1,4 +1,5 @@
 const { PersonalRecord } = require('../models/personalRecord');
+const auth = require('../middleware/auth');
 const express = require('express');
 const router = express.Router();
 
@@ -15,8 +16,10 @@ function getDate() {
     return today;
 }
 
-//? get entries for 1 movement 
-router.get('/:id', async (req, res) => {
+//? get entries for 1 movement
+//! Added auth as middlerware 
+router.get('/:id', auth, async (req, res) => {
+  
     try {
        
     const id = req.params.id;
@@ -36,8 +39,8 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-
-router.post('/', async (req, res) => {
+//! added auth as middleware
+router.post('/', auth, async (req, res) => {
     try {
         let cardios = req.body.cardio
         let lifts = req.body.lifts
@@ -71,7 +74,8 @@ router.post('/', async (req, res) => {
 })
 
 //? Add one entry 
-router.put('/:id', async (req, res) => {
+//! added auth middleware
+router.put('/:id', auth, async (req, res) => {
     try {
 
         const movement = req.body.movement
@@ -104,7 +108,8 @@ router.put('/:id', async (req, res) => {
 })
 
 //? remove one entry 
-router.put('/delete/:parent_id', async (req, res) => {
+//! added auth middleware
+router.put('/delete/:parent_id', auth, async (req, res) => {
     try {           
 
         const movement = req.body.movement
