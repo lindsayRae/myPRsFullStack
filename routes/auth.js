@@ -17,19 +17,38 @@ router.get('/', async (req, res) => {
 
 //? Login endpoint 
 router.post('/', async (req, res) => {
-  
-    const { error } = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
 
+    const { error } = validate(req.body);
+    if (error) {
+      // ! This error is generated when your validate function at the bottom of 
+      // ! the page is not satisfied
+      return res.status(400).send({
+          message: 'Usernames and passwords, should be at least 5 characters long'
+        });
+    } 
+
+    // ! We are looking to see if the email address is in the database
     let user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).send('Invalid email or password.');
+    if (!user) {
+      // ! If the user is not in the database we will send back a 404 (not found)
+      return res.status(400).send({
+        message: 'Invalid username or password.'
+      });
+    } 
 
    //* compare plain text pw with hash pw
    const validPassword = await bcrypt.compare(req.body.password, user.password);
-   if(!validPassword) return res.status(400).send('Invalid email or password.');
+   if(!validPassword) {
+     // ! If the user is in the data, but the password bad, 
+     // ! it's an invalid request (400 status code)
+    return res.status(400).send({
+      message: 'Invalid username or password.'
+    });
+   }
 
    const token = user.generateAuthToken(); 
-   res.send(token);
+   console.log("past token")
+   res.send({token: token});
 });
 
 
