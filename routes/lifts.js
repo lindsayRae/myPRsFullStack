@@ -1,3 +1,4 @@
+const { Lifts, validate } = require('../models/lifts');
 const Joi = require('@hapi/joi');
 
 const express = require('express');
@@ -6,9 +7,12 @@ const router = express.Router();
 
 
 /* GET lifts listing. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res) {
+    const lifts = await Lifts.find();
     res.send(lifts);
   });
+
+  
 
 router.get('/:id', (req, res) => {
     console.log(req.params.id)

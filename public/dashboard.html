@@ -4,55 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>myPRs - Dashboard</title>
 
+    
+    <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css"> --> 
+
+   
+    <link rel="stylesheet" href="./mdl/material.min.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">    
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css">
-    <link rel="stylesheet" href="./stylesheets/style.css">
 </head>
 <body>
-    <div class="mdl-layout mdl-js-layout ">
+
 
         <div class="signup-ribbon">
             <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone list-title-wrapper">
                     <img src="https://via.placeholder.com/75" class="">
+                    <span class="mdl-layout-title list-title">Dashboard</span>
                 </div>
-                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">
-                    <span class="mdl-layout-title">Dashboard</span>
-                </div>
-            </div>
+                
+            </div>           
 
         </div>
-        <main class="demo-main mdl-layout__content">
+        <main class="main">
             <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">
-                    <!-- Textfield with Floating Label -->
-
-                  
-                        main here...    
+                <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
+                    <a class="category mdl-shadow--2dp" id="liftsMenuBtn">
+                        <p>Lifts</p>                    
+                    </a>
                 </div>
+                <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
 
-
-                <!-- Left aligned menu on top of button  -->
-<button id="demo-menu-top-left"
-class="mdl-button mdl-js-button mdl-button--icon">
-<i class="material-icons">more_vert</i>
-</button>
-
-
+                    <a href="cardio.html" class="category mdl-shadow--2dp">
+                        <p>Cardio</p>                    
+                    </a>                   
+                </div>
+                <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
+                    <a href="lifts.html" class="category mdl-shadow--2dp">
+                        <p>Skills</p>                    
+                    </a>                  
+                </div>
             </div>
 
         </main>
-    </div>
 
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">CS 2 (4 on phone)</div>
+        <div class="navbar">
+            <a href="#home" class="active"><i class="material-icons">
+                dashboard
+                </i></a>
+            <a href="#news"><i class="material-icons">
+                perm_identity
+                </i></a>
+            <a href="#contact"><i class="material-icons">
+                email
+                </i></a>
+          </div>
+  
 
-    </div>
-
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="./js/signup.js"></script>
+          <script src="./mdl/material.min.js"></script>
+    <!-- <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+    <script src="./js/dashboard.js"></script>
 
 </body>
 </html>
