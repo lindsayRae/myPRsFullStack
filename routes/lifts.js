@@ -22,11 +22,11 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-
+console.log("im hererererer")
     let { error } = validateLift(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     let lift = {
-        id: lifts.length + 1,
+       // id: lifts.length + 1,
         name: req.body.name, 
         description: req.body.description,       
         maxLog: [

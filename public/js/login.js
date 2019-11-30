@@ -28,7 +28,7 @@ async function collectLoginForm() {
         let json = await res.json()
         console.log(json)
         if (res.status === 200) {
-            console.log(json.token)
+           // console.log(json.token)
             // store the token in session
             localStorage.setItem("token", json.token)
            location.href = "/dashboard.html"

@@ -18,7 +18,28 @@ function getDate() {
 
 //? get entries for 1 movement
 //! Added auth as middlerware 
-router.get('/:id', auth, async (req, res) => {
+// router.get('/:id', auth, async (req, res) => {
+  
+//     try {
+       
+//     const id = req.params.id;
+//     const movement = req.query.movement;
+//     let record = await PersonalRecord.findById(id);
+
+//     if (movement === 'lifts') {
+//         res.send(record.lifts)
+//     } else if (movement === 'cardio') {
+//         res.send(record.cardio)
+//     } else if (movement === 'skills') {
+//         res.send(record.skills)
+//     }
+
+//     } catch (error) {
+//         res.send(error);
+//     }
+// })
+//! No authorization 
+router.get('/:id', async (req, res) => {
   
     try {
        
