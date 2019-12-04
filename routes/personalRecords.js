@@ -61,7 +61,9 @@ router.get('/:id', async (req, res) => {
 })
 
 //! added auth as middleware
-router.post('/', auth, async (req, res) => {
+//router.post('/', auth, async (req, res) => {
+    router.post('/', async (req, res) => {
+        console.log('heard post')
     try {
         let cardios = req.body.cardio
         let lifts = req.body.lifts
@@ -86,7 +88,8 @@ router.post('/', auth, async (req, res) => {
             skills: skills
         })
 
-        let PersonalRecordToAddResult = await PersonalRecordToAdd.save()
+        let PersonalRecordToAddResult = await PersonalRecordToAdd.save();
+        console.log(PersonalRecordToAddResult)
         res.send(PersonalRecordToAddResult)
 
     } catch (error) {

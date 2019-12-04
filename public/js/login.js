@@ -26,24 +26,23 @@ async function collectLoginForm() {
         })
 
         let json = await res.json()
-        console.log(json)
-        if (res.status === 200) {
-           // console.log(json.token)
-            // store the token in session
+
+        if (res.status === 200) {                    
             localStorage.setItem("token", json.token)
-           location.href = "/dashboard.html"
-            // redirect to the dash 
-        } else if (res.status === 404) {
-            console.log(json.message)
-        } else if (res.status === 400) {
-            console.log(json.message)
+            location.href = "/dashboard.html"          
         } else {
-            console.log("Some other error")
+            document.getElementById('loginErrorMsg').classList.remove('hide');
+            document.getElementById('loginErrorMsg').innerText = json.message;
         }
 
     } catch (error) {
         console.log(error);
     }
 }
-
+document.getElementById("email").addEventListener("focus", ()=>{
+    document.getElementById('loginErrorMsg').classList.add('hide');
+})
+document.getElementById("password").addEventListener("focus", ()=>{
+    document.getElementById('loginErrorMsg').classList.add('hide');
+})
 document.getElementById("loginBtn").addEventListener("click", collectLoginForm)

@@ -16,18 +16,19 @@ const Lifts = mongoose.model('Lifts', new mongoose.Schema({
         maxlength: 255
     },
     preDefined: {
-        type: Boolean
+        type: Boolean,
+        required: true
     }
 }))
 
-function validateLift(cardio){
+function validateLiftJoi(lift){
     const schema = {
         name: Joi.string().min(1).max(99).required(),
         description: Joi.string().min(1).max(99).required(),
-        preDefined: Joi.bool()         
+        preDefined: Joi.bool().required()        
     };
-    return Joi.validate(cardio, schema);
+    return Joi.validate(lift, schema);
 }
 
 exports.Lifts = Lifts;
-exports.validate = validateLift;
+exports.validate = validateLiftJoi;

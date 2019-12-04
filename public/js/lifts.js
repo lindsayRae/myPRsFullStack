@@ -1,21 +1,44 @@
 buildMenuUI()
 
-async function buildMenuUI() {
 
-    // let data = sessionStorage.getItem('LiftMenu');
-    // data = JSON.parse(data)
+function openFlyout(){
+    document.getElementById('flyoutContainer').classList.add('cd-panel--is-visible')
+    
+}
+
+function closeFlyout(){
+    document.getElementById('flyoutContainer').classList.remove('cd-panel--is-visible')
+    
+}
+
+document.getElementById('closeFlyout').addEventListener('click', closeFlyout)
+
+
+
+async function buildMenuUI() {
+   
     let data = await buildLiftMenu();
     data = data.sort();
+    console.log(data)
     let container = document.getElementById('liftMenuContainer');
+    container.innerHTML = '';
     data.forEach(function (lift) {
-
+        let idName = lift.replace(/\s/g, '');
+      
         let div = document.createElement('div');
         div.classList.add('mdl-cell');
         div.classList.add('mdl-cell--2-col');
         div.classList.add('mdl-cell--2-col-phone');
         div.classList.add('mdl-shadow--2dp');
         div.classList.add('single-lift');
+        div.setAttribute('id', idName)        
         div.innerText = lift;
+        div.addEventListener('click', () =>{
+            console.log('heard')
+            openFlyout();
+        })
+
+
 
         container.append(div);
     })
@@ -36,8 +59,7 @@ async function defaultLiftsMenu() {
         })
         let json = await res.json()
         //console.table(json);
-        if (res.status === 200) {
-            // location.href = "/lifts.html"
+        if (res.status === 200) {            
             return json;
         } else if (res.status === 404) {
             console.log(json.message)
@@ -63,7 +85,7 @@ async function userLiftsMenu() {
             method: "GET",
             headers: headers
         })
-        //console.log(res)
+       
         let json = await res.json()
         //console.log(json);
         if (res.ok) {
@@ -82,15 +104,11 @@ async function userLiftsMenu() {
 async function addNewLift() {
     console.log("YOOOOOOOOOO")
     let body = {
-        name: "Downward Dog",
-        description: "Need to add..",
-        maxLog: [{
-            weight: "200 lbs"
-        }]
-
+        name: sanitizeInput(document.getElementById('newName').value),
+        description: sanitizeInput(document.getElementById('newDescription').value),       
     }
     let url = "/api/lifts";
-    console.log(body)
+
     try {
      
         body = JSON.stringify(body)
@@ -105,10 +123,14 @@ async function addNewLift() {
         })
 
         let json = await res.json()
-
         console.log(json)
+        if(json){
+            buildMenuUI();
+            document.getElementById('newMovementForm').reset();
+        }
+
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
@@ -127,7 +149,7 @@ async function buildLiftMenu() {
 
     //* concat() the two arrays together 
     let allLifts = userDefinedLiftNames.concat(defaultLiftNames);
-    //console.log(allLifts)
+   //console.log(allLifts)
 
     //* new Set() removes duplicate values -> returns object 
     let uniqueMenu = new Set(allLifts);
@@ -135,7 +157,7 @@ async function buildLiftMenu() {
 
     //* ... spread puts back into array 
     let liftMenu = [...uniqueMenu];
-    console.log(liftMenu)
+    //console.log(liftMenu)
 
     return liftMenu;
 
@@ -155,6 +177,12 @@ function findText() {
             items[i].style.display = "none";
         }
     }
+}
+
+function sanitizeInput(inputStr){
+
+    return inputStr.trim();
+
 }
 
 var dialog = document.querySelector('dialog');

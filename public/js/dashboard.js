@@ -3,7 +3,7 @@
 
 
 
-document.getElementById("liftsMenuBtn").addEventListener("click", ()=>{ 
+document.getElementById("liftsMenuBtn").addEventListener("click", ()=> {  
   
   location.href = "/lifts.html";
 })
