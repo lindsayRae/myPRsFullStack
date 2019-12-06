@@ -15,6 +15,11 @@
 
 <body>
 
+                       
+
+
+
+
         <dialog class="mdl-dialog">
                 <form class="mdl-dialog__content" id="newMovementForm">
                         <div class="mdl-textfield mdl-js-textfield">
@@ -32,19 +37,38 @@
                 </div>
         </dialog>
 
-        <div class="cd-panel cd-panel--from-left js-cd-panel-main" id="flyoutContainer">
-                <header class="cd-panel__header">
-                        <h4>Title Goes Here</h4>
-                        <a href="#0" class="cd-panel__close js-cd-close" id="closeFlyout">Close</a>
-                </header>
+         
+        <div id="mySidenav" class="">
+                <div class="sidenav" id="mainFlyout">
+                        <a href="javascript:void(0)" class="closebtn" id="closeFlyout">&times;</a>
+                        <div>
+                            <h3>Back Squat</h3>    
+                        </div>
+                        <div>
+                        <p>PR: 195 lbs<p>
+                        </div>
+                        <div style="height: 150px; border: 1px solid red;" >
+                                chart
+                        </div>
+                        <div>
+                                <input type="text" placeholder="max log here"> 
+                        </div>
+                        <div>
+                                <ul>
+                                        <li>log  here</li>
+                                        <li>log  here</li>
+                                        <li>log  here</li>
+                                        <li>log  here</li>                                       
+                                </ul>
+                        </div>
+                </div>
+                 <div class="secondary-flyout" id="secondaryFlyout">                       
+                </div> 
                 
-                <div class="cd-panel__container">
-                        <div class="cd-panel__content">
-                                yoooooo
-                        <!-- your side panel content here -->
-                        </div> <!-- cd-panel__content -->
-                </div> <!-- cd-panel__container -->
-        </div> <!-- cd-panel -->
+        </div>
+       
+
+        
         <div class="cd-main-content">                  
         <div class="search-ribbon">
                 <div class="mdl-grid">
@@ -82,8 +106,8 @@
                                 perm_identity
                         </i></a>
         </div>
-
 </div>
+
         <script src="./mdl/material.min.js"></script>
         <!-- <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
         <script src="./js/lifts.js"></script>

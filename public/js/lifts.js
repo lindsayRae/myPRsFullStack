@@ -1,17 +1,20 @@
 buildMenuUI()
 
 
-function openFlyout(){
-    document.getElementById('flyoutContainer').classList.add('cd-panel--is-visible')
+function openFlyout(){ 
+  document.getElementById("mainFlyout").style.width = "85%";
+  document.getElementById("secondaryFlyout").style.width = "15%";
+  
     
 }
 
-function closeFlyout(){
-    document.getElementById('flyoutContainer').classList.remove('cd-panel--is-visible')
-    
+function closeFlyout(){   
+    document.getElementById("mainFlyout").style.width = "0";
+    document.getElementById("secondaryFlyout").style.width = "0"; 
 }
 
-document.getElementById('closeFlyout').addEventListener('click', closeFlyout)
+document.getElementById('closeFlyout').addEventListener('click', closeFlyout);
+document.getElementById('secondaryFlyout').addEventListener('click', closeFlyout)
 
 
 

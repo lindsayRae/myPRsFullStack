@@ -127,59 +127,74 @@
 }
 
 /* Slide out menu  */
-.cd-panel {
-  /*...*/
-  visibility: hidden;
-  transition: visibility 0s 0.6s;
-}
+/* #mySidenav{
+  width: 100%;
 
-.cd-panel.cd-panel--is-visible {
-  visibility: visible;
-  transition: visibility 0s 0s;
-}
+} */
+/* #main{
+  width: 100%;
+  
+} */
 
-.cd-panel__header {
-  /*...*/
-  position: fixed;
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
   top: 0;
-  width: 90%;
-  height: 50px;
-  z-index: 2;
-  transition: transform 0.3s 0s;
-  transform: translateY(-50px);
+  left: 0;
+  background-color: white; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */  
 }
-
-.cd-panel--from-right .cd-panel__header {
+#mainFlyout{
+  width: 0; /* 0 width - change this with JavaScript */
+}
+#secondaryFlyout{
+  width: 0; /* 0 width - change this with JavaScript */
+}
+.secondary-flyout {
+  height: 100%; /* 100% Full-height */  
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
   right: 0;
+  background-color: rgba(0, 0, 0, 0.548); /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 10px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+ 
 }
 
-.cd-panel--from-left .cd-panel__header {
-  left: 0;
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+  transition: 0.3s;
 }
 
-.cd-panel--is-visible .cd-panel__header {
-  transition: transform 0.3s 0.3s;
-  transform: translateY(0px);
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
 }
 
-.cd-panel__container {
-  /*...*/
-  position: fixed;
-  width: 85%;
-  height: 100%;
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
   top: 0;
-  background-color: #ffffff;
-  z-index: 1;
-  transition: transform 0.3s 0.3s;
+  right: 5px;
+  font-size: 36px;
+  margin-left: 50px;
 }
 
 
-.cd-panel--from-left .cd-panel__container {
-  left: 0;
-  transform: translate3d(-100%, 0, 0);
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 
-.cd-panel--is-visible .cd-panel__container {
-  transform: translate3d(0, 0, 0);
-  transition-delay: 0s;
-}
