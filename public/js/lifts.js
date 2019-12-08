@@ -2,7 +2,9 @@ buildMenuUI()
 
 
 function openFlyout(){ 
-  document.getElementById("mainFlyout").style.width = "85%";
+  document.getElementById("mainFlyout").style.width = "75%";
+  document.getElementById("mainFlyout").style.paddingLeft = "5%";
+  document.getElementById("mainFlyout").style.paddingRight = "5%";
   document.getElementById("secondaryFlyout").style.width = "15%";
   
     
@@ -10,6 +12,8 @@ function openFlyout(){
 
 function closeFlyout(){   
     document.getElementById("mainFlyout").style.width = "0";
+    document.getElementById("mainFlyout").style.paddingLeft = "0";
+    document.getElementById("mainFlyout").style.paddingRight = "0";
     document.getElementById("secondaryFlyout").style.width = "0"; 
 }
 

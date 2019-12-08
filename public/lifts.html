@@ -11,14 +11,10 @@
         <link rel="stylesheet" href="./mdl/material.min.css">
         <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css"> -->
         <link rel="stylesheet" href="./stylesheets/style.css">
+        <link rel="stylesheet" href="./stylesheets/flyout.css">
 </head>
 
 <body>
-
-                       
-
-
-
 
         <dialog class="mdl-dialog">
                 <form class="mdl-dialog__content" id="newMovementForm">
@@ -29,7 +25,7 @@
                         <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="newDescription">
                                 <label class="mdl-textfield__label" for="newDescription">Description</label>
-                        </div>                       
+                        </div>
                 </form>
                 <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
 
@@ -37,76 +33,183 @@
                 </div>
         </dialog>
 
-         
+
         <div id="mySidenav" class="">
                 <div class="sidenav" id="mainFlyout">
                         <a href="javascript:void(0)" class="closebtn" id="closeFlyout">&times;</a>
-                        <div>
-                            <h3>Back Squat</h3>    
+                        <div class="name-container">
+                                <h3 id="movementName">Back Squat</h3>
                         </div>
-                        <div>
-                        <p>PR: 195 lbs<p>
+                        <div class="max-container">
+                                <p>PR: <span id="currentPRLog">195 lbs</span>
+                                        <p>
+                                                <p id="currentPRDate">11/10/18</p>
                         </div>
-                        <div style="height: 150px; border: 1px solid red;" >
-                                chart
-                        </div>
-                        <div>
-                                <input type="text" placeholder="max log here"> 
-                        </div>
-                        <div>
-                                <ul>
-                                        <li>log  here</li>
-                                        <li>log  here</li>
-                                        <li>log  here</li>
-                                        <li>log  here</li>                                       
-                                </ul>
-                        </div>
-                </div>
-                 <div class="secondary-flyout" id="secondaryFlyout">                       
-                </div> 
-                
-        </div>
-       
+                        <div class="chart-container mdl-shadow--2dp">
+                                <img src="./img/chart-sample.png" width="100%" height="160" border="0" alt="">
 
-        
-        <div class="cd-main-content">                  
-        <div class="search-ribbon">
-                <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone list-title-wrapper">
-                                <img src="https://via.placeholder.com/75" class="">
-                                <span class="mdl-layout-title list-title">Lifts</span>
                         </div>
-                        <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">
-                                <form action="#" class="text-white" id="searchLiftForm">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                                <input class="mdl-textfield__input" type="text" name="filter-search"id="liftSearch">
-                                                <label class="mdl-textfield__label" for="filter-search">Search...</label>
+                        <div>
+                                <div>New Entry</div>
+                                <form >
+                                                <div class="one-rep-entry">
+                                                                
+                                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input"  style="width: 20%;">
+                                                                        <input class="mdl-textfield__input" type="text"
+                                                                                pattern="-?[0-9]*(\.[0-9]+)?" id="newPREntry" maxlength="3">
+                                                                        <label class="mdl-textfield__label" for="newPREntry">lbs...</label>
+                                                                        <span class="mdl-textfield__error">Input is not a number!</span>
+                                                                </div>
+                                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input" style="width: 40%;">
+                                                                                <input class="mdl-textfield__input" type="text" maxlength="12"
+                                                                                         id="newPREntry">
+                                                                                <label class="mdl-textfield__label" for="newPREntry">Note</label>
+                                                                                <span class="mdl-textfield__error">Input is not a number!</span>
+                                                                        </div>
+                                                                        <div class="entry-button" id="addNewLogBtn">
+                                                                                        <i class="material-icons">add</i>
+                                                                                </div>
+                                                        </div>
+                                                        
+                                        <!-- <div class="one-rep-entry">
+                                                <div class="entry-label">1 Rep:</div>
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input">
+                                                        <input class="mdl-textfield__input" type="text"
+                                                                pattern="-?[0-9]*(\.[0-9]+)?" id="newPREntry">
+                                                        <label class="mdl-textfield__label" for="newPREntry">Weight in
+                                                                lbs...</label>
+                                                        <span class="mdl-textfield__error">Input is not a number!</span>
+                                                </div>
+                                                <div class="entry-button" id="">
+                                                        &nbsp;
+                                                </div>
                                         </div>
-                                        <i class="material-icons" id="clearFilter">
-                                                clear_all
-                                        </i>
+                                        <div class="one-rep-entry">
+                                                        <div class="entry-label">Note:</div>
+                                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input">
+                                                                <input class="mdl-textfield__input" type="text"
+                                                                         id="newPREntry">
+                                                                <label class="mdl-textfield__label" for="newPREntry">Note max 10 char</label>
+                                                                <span class="mdl-textfield__error">Input is not a number!</span>
+                                                        </div>
+                                                        <div class="entry-button" id="addNewLogBtn">
+                                                                <i class="material-icons">add</i>
+                                                        </div>
+                                                </div> -->
                                 </form>
                         </div>
+                        <div>
+                                <!-- <ul id="logList" class="log-list">
+                                        <li><span>180</span> lbs <span>10/10/19</span></li>
+                                        <li>170 lbs 9/10/19</li>
+                                        <li>160 lbs 8/10/19</li>
+                                        <li>150 lbs 7/10/19</li>
+                                        <li>140 lbs 6/10/19</li>
+                                </ul> -->
+
+                                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp log-table">
+                                        <thead>
+                                                <tr>
+                                                        <th class="">Max</th>
+                                                        <th class="">Date</th>
+                                                        <th>Note</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td class="">185</td>
+                                                        <td>10/10/19</td>
+                                                        <td>123456789112</td>
+
+                                                </tr>
+                                                <tr>
+                                                        <td class="">185</td>
+                                                        <td>10/10/19</td>
+                                                        <td>Easy</td>
+
+                                                </tr>
+                                                <tr>
+                                                        <td>185</td>
+                                                        <td>10/10/19</td>
+                                                        <td>HArd</td>
+
+                                                </tr>
+                                                <tr>
+                                                        <td>185</td>
+                                                        <td>10/10/19</td>
+                                                        <td>HArd</td>
+
+                                                </tr>
+                                                <tr>
+                                                        <td>185</td>
+                                                        <td>10/10/19</td>
+                                                        <td>HArd</td>
+
+                                                </tr>
+                                                <tr>
+                                                                <td>185</td>
+                                                                <td>10/10/19</td>
+                                                                <td>HArd</td>
+        
+                                                        </tr>
+                                                        <tr>
+                                                                        <td>185</td>
+                                                                        <td>10/10/19</td>
+                                                                        <td>HArd</td>
+                
+                                                                </tr>
+                                        </tbody>
+                                </table>
+                        </div>
                 </div>
-        </div>
-        <main class="main-movements" id="movementList">
-                <div class="mdl-grid" id="liftMenuContainer">
+                <div class="secondary-flyout" id="secondaryFlyout">
                 </div>
 
-        </main>
-
-        <div class="navbar">
-                <a href="dashboard.html"><i class="material-icons">
-                                dashboard
-                        </i></a>
-                <a href="#add"><i class="material-icons show-modal">
-                                add
-                        </i></a>
-                <a href="#news"><i class="material-icons">
-                                perm_identity
-                        </i></a>
         </div>
-</div>
+
+
+
+        <div class="cd-main-content">
+                <div class="search-ribbon">
+                        <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone list-title-wrapper">
+                                        <img src="https://via.placeholder.com/75" class="">
+                                        <span class="mdl-layout-title list-title">Lifts</span>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">
+                                        <form action="#" class="text-white" id="searchLiftForm">
+                                                <div
+                                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                        <input class="mdl-textfield__input" type="text"
+                                                                name="filter-search" id="liftSearch">
+                                                        <label class="mdl-textfield__label"
+                                                                for="filter-search">Search...</label>
+                                                </div>
+                                                <i class="material-icons" id="clearFilter">
+                                                        clear_all
+                                                </i>
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+                <main class="main-movements" id="movementList">
+                        <div class="mdl-grid" id="liftMenuContainer">
+                        </div>
+
+                </main>
+
+                <div class="navbar">
+                        <a href="dashboard.html"><i class="material-icons">
+                                        dashboard
+                                </i></a>
+                        <a href="#add"><i class="material-icons show-modal">
+                                        add
+                                </i></a>
+                        <a href="#news"><i class="material-icons">
+                                        perm_identity
+                                </i></a>
+                </div>
+        </div>
 
         <script src="./mdl/material.min.js"></script>
         <!-- <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
