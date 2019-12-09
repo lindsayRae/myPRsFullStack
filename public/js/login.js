@@ -11,7 +11,7 @@ async function collectLoginForm() {
         password: pw
     }
     let url = "/api/auth";
-
+console.log(data)
     try {
 
         let body = JSON.stringify(data)

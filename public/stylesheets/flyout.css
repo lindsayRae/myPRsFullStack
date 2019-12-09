@@ -52,6 +52,7 @@
     right: 5px;
     font-size: 36px;
     margin-left: 50px;
+    margin-top: 8px;
   }
   /* ***** END   ************ */
   .max-container {
@@ -59,7 +60,7 @@
       justify-content: space-between;
   }
   .name-container h3 {
-    margin-top: 40px;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   .max-container p {
@@ -89,12 +90,24 @@
 }
 
 /* log list */
-
 .log-table {
-    width: 100%;
-    white-space: normal;
-    text-overflow: ellipsis;
+    /* width: 100%; */
+}
 
+.fixed_header tbody{
+  display:block;
+  overflow:auto;
+  height:40vh;
+  width:100%;
+}
+.fixed_header thead tr{
+  display:block;
+}
+
+
+.fixed-position
+{
+   position: fixed;
 }
 
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

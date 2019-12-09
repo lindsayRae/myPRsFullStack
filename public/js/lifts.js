@@ -1,3 +1,4 @@
+//! terminal command: ipconfig
 buildMenuUI()
 
 
@@ -6,6 +7,7 @@ function openFlyout(){
   document.getElementById("mainFlyout").style.paddingLeft = "5%";
   document.getElementById("mainFlyout").style.paddingRight = "5%";
   document.getElementById("secondaryFlyout").style.width = "15%";
+  document.getElementById("liftMenuContainer").classList.add('fixed-position');
   
     
 }
@@ -15,6 +17,7 @@ function closeFlyout(){
     document.getElementById("mainFlyout").style.paddingLeft = "0";
     document.getElementById("mainFlyout").style.paddingRight = "0";
     document.getElementById("secondaryFlyout").style.width = "0"; 
+    document.getElementById("liftMenuContainer").classList.remove('fixed-position');
 }
 
 document.getElementById('closeFlyout').addEventListener('click', closeFlyout);
@@ -209,6 +212,10 @@ dialog.querySelector('.close').addEventListener('click', function () {
 document.getElementById('clearFilter').addEventListener('click', () => {
     console.log("heard")
     document.getElementById('searchLiftForm').reset();
+    findText();
+})
+document.getElementById('liftSearch').addEventListener('touchstart', () => {
+
     findText();
 })
 document.getElementById('liftSearch').addEventListener('keyup', () => {
