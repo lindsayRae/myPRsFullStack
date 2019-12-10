@@ -1,3 +1,33 @@
+
+/*? COLOR PALATE */
+/** https://dribbble.com/shots/5471461-Kenko-workout-app-onboarding */
+
+.theme-white {
+  color: #E5E4EC;
+}
+.theme-light-gray {
+  color: #BBC3D0;
+}
+.theme-mid-gray {
+  color: #817D8C;
+}
+.theme-dark {
+  color: #0E0F22;
+}
+.theme-primary {
+  color: #2E359D;
+}
+.theme-dark-gray {
+  color: #4A4B64;
+}
+
+.theme-gradient {
+  background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); /* Standard syntax (must be last) */
+
+}
+
+
+
 .login-ribbon {
   width: 100%;
   background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); /* Standard syntax (must be last) */
@@ -115,3 +145,6 @@
   color: #f1f1f1;
 }
 
+.lt-border {
+  border: 1px solid #BBC3D0;
+}

@@ -203,11 +203,13 @@ if (!dialog.showModal) {
 showModalButton.addEventListener('click', function () {
     dialog.showModal();
 });
-dialog.querySelector('.close').addEventListener('click', function () {
+dialog.querySelector('.add-lift').addEventListener('click', function () {
     dialog.close();
     addNewLift();
 });
-
+dialog.querySelector('.close').addEventListener('click', function () {
+    dialog.close();    
+});
 
 document.getElementById('clearFilter').addEventListener('click', () => {
     console.log("heard")
