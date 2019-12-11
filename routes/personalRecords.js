@@ -40,7 +40,7 @@ function getDate() {
 // })
 //! No authorization 
 router.get('/:id', async (req, res) => {
-  
+  console.log('heard the GET')
     try {
        
     const id = req.params.id;

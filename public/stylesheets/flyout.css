@@ -72,26 +72,25 @@
     margin-bottom: 16px;
 }
 
-.one-rep-entry{
+/* .one-rep-entry{
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-.entry-label{
-    width: 20%;
-  
-}
-.entry-input{
+} */
+
+/* .entry-input{
     width: 60%;
-}
+} */
 .entry-button  {
-    width: 20%;
+    /* width: 20%; */
     text-align: center;
 }
 
 /* log list */
 .log-table {
-    /* width: 100%; */
+  white-space: normal;
+  table-layout: fixed;
+width: 100%;
 }
 
 .fixed_header tbody{
@@ -110,6 +109,9 @@
    position: fixed;
 }
 
+.note {
+  word-break: break-word;
+}
   /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

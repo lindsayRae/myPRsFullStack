@@ -2,16 +2,59 @@
 buildMenuUI()
 
 
+
+
+document.getElementById('closeFlyout').addEventListener('click', closeFlyout);
+document.getElementById('secondaryFlyout').addEventListener('click', closeFlyout)
+
+
+let dialog = document.querySelector('dialog');
+let showModalButton = document.querySelector('.show-modal');
+if (!dialog.showModal) {
+    dialogPolyfill.registerDialog(dialog);
+}
+
+showModalButton.addEventListener('click', function () {
+    dialog.showModal();
+});
+dialog.querySelector('.add-lift').addEventListener('click', function () {
+    dialog.close();
+    addNewLift();
+});
+dialog.querySelector('.close').addEventListener('click', function () {
+    dialog.close();    
+});
+
+document.getElementById('clearFilter').addEventListener('click', () => {
+    console.log("heard")
+    document.getElementById('searchLiftForm').reset();
+    findText();
+})
+document.getElementById('liftSearch').addEventListener('touchstart', () => {
+
+    findText();
+})
+document.getElementById('liftSearch').addEventListener('keyup', () => {
+
+    findText();
+})
 function openFlyout(){ 
   document.getElementById("mainFlyout").style.width = "75%";
   document.getElementById("mainFlyout").style.paddingLeft = "5%";
   document.getElementById("mainFlyout").style.paddingRight = "5%";
   document.getElementById("secondaryFlyout").style.width = "15%";
   document.getElementById("liftMenuContainer").classList.add('fixed-position');
-  
-    
+   
 }
 
+function buildFlyout(lift){
+
+document.getElementById('movementName').innerText = lift;
+
+
+
+    openFlyout();
+}
 function closeFlyout(){   
     document.getElementById("mainFlyout").style.width = "0";
     document.getElementById("mainFlyout").style.paddingLeft = "0";
@@ -19,12 +62,6 @@ function closeFlyout(){
     document.getElementById("secondaryFlyout").style.width = "0"; 
     document.getElementById("liftMenuContainer").classList.remove('fixed-position');
 }
-
-document.getElementById('closeFlyout').addEventListener('click', closeFlyout);
-document.getElementById('secondaryFlyout').addEventListener('click', closeFlyout)
-
-
-
 async function buildMenuUI() {
    
     let data = await buildLiftMenu();
@@ -45,7 +82,8 @@ async function buildMenuUI() {
         div.innerText = lift;
         div.addEventListener('click', () =>{
             console.log('heard')
-            openFlyout();
+            buildFlyout(lift);
+            
         })
 
 
@@ -54,7 +92,6 @@ async function buildMenuUI() {
     })
 
 }
-
 async function defaultLiftsMenu() {
 
     try {
@@ -82,7 +119,6 @@ async function defaultLiftsMenu() {
         console.log(error);
     }
 }
-
 async function userLiftsMenu() {
 
     try {
@@ -188,39 +224,9 @@ function findText() {
         }
     }
 }
-
 function sanitizeInput(inputStr){
 
     return inputStr.trim();
 
 }
 
-var dialog = document.querySelector('dialog');
-var showModalButton = document.querySelector('.show-modal');
-if (!dialog.showModal) {
-    dialogPolyfill.registerDialog(dialog);
-}
-showModalButton.addEventListener('click', function () {
-    dialog.showModal();
-});
-dialog.querySelector('.add-lift').addEventListener('click', function () {
-    dialog.close();
-    addNewLift();
-});
-dialog.querySelector('.close').addEventListener('click', function () {
-    dialog.close();    
-});
-
-document.getElementById('clearFilter').addEventListener('click', () => {
-    console.log("heard")
-    document.getElementById('searchLiftForm').reset();
-    findText();
-})
-document.getElementById('liftSearch').addEventListener('touchstart', () => {
-
-    findText();
-})
-document.getElementById('liftSearch').addEventListener('keyup', () => {
-
-    findText();
-})

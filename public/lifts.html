@@ -39,12 +39,11 @@
                 <div class="sidenav" id="mainFlyout">
                         <a href="javascript:void(0)" class="closebtn" id="closeFlyout">&times;</a>
                         <div class="name-container">
-                                <h3 id="movementName">Back Squat</h3>
+                                <h3 id="movementName"></h3>
                         </div>
                         <div class="max-container">
-                                <p>PR: <span id="currentPRLog">195 lbs</span>
-                                        <p>
-                                                <p id="currentPRDate">11/10/18</p>
+                                <p>PR: <span id="currentPRLog">195</span><span id="currentPRunit">lbs</span><p>
+                                <p id="currentPRDate">11/10/18</p>
                         </div>
                         <div class="chart-container mdl-shadow--2dp">
                                 <img src="./img/chart-sample.png" width="100%" height="160" border="0" alt="">
@@ -52,11 +51,11 @@
                         </div>
                         <div>
                                 <div>New Entry</div>
-                                <form>
-                                        <div class="one-rep-entry">
+                                <form class="mdl-grid">
+                                        <!-- <div class="one-rep-entry"> -->
 
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input"
-                                                        style="width: 20%;">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input mdl-cell mdl-cell--2-col mdl-cell--1-col-phone"
+                                                        >
                                                         <input class="mdl-textfield__input" type="text"
                                                                 pattern="-?[0-9]*(\.[0-9]+)?" id="newPREntry"
                                                                 maxlength="3">
@@ -64,18 +63,18 @@
                                                                 for="newPREntry">lbs...</label>
                                                         <span class="mdl-textfield__error">Input is not a number!</span>
                                                 </div>
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input"
-                                                        style="width: 40%;">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input  mdl-cell mdl-cell--2-col mdl-cell--2-col-phone"
+                                                        >
                                                         <input class="mdl-textfield__input" type="text" maxlength="12"
                                                                 id="newPREntry">
                                                         <label class="mdl-textfield__label"
                                                                 for="newPREntry">Note</label>
                                                         <span class="mdl-textfield__error">Input is not a number!</span>
                                                 </div>
-                                                <div class="entry-button" id="addNewLogBtn">
+                                                <div class="entry-button  mdl-cell mdl-cell--2-col mdl-cell--1-col-phone" id="addNewLogBtn">
                                                         <i class="material-icons">add</i>
                                                 </div>
-                                        </div>
+                                        <!-- </div> -->
 
 
                                 </form>
@@ -94,55 +93,55 @@
                                                         <td class="mdl-data-table__cell--non-numeric">10/12/19</td>
                                                         <td>185</td>
                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric">abcdefghijkl</td>
+                                                        <td class="mdl-data-table__cell--non-numeric note">12345678911</td>
 
                                                 </tr>
                                                 <tr>
                                                         <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
                                                         <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric">Easy</td>
+                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
 
                                                 </tr>
                                                 <tr>
                                                         <td class="mdl-data-table__cell--non-numeric">11/10/19</td>
                                                         <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric">Easy</td>
+                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
 
                                                 </tr>
                                                 <tr>
                                                         <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
                                                         <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric">Easy</td>
+                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
 
                                                 </tr>
                                                 <tr>
                                                         <td class="mdl-data-table__cell--non-numeric">12/10/19</td>
                                                         <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric">Easy</td>
+                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
 
                                                 </tr>
                                                 <tr>
                                                         <td class="mdl-data-table__cell--non-numeric">08/10/19</td>
                                                         <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric">Easy</td>
+                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
 
                                                 </tr>
                                                 <tr>
                                                         <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
                                                         <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric">Easy</td>
+                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
 
                                                 </tr>
                                                 <tr>
                                                         <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
                                                         <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric">Easy</td>
+                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
 
                                                 </tr>
                                                 <tr>
                                                         <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
                                                         <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric">Easy</td>
+                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
 
                                                 </tr>
                                               
