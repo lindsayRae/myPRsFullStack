@@ -45,7 +45,13 @@ router.get('/:id', async (req, res) => {
        
     const id = req.params.id;
     const movement = req.query.movement;
-    let record = await PersonalRecord.findById(id);
+    console.log(id)
+    console.log(movement)
+
+    //! Steven hard coded the "user_id" from personal records collection  or _id user collection
+    let record = await PersonalRecord.findOne({ user_id: "5dc9523d477fcc4e38652dd6"});
+    
+    console.log(record)
 
     if (movement === 'lifts') {
         res.send(record.lifts)
@@ -53,8 +59,10 @@ router.get('/:id', async (req, res) => {
         res.send(record.cardio)
     } else if (movement === 'skills') {
         res.send(record.skills)
+    } else {
+        res.send('Why is this not getting in here')
     }
-
+   
     } catch (error) {
         res.send(error);
     }

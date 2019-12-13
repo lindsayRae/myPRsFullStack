@@ -53,12 +53,14 @@
   -ms-flex-negative: 0;
   flex-shrink: 0;
   overflow: hidden;
-
   position: fixed;
   top: 0;
  
 }
-
+#searchLiftForm{
+  display: flex;
+  align-items: center;
+}
 .list-title-wrapper {
   display: flex;
   align-items: flex-end;

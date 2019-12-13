@@ -1,12 +1,8 @@
 //! terminal command: ipconfig
 buildMenuUI()
 
-
-
-
 document.getElementById('closeFlyout').addEventListener('click', closeFlyout);
 document.getElementById('secondaryFlyout').addEventListener('click', closeFlyout)
-
 
 let dialog = document.querySelector('dialog');
 let showModalButton = document.querySelector('.show-modal');

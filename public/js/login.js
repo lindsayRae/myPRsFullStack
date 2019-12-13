@@ -29,6 +29,7 @@ console.log(data)
 console.log(json)
         if (res.status === 200) {                    
             localStorage.setItem("token", json.token)
+            localStorage.setItem("ID", json.id)
             location.href = "/dashboard.html"          
         } else {
             document.getElementById('loginErrorMsg').classList.remove('hide');

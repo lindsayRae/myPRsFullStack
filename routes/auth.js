@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
 
 //? Login endpoint 
 router.post('/', async (req, res) => {
+  console.log('in login post')
 console.log(req.body)
     const { error } = validate(req.body);
     if (error) {
@@ -47,9 +48,10 @@ console.log(req.body)
     });
    }
 
-   const token = user.generateAuthToken(); 
+   const token = user.generateAuthToken();
+   const id =  user._id;
    console.log("past token")
-   res.send({token: token});
+   res.send({token: token, id: id});
 });
 
 
