@@ -41,15 +41,18 @@
                         <div class="name-container">
                                 <h3 id="movementName"></h3>
                         </div>
-                        <div class="max-container">
-                                <p>PR: <span id="currentPRLog">195</span><span id="currentPRunit">lbs</span><p>
-                                <p id="currentPRDate">11/10/18</p>
-                        </div>
-                        <div class="chart-container mdl-shadow--2dp">
-                                <img src="./img/chart-sample.png" width="100%" height="160" border="0" alt="">
+                        <section id="flyoutHeader">
+                                <div class="max-container">
+                                        <p>PR: <span id="currentPRLog">195</span><span id="currentPRunit">lbs</span><p>
+                                        <p id="currentPRDate">11/10/18</p>
+                                </div>
+                                <div class="chart-container mdl-shadow--2dp">
+                                        <img src="./img/chart-sample.png" width="100%" height="160" border="0" alt="">
 
-                        </div>
-                        <div>
+                                </div>
+                        </section>
+                                
+                        <section>
                                 <div>New Entry</div>
                                 <form class="mdl-grid">
                                         <!-- <div class="one-rep-entry"> -->
@@ -78,76 +81,80 @@
 
 
                                 </form>
-                        </div>
-                        <div >
-                                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp log-table fixed_header">
-                                        <thead>
-                                                <tr>
-                                                        <th class="mdl-data-table__cell--non-numeric">Date</th>
-                                                        <th>Max lbs</th>                                                        
-                                                        <th class="mdl-data-table__cell--non-numeric">Note</th>
-                                                </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">10/12/19</td>
-                                                        <td>185</td>
-                                                       
-                                                        <td class="mdl-data-table__cell--non-numeric note">12345678911</td>
-
-                                                </tr>
-                                                <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
-                                                        <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
-
-                                                </tr>
-                                                <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">11/10/19</td>
-                                                        <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
-
-                                                </tr>
-                                                <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
-                                                        <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
-
-                                                </tr>
-                                                <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">12/10/19</td>
-                                                        <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
-
-                                                </tr>
-                                                <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">08/10/19</td>
-                                                        <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
-
-                                                </tr>
-                                                <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
-                                                        <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
-
-                                                </tr>
-                                                <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
-                                                        <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
-
-                                                </tr>
-                                                <tr>
-                                                        <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
-                                                        <td>185</td>                                                        
-                                                        <td class="mdl-data-table__cell--non-numeric note">Easy</td>
-
-                                                </tr>
-                                              
-                                        </tbody>
-                                </table>
-                        </div>
+                        </section>
+                        <section>
+                                <div id="noRecordsMsg" class="hide">No records.. start moving!</div>
+                                <div id="tableContainer">
+                                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp log-table fixed_header">
+                                                <thead>
+                                                        <tr>
+                                                                <th class="mdl-data-table__cell--non-numeric">Date</th>
+                                                                <th>Max lbs</th>                                                        
+                                                                <th class="mdl-data-table__cell--non-numeric">Note</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">10/12/19</td>
+                                                                <td>185</td>
+                                                                
+                                                                <td class="mdl-data-table__cell--non-numeric note">12345678911</td>
+        
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
+                                                                <td>185</td>                                                        
+                                                                <td class="mdl-data-table__cell--non-numeric note">Easy</td>
+        
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">11/10/19</td>
+                                                                <td>185</td>                                                        
+                                                                <td class="mdl-data-table__cell--non-numeric note">Easy</td>
+        
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
+                                                                <td>185</td>                                                        
+                                                                <td class="mdl-data-table__cell--non-numeric note">Easy</td>
+        
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">12/10/19</td>
+                                                                <td>185</td>                                                        
+                                                                <td class="mdl-data-table__cell--non-numeric note">Easy</td>
+        
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">08/10/19</td>
+                                                                <td>185</td>                                                        
+                                                                <td class="mdl-data-table__cell--non-numeric note">Easy</td>
+        
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
+                                                                <td>185</td>                                                        
+                                                                <td class="mdl-data-table__cell--non-numeric note">Easy</td>
+        
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
+                                                                <td>185</td>                                                        
+                                                                <td class="mdl-data-table__cell--non-numeric note">Easy</td>
+        
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="mdl-data-table__cell--non-numeric">10/10/19</td>
+                                                                <td>185</td>                                                        
+                                                                <td class="mdl-data-table__cell--non-numeric note">Easy</td>
+        
+                                                        </tr>
+                                                        
+                                                </tbody>
+                                        </table>
+                                </div>
+                                
+                        </section>
                 </div>
                 <div class="secondary-flyout" id="secondaryFlyout">
                 </div>

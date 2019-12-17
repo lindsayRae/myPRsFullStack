@@ -43,12 +43,91 @@ function openFlyout(){
    
 }
 
+//* get all of the lift records from the server
+async function allLiftRecords(){
+
+    let userID = localStorage.getItem('ID');
+    try {
+        let url = `/api/personalrecord/${userID}?movement=lifts`;
+        let headers = {
+            "Content-Type": "application/json"
+        }
+
+        let res = await fetch(url, {
+            method: "GET",
+            headers: headers
+        })
+        let json = await res.json()
+        console.table(json);
+        if (res.status === 200) {            
+            return json;
+        } else if (res.status === 404) {
+            console.log(json.message)
+        } else if (res.status === 400) {
+            console.log(json.message)
+        } else {
+            console.log("Some other error")
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//* find all the records for selected lift 
+async function selectedLiftRecords(lift){
+
+    let allRecords = await allLiftRecords();
+    console.log(allRecords);
+
+    let selectedLift = allRecords.filter(el => el.name === lift);
+    console.log(selectedLift);
+    return selectedLift;
+
+}
+
+//* find the PR from selected lift 
+async function liftPR(lift){
+    let liftRecords = await selectedLiftRecords(lift);
+   console.log(liftRecords)
+
+   if(liftRecords.length < 1){
+       console.log('no data')
+       noEntries();
+   } else {
+        document.getElementById('flyoutHeader').classList.remove('hide');
+        document.getElementById('tableContainer').classList.remove('hide');
+        document.getElementById('noRecordsMsg').classList.add('hide');
+
+        let highest;
+        let record = [];
+        // grab PRs, convert to a number and push to array 
+        liftRecords.forEach(el => {
+            record.push(Number(el.personalRecord))
+        });
+        // find the highest number in the array   
+        highest = Math.max(...record)    
+
+        // find the first obj that the pr is the highest
+        let highestRecord = liftRecords.find(el => el.personalRecord == highest);
+        console.log(highestRecord);
+
+        document.getElementById('currentPRLog').innerText = highestRecord.personalRecord;
+        document.getElementById('currentPRDate').innerText = highestRecord.date;
+   }  
+
+}
+
+function noEntries(){
+    document.getElementById('flyoutHeader').classList.add('hide');
+    document.getElementById('tableContainer').classList.add('hide');
+    document.getElementById('noRecordsMsg').classList.remove('hide');
+}
 function buildFlyout(lift){
 
 document.getElementById('movementName').innerText = lift;
 
 
-
+    liftPR(lift);
     openFlyout();
 }
 function closeFlyout(){   
