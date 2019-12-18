@@ -88,7 +88,7 @@ async function selectedLiftRecords(lift){
 //* find the PR from selected lift 
 async function liftPR(lift){
     let liftRecords = await selectedLiftRecords(lift);
-   console.log(liftRecords)
+   
 
    if(liftRecords.length < 1){
        console.log('no data')
@@ -97,8 +97,14 @@ async function liftPR(lift){
         document.getElementById('flyoutHeader').classList.remove('hide');
         document.getElementById('tableContainer').classList.remove('hide');
         document.getElementById('noRecordsMsg').classList.add('hide');
+        
+        highestRecord(liftRecords);
+        recordTable(liftRecords);
+   }  
 
-        let highest;
+}
+function highestRecord(liftRecords){
+    let highest;
         let record = [];
         // grab PRs, convert to a number and push to array 
         liftRecords.forEach(el => {
@@ -113,10 +119,58 @@ async function liftPR(lift){
 
         document.getElementById('currentPRLog').innerText = highestRecord.personalRecord;
         document.getElementById('currentPRDate').innerText = highestRecord.date;
-   }  
+}
+function recordTable(liftRecords){
+    console.log(liftRecords)
+    let table = document.getElementById('recordTable');
+    table.innerHTML = '';
+    let thead = document.createElement('thead');
+    
+    let trHead = document.createElement('tr'); 
+    let thDate = document.createElement('th');
+    let thUnit = document.createElement('th');
+    let thNote = document.createElement('th');
+
+    let tbody = document.createElement('tbody');    
+    
+    thDate.classList.add('mdl-data-table__cell--non-numeric');
+    thNote.classList.add('mdl-data-table__cell--non-numeric');
+
+    thDate.innerText = 'Date';
+    thUnit.innerText = 'Max lbs';
+    thNote.innerText = 'Note';
+
+    table.appendChild(thead);
+    thead.appendChild(trHead);
+    trHead.appendChild(thDate);
+    trHead.appendChild(thUnit);
+    trHead.appendChild(thNote);    
+    
+    liftRecords.forEach(el => {
+        console.log(el);
+        let tr = document.createElement('tr');
+
+        let tdDate = document.createElement('td');
+        tdDate.classList.add('mdl-data-table__cell--non-numeric');
+        tdDate.innerText = el.date;
+
+        let tdEntry = document.createElement('td');
+        tdEntry.innerText = el.personalRecord;
+
+        let tdNote = document.createElement('td');
+        tdNote.classList.add('mdl-data-table__cell--non-numeric');
+        tdNote.innerText = el.comment;
+
+        tr.appendChild(tdDate);
+        tr.appendChild(tdEntry);
+        tr.appendChild(tdNote); 
+        
+        tbody.appendChild(tr);
+    })
+
+    table.appendChild(tbody);   
 
 }
-
 function noEntries(){
     document.getElementById('flyoutHeader').classList.add('hide');
     document.getElementById('tableContainer').classList.add('hide');
@@ -125,10 +179,13 @@ function noEntries(){
 function buildFlyout(lift){
 
 document.getElementById('movementName').innerText = lift;
-
-
-    liftPR(lift);
-    openFlyout();
+  
+liftPR(lift);
+ setTimeout(()=>{
+        openFlyout();
+    }, 300)
+    
+   
 }
 function closeFlyout(){   
     document.getElementById("mainFlyout").style.width = "0";
@@ -155,10 +212,9 @@ async function buildMenuUI() {
         div.classList.add('single-lift');
         div.setAttribute('id', idName)        
         div.innerText = lift;
-        div.addEventListener('click', () =>{
-            console.log('heard')
-            buildFlyout(lift);
-            
+
+        div.addEventListener('click', () =>{            
+            buildFlyout(lift);            
         })
 
 
