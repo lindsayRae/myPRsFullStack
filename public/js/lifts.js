@@ -34,6 +34,17 @@ document.getElementById('liftSearch').addEventListener('keyup', () => {
 
     findText();
 })
+
+document.getElementById('addNewLogBtn').addEventListener('click', () => {
+    addNewPR();
+    
+   
+})
+
+function addNewPR(){
+    console.log("heard")
+
+}
 function openFlyout(){ 
   document.getElementById("mainFlyout").style.width = "75%";
   document.getElementById("mainFlyout").style.paddingLeft = "5%";
@@ -77,10 +88,10 @@ async function allLiftRecords(){
 async function selectedLiftRecords(lift){
 
     let allRecords = await allLiftRecords();
-    console.log(allRecords);
+   // console.log(allRecords);
 
     let selectedLift = allRecords.filter(el => el.name === lift);
-    console.log(selectedLift);
+  //  console.log(selectedLift);
     return selectedLift;
 
 }
@@ -115,13 +126,13 @@ function highestRecord(liftRecords){
 
         // find the first obj that the pr is the highest
         let highestRecord = liftRecords.find(el => el.personalRecord == highest);
-        console.log(highestRecord);
+     //   console.log(highestRecord);
 
         document.getElementById('currentPRLog').innerText = highestRecord.personalRecord;
         document.getElementById('currentPRDate').innerText = highestRecord.date;
 }
 function recordTable(liftRecords){
-    console.log(liftRecords)
+  //  console.log(liftRecords)
     let table = document.getElementById('recordTable');
     table.innerHTML = '';
     let thead = document.createElement('thead');
@@ -147,7 +158,7 @@ function recordTable(liftRecords){
     trHead.appendChild(thNote);    
     
     liftRecords.forEach(el => {
-        console.log(el);
+    //    console.log(el);
         let tr = document.createElement('tr');
 
         let tdDate = document.createElement('td');
@@ -224,9 +235,9 @@ async function buildMenuUI() {
 
 }
 async function defaultLiftsMenu() {
-
+    let movement = 'lifts';
     try {
-        let url = "/api/lifts";
+        let url = `/api/${movement}`;
         let headers = {
             "Content-Type": "application/json"
         }
@@ -236,7 +247,7 @@ async function defaultLiftsMenu() {
             headers: headers
         })
         let json = await res.json()
-        //console.table(json);
+       console.table(json);
         if (res.status === 200) {            
             return json;
         } else if (res.status === 404) {
@@ -252,8 +263,9 @@ async function defaultLiftsMenu() {
 }
 async function userLiftsMenu() {
 
+    let user_id = localStorage.getItem('ID');
     try {
-        let url = "/api/personalrecord/5dca9b1e90ad79439843b088?movement=lifts";
+        let url = `/api/personalrecord/${user_id}?movement=lifts`;       
         let headers = {
             "Content-Type": "application/json"
         }
@@ -264,9 +276,15 @@ async function userLiftsMenu() {
         })
        
         let json = await res.json()
-        //console.log(json);
-        if (res.ok) {
-            return json;
+        console.log(json);
+        if (res.ok) {            
+            if(json.record.length === 0){
+                console.log(json.message); 
+                return json;
+            } else {
+                return json;
+            }
+           
         } else if (res.status === 404) {
             console.log(json.message)
         } else if (res.status === 400) {
@@ -315,28 +333,37 @@ async function addNewLift() {
 async function buildLiftMenu() {
     let defaultLifts = await defaultLiftsMenu();
     let userLifts = await userLiftsMenu();
+    console.log(userLifts)
 
-    //* use map() to get just the name
-    let userDefinedLiftNames = userLifts.map((lift) => {
-        return lift.name
-    })
     let defaultLiftNames = defaultLifts.map((lift) => {
         return lift.name
     })
 
-    //* concat() the two arrays together 
-    let allLifts = userDefinedLiftNames.concat(defaultLiftNames);
-   //console.log(allLifts)
+    if(userLifts.record.length != 0){
+            //* use map() to get just the name
+        let userDefinedLiftNames = userLifts.map((lift) => {
+            return lift.name
+        })
+        //* concat() the two arrays together 
+        let allLifts = userDefinedLiftNames.concat(defaultLiftNames);
+        //console.log(allLifts)
+    
+        //* new Set() removes duplicate values -> returns object 
+        let uniqueMenu = new Set(allLifts);
+        //console.log(uniqueMenu)
+    
+        //* ... spread puts back into array 
+        let liftMenu = [...uniqueMenu];
+        //console.log(liftMenu)
+    
+        return liftMenu;
+    } else {
+        return defaultLiftNames;
+    }
+    
+    
 
-    //* new Set() removes duplicate values -> returns object 
-    let uniqueMenu = new Set(allLifts);
-    //console.log(uniqueMenu)
-
-    //* ... spread puts back into array 
-    let liftMenu = [...uniqueMenu];
-    //console.log(liftMenu)
-
-    return liftMenu;
+    
 
 }
 

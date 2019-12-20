@@ -38,67 +38,58 @@ function getDate() {
 //         res.send(error);
 //     }
 // })
+
+
+//? Get lifts by user_id WORKING! 
 //! No authorization 
 router.get('/:id', async (req, res) => {
   console.log('heard the GET')
     try {
        
     const id = req.params.id;
-    const movement = req.query.movement;
-    console.log(id)
-    console.log(movement)
+    const movement = req.query.movement;    
 
     //! Steven hard coded the "user_id" from personal records collection  or _id user collection
-    let record = await PersonalRecord.findOne({ user_id: "5dc9523d477fcc4e38652dd6"});
-    
-    console.log(record)
-
-    if (movement === 'lifts') {
+    let record = await PersonalRecord.findOne({ user_id: id});    
+    if (!record){
+        res.send({record: [], message: 'There are not any user defined lifts for this user'})
+    } else if (movement === 'lifts') {
         res.send(record.lifts)
     } else if (movement === 'cardio') {
         res.send(record.cardio)
     } else if (movement === 'skills') {
         res.send(record.skills)
     } else {
-        res.send('Why is this not getting in here')
+        res.send({message: 'Something went wrong'})
     }
    
     } catch (error) {
         res.send(error);
     }
 })
-
+//? Create new Personal Record
 //! added auth as middleware
 //router.post('/', auth, async (req, res) => {
-    router.post('/', async (req, res) => {
-        console.log('heard post')
+    router.post('/:movement', async (req, res) => {
+
     try {
-        let cardios = req.body.cardio
-        let lifts = req.body.lifts
-        let skills = req.body.skills
+        let movement = req.params.movement
+        let user_id = req.body.user_id
+        let pr = req.body.pr
+            pr.date = Date.now()
 
-        cardios.forEach(cardio => {
-            cardio.date = getDate()
-        });
+        let record = await PersonalRecord.findOne({ user_id: user_id});  
 
-        lifts.forEach(lift => {
-            lift.date = getDate()
-        });
+        if (movement === 'lifts') {
+            record.lifts.push(pr)
+        } else if (movement === 'cardio') {
+            record.cardio.push(pr)
+        } else if (movement === 'skills') {
+            record.skills.push(pr)
+        }
 
-        skills.forEach(skill => {
-            skill.date = getDate()
-        });
-
-        let PersonalRecordToAdd = new PersonalRecord({
-            user_id: req.body.user_id,
-            lifts: lifts,
-            cardio: cardios,
-            skills: skills
-        })
-
-        let PersonalRecordToAddResult = await PersonalRecordToAdd.save();
-        console.log(PersonalRecordToAddResult)
-        res.send(PersonalRecordToAddResult)
+        let result = await record.save();
+        res.send(result)
 
     } catch (error) {
         res.send(error);
@@ -107,13 +98,21 @@ router.get('/:id', async (req, res) => {
 
 //? Add one entry 
 //! added auth middleware
-router.put('/:id', auth, async (req, res) => {
+//router.put('/:id', auth, async (req, res) => {
+router.put('/:id', async (req, res) => {
+    console.log('in the PUT to add an entry')
     try {
 
         const movement = req.body.movement
         const document = req.body.document
         const id = req.params.id
+
+        console.log(movement);
+        console.log(document);
+        console.log(id);
+
         let record = await PersonalRecord.findById(id)
+        console.log(record)
 
         let recordToAdd = {
             name: document.name,
@@ -124,6 +123,7 @@ router.put('/:id', auth, async (req, res) => {
         }
 
         if (movement === 'lifts') {
+            console.log(recordToAdd)
             record.lift.push(recordToAdd)
         } else if (movement === 'cardio') {
             record.cardio.push(recordToAdd)
