@@ -1,0 +1,12 @@
+
+
+.sign-up-btn {
+    width: 100%;
+}
+
+.terms {
+    display: flex;
+    justify-content: center;
+    font-size: .85rem;
+    padding-top: .65rem;
+}

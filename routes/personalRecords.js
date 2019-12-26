@@ -67,20 +67,33 @@ router.get('/:id', async (req, res) => {
         res.send(error);
     }
 })
-//? Create new Personal Record
+//? Create new Personal Record OR MOVEMENT
 //! added auth as middleware
 //router.post('/', auth, async (req, res) => {
-    router.post('/:movement', async (req, res) => {
-
+router.post('/:movement', async (req, res) => {
+    console.log("in the right method!!!!")
     try {
         let movement = req.params.movement
         let user_id = req.body.user_id
-        let pr = req.body.pr
-            pr.date = Date.now()
+        let name = req.body.name
+        let description = req.body.description
+        let pr = req.body.personalRecord
+        let comment = req.body.comment
+        let date = Date.now()
+
+        console.log(movement);
+        console.log(user_id);
+        console.log(name);
+        console.log(description);
+        console.log(pr);
+        console.log(comment);
+        console.log(date);
 
         let record = await PersonalRecord.findOne({ user_id: user_id});  
-
-        if (movement === 'lifts') {
+            console.log(record)
+        if(!record){
+            console.log('did not find a record for this user')
+        } else if (movement === 'lifts') {
             record.lifts.push(pr)
         } else if (movement === 'cardio') {
             record.cardio.push(pr)
@@ -94,6 +107,32 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.send(error);
     }
+})
+
+router.post( '/usersetup/:id' , async (req, res) =>{
+    
+    try {
+        
+        let user_id = req.params.id
+        let newUserEntry = {
+            user_id: user_id,
+            lifts: [],
+            cardio: [],
+            skills: []
+        }
+        console.log(newUserEntry)
+        //! PersonalRecord with a capital 'P' is a class
+        //! personalRecord with a lower case 'p' is an instance of the class
+        let personalRecord = new PersonalRecord() 
+        let result = await personalRecord.add(newUserEntry);
+        res.send(result)
+
+    } catch (error) {
+        res.send(error);
+    }
+
+
+
 })
 
 //? Add one entry 

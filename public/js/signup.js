@@ -1,15 +1,20 @@
+
+
+
+document.getElementById("signUpBtn").addEventListener("click", signUp)
+
 async function signUp() {
 
     let body = sanitizeSignupForm();
-
+console.log(body)
     if (!body) {
-        console.log("Don't submit the form")
+        document.getElementById('signupError').innerText = "Something is wrong with the form, try again.";
         return
-    } else {
-        console.log(body)
+    } else if(typeof (body) === 'string'){
+        document.getElementById('signupError').innerText = body
+    }else {        
 
         let url = "/api/users";
-
         try {
 
             body = JSON.stringify(body)
@@ -28,22 +33,22 @@ async function signUp() {
             if (res.status === 200) {
                 console.log(json)
                 location.href = "/dashboard.html"
-             
-            } else if (res.status === 404) {
-                console.log(json.message)
-            } else if (res.status === 400) {
-                console.log(json.message)
             } else {
-                console.log("Some other error")
+                console.log(json.message);
+                document.getElementById('signupError').innerText = json.message;
             }
-
         } catch (error) {
             console.log(error);
         }
     }
 }
 
-document.getElementById("signUpBtn").addEventListener("click", signUp)
+//! Lindsay this is not working 
+// let form = document.getElementById('signUpForm');
+// form.addEventListener('focus', ()=>{
+//     console.log("heard form focus")
+//     document.getElementById('signupError').innerText = '';
+// })
 
 function sanitizeSignupForm() {
     console.log('heard')
@@ -54,40 +59,40 @@ function sanitizeSignupForm() {
     let confirmedPW = document.getElementById("confirmedPassword").value;
     console.log(firstName)
     if (firstName === "" || firstName === " ") {
-        console.log("this is required")
+        
         document.getElementById("firstName").classList.add('border-danger')
-        return
+        return "First Name is required."
     }
     console.log(firstName)
 
     if (lastName === "" || lastName === " ") {
-        console.log("this is required")
+        
         document.getElementById("lastName").classList.add('border-danger')
-        return
+        return "Last Name is required."
     }
 
     if (email === "" || email === " ") {
-        console.log("this is required")
+        
         document.getElementById("email").classList.add('border-danger')
-        return
+        return "Email is required."
     }
 
     if (pw === "" || pw === " ") {
-        console.log("this is required")
+        
         document.getElementById("signupPassword").classList.add('border-danger')
-        return
+        return "Password is required."
     }
 
     if (confirmedPW === "" || confirmedPW === " ") {
-        console.log("this is required")
+        
         document.getElementById("confirmedPassword").classList.add('border-danger')
-        return
+        return "Confirm Password is required."
     }
 
     if (pw != confirmedPW) {
-        console.log("passwords do not match")
+        
         document.getElementById("confirmedPassword").classList.add('border-danger')
-        return
+        return "Passwords do not match, try again."
     }
 
     let body = {

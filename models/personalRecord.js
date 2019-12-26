@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
-const Joi = require('@hapi/joi');
+//const Joi = require('@hapi/joi');
 
 
 const MovementSchema = new mongoose.Schema({
         name: {
             type: String,
             required: true,
+            minlength: 1,
+            maxlength: 99
+        },
+        description: {
+            type: String,
+            required: false,
             minlength: 1,
             maxlength: 99
         },

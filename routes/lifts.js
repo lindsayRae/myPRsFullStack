@@ -1,7 +1,4 @@
-const {
-    Lifts,
-    validate
-} = require('../models/lifts');
+const { Lifts, validate } = require('../models/lifts');
 const Joi = require('@hapi/joi');
 
 const express = require('express');
@@ -25,7 +22,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-
+    console.log("YOOOOOOOOOO")
     let bodyLift = {
         name: req.body.name,
         description: req.body.description,
@@ -35,19 +32,21 @@ router.post('/', async (req, res) => {
     try {
         //let { error } = validate(bodyLift);
         let validated = validate(bodyLift);
-console.log(validated)
+        console.log(validated)
         if (validated.error) {
             let errorMsg = validated.error.details[0].message
             return res.status(400).send(errorMsg);
-        }
+        } 
 
         let lift = new Lifts({
             name: bodyLift.name,
             description: bodyLift.description,
             preDefined: false
         })
-
+        console.log(lift)
+        console.log('*****************')
         let result = await lift.save()
+        console.log(result)
         res.send(result)
 
     } catch (error) {

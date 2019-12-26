@@ -27,6 +27,7 @@ function validateLiftJoi(lift){
         description: Joi.string().min(1).max(99).required(),
         preDefined: Joi.bool().required()        
     };
+   // console.log(lift)
     return Joi.validate(lift, schema);
 }
 
