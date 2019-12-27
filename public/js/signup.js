@@ -6,7 +6,7 @@ document.getElementById("signUpBtn").addEventListener("click", signUp)
 async function signUp() {
 
     let body = sanitizeSignupForm();
-console.log(body)
+        console.log(body)
     if (!body) {
         document.getElementById('signupError').innerText = "Something is wrong with the form, try again.";
         return
@@ -32,6 +32,7 @@ console.log(body)
            
             if (res.status === 200) {
                 console.log(json)
+                localStorage.setItem("ID", json._id)
                 location.href = "/dashboard.html"
             } else {
                 console.log(json.message);

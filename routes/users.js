@@ -40,17 +40,15 @@ router.get('/:email', async (req, res) => {
 //? Create new user 
 //! Below I added salt and hash for password protection in th DB 
 router.post('/', async (req, res) => {
-
-  const {
-    error
-  } = validate(req.body);
+  
+  const { error } = validate(req.body);
   if (error) {
     console.log(error)
     return res.status(400).send({
       message: error.details[0].message
     });
   }
-
+  
   let user = await User.findOne({
     email: req.body.email
   });
@@ -59,13 +57,12 @@ router.post('/', async (req, res) => {
       message: 'User is already registered.'
     });
   }
-
+  
   user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password']));
+  
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
-  let newUser = await user.save();
-
-  console.log(newUser)
+  let newUser = await user.save();  
 
   if (!newUser) {
     return res.status(500).send("There was a problem creating your user, please try again later")
@@ -80,8 +77,8 @@ router.post('/', async (req, res) => {
       "Content-Type": "application/json"
   }
     //! Call out to your existing endpoint to create a new PR record with empty arrays (lifts, cardio, skills)
-    let baseURL ='http://localhost:9999' 
-    let url = `${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
+    let baseURL = req.headers.host
+    let url = `http://${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
     console.log(url)
     try {
       let response = await fetch(url, {
@@ -90,7 +87,8 @@ router.post('/', async (req, res) => {
       })
   
       let json = await response.json()
-        console.log(json)
+      console.log("Steven look at my backend")
+      console.log(json)
     } catch (error) {
       console.log(error)
     }

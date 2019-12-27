@@ -8,7 +8,7 @@ function buildFlyout(lift){
 
     document.getElementById('movementName').innerText = lift;
       
-    liftPR(lift);
+    liftPR(lift);    
      setTimeout(()=>{
             openFlyout();
         }, 300)
@@ -16,11 +16,9 @@ function buildFlyout(lift){
 }
 //* find the PR from selected lift 
 async function liftPR(lift){
-    let liftRecords = await selectedLiftRecords(lift);
+    let liftRecords = await selectedLiftRecords(lift);   
    
-    //console.log(liftRecords)
-   if(liftRecords.length < 1){
-       //console.log('no data')
+   if(liftRecords.length < 1){       
        noEntries();
    } else {
         document.getElementById('flyoutHeader').classList.remove('hide');
@@ -54,15 +52,13 @@ function highestRecord(liftRecords){
 async function selectedLiftRecords(lift){
 
     let allRecords = await allLiftRecords();
-   // console.log(allRecords);
-    if(allRecords.record.length <= 0){
+    
+    if(allRecords.length <= 0){
         console.log('no records')
     } else {
-        let selectedLift = allRecords.filter(el => el.name === lift);
-        //console.log(selectedLift);
+        let selectedLift = allRecords.filter(el => el.name === lift);        
         return selectedLift;    
-    }
-  
+    }  
 }
 
 //* get all of the lift records from the server

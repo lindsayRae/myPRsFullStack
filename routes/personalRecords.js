@@ -67,33 +67,31 @@ router.get('/:id', async (req, res) => {
         res.send(error);
     }
 })
-//? Create new Personal Record OR MOVEMENT
+//? Create new MOVEMENT with a PR
 //! added auth as middleware
 //router.post('/', auth, async (req, res) => {
 router.post('/:movement', async (req, res) => {
-    console.log("in the right method!!!!")
+    
     try {
-        let movement = req.params.movement
-        let user_id = req.body.user_id
-        let name = req.body.name
-        let description = req.body.description
-        let pr = req.body.personalRecord
-        let comment = req.body.comment
-        let date = Date.now()
+        let movement = req.params.movement        
+        let id = req.body.user_id 
 
-        console.log(movement);
-        console.log(user_id);
-        console.log(name);
-        console.log(description);
-        console.log(pr);
-        console.log(comment);
-        console.log(date);
-
-        let record = await PersonalRecord.findOne({ user_id: user_id});  
+        let pr = {
+            name: req.body.name,
+            description: req.body.description,
+            preDefined: req.body.preDefined,
+            date: req.body.date,
+            comment: req.body.comment,
+            personalRecord: req.body.personalRecord
+        }        
+        
+        
+        let record = await PersonalRecord.findOne({ user_id: id});  
             console.log(record)
         if(!record){
             console.log('did not find a record for this user')
         } else if (movement === 'lifts') {
+            console.log("push to the lift array")
             record.lifts.push(pr)
         } else if (movement === 'cardio') {
             record.cardio.push(pr)
@@ -101,14 +99,59 @@ router.post('/:movement', async (req, res) => {
             record.skills.push(pr)
         }
 
-        let result = await record.save();
-        res.send(result)
+        let result = await record.save(pr);
+        res.send({ message: "Success", results: result })
 
     } catch (error) {
         res.send(error);
     }
 })
 
+//? Create new PR for exisiting movement
+//! LINDSAY START HERE!
+//! added auth as middleware
+//router.post('/', auth, async (req, res) => {
+    router.post('/:movement/:name', async (req, res) => {
+    
+        try {
+            let movement = req.params.movement 
+            let name = req.params.name       
+            let id = req.body.user_id   
+            
+            
+            let record = await PersonalRecord.findOne({ user_id: id});  
+                console.log(record)
+
+                let pr = {
+                    name: req.body.name,
+                    description: req.body.description,
+                    preDefined: req.body.preDefined,
+                    date: req.body.date,
+                    comment: req.body.comment,
+                    personalRecord: req.body.personalRecord
+                }        
+                
+
+
+            // if(!record){
+            //     console.log('did not find a record for this user')
+            // } else if (movement === 'lifts') {
+            //     console.log("push to the lift array")
+            //     record.lifts.push(pr)
+            // } else if (movement === 'cardio') {
+            //     record.cardio.push(pr)
+            // } else if (movement === 'skills') {
+            //     record.skills.push(pr)
+            // }
+    
+            // let result = await record.save(pr);
+            // res.send({ message: "Success", results: result })
+    
+        } catch (error) {
+            res.send(error);
+        }
+    })
+//! DONE
 router.post( '/usersetup/:id' , async (req, res) =>{
     
     try {
@@ -120,19 +163,16 @@ router.post( '/usersetup/:id' , async (req, res) =>{
             cardio: [],
             skills: []
         }
-        console.log(newUserEntry)
-        //! PersonalRecord with a capital 'P' is a class
-        //! personalRecord with a lower case 'p' is an instance of the class
-        let personalRecord = new PersonalRecord() 
-        let result = await personalRecord.add(newUserEntry);
+      
+        let personalRecord = new PersonalRecord(newUserEntry)      
+
+        let result = await personalRecord.save();
+        console.log(result)
         res.send(result)
 
     } catch (error) {
         res.send(error);
     }
-
-
-
 })
 
 //? Add one entry 
