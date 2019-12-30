@@ -9,16 +9,15 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
+const adminRouter = require('./routes/admin');
+const movementRouter = require('./routes/movements');
+const personalRecords = require('./routes/personalRecords');
+
 const liftsRouter = require('./routes/lifts');
 const skillsRouter = require('./routes/skills');
 const cardioRouter = require('./routes/cardio');
-const skillsMenu = require('./routes/skillsMenu');
-const liftsMenu = require('./routes/liftsMenu');
-const cardioMenu = require('./routes/cardioMenu');
-const personalRecords = require('./routes/personalRecords');
 
-// const sandbox = require('./routes/sandbox');
-// const sandbox2 = require('./routes/sandbox2');
+
 const app = express();
 
 app.use(logger('dev'));
@@ -29,19 +28,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 
 app.use('/', indexRouter);
+
+app.use('/api/users', users);
+app.use('/api/auth', auth);
+app.use('/api/admin', adminRouter);
+app.use('/api/movements', movementRouter);
+app.use('/api/personalrecord', personalRecords);
+
 app.use('/api/lifts', liftsRouter);
 app.use('/api/skills', skillsRouter);
 app.use('/api/cardio', cardioRouter);
-app.use('/api/users', users);
-app.use('/api/auth', auth);
-app.use('/api/personalrecord', personalRecords);
 
-app.use('/skillsmenu', skillsMenu);
-app.use('/liftsmenu', liftsMenu);
-app.use('/cardiomenu', cardioMenu);
-
-// app.use('/sandbox', sandbox);
-// app.use('/sandbox2', sandbox2);
 
 //! set myPRs_jwtPrivateKey=mySecureKey
 const jwtPrivateKey = process.env.jwtPrivateKey;

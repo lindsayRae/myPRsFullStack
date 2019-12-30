@@ -6,7 +6,9 @@ export { closeFlyout, buildFlyout }
 
 function buildFlyout(lift){
 
-    document.getElementById('movementName').innerText = lift;
+    let title = document.getElementById('movementName');
+    title.innerText = lift;   
+
       
     liftPR(lift);    
      setTimeout(()=>{
@@ -98,40 +100,58 @@ function recordTable(liftRecords){
     let thead = document.createElement('thead');
     
     let trHead = document.createElement('tr'); 
+    let thEdit = document.createElement('th');
     let thDate = document.createElement('th');
     let thUnit = document.createElement('th');
-    let thNote = document.createElement('th');
-
+    let thNote = document.createElement('th');    
     let tbody = document.createElement('tbody');    
     
-    thDate.classList.add('mdl-data-table__cell--non-numeric');
-    thNote.classList.add('mdl-data-table__cell--non-numeric');
-
+    thEdit.innerText = '';
     thDate.innerText = 'Date';
     thUnit.innerText = 'Max lbs';
     thNote.innerText = 'Note';
 
     table.appendChild(thead);
     thead.appendChild(trHead);
+    trHead.appendChild(thEdit);
     trHead.appendChild(thDate);
     trHead.appendChild(thUnit);
-    trHead.appendChild(thNote);    
+    trHead.appendChild(thNote);      
     
     liftRecords.forEach(el => {
     //    console.log(el);
         let tr = document.createElement('tr');
 
+        let tdEdit = document.createElement('td');
+        let noteIcon = document.createElement('i');
+        noteIcon.classList.add('material-icons');
+        noteIcon.classList.add('edit-icon');
+        noteIcon.innerText = 'edit';
+        noteIcon.addEventListener('click', ()=>{
+            console.log('edit heard');
+            //close the flyout 
+            closeFlyout();
+            // open the modal
+            fillEditForm(el);
+            
+            
+            // pass the selected data
+            // update or delete the data
+
+        })
+        tdEdit.appendChild(noteIcon);
+
         let tdDate = document.createElement('td');
-        tdDate.classList.add('mdl-data-table__cell--non-numeric');
+     
         tdDate.innerText = el.date;
 
         let tdEntry = document.createElement('td');
         tdEntry.innerText = el.personalRecord;
 
-        let tdNote = document.createElement('td');
-        tdNote.classList.add('mdl-data-table__cell--non-numeric');
-        tdNote.innerText = el.comment;
+        let tdNote = document.createElement('td');        
+        tdNote.innerText = el.comment;  
 
+        tr.appendChild(tdEdit);
         tr.appendChild(tdDate);
         tr.appendChild(tdEntry);
         tr.appendChild(tdNote); 
@@ -143,12 +163,20 @@ function recordTable(liftRecords){
 
 }
 
+function fillEditForm(el){
+console.log(el);
+
+    document.getElementById('editMovementName').value = el.name;
+    document.getElementById('editMovementMax').value = el.personalRecord;
+    document.getElementById('editMovementDate').value = el.date;
+    document.getElementById('editMovementComment').value = el.comment;
+    editMovementDialog.showModal();
+}
 function noEntries(){
     document.getElementById('flyoutHeader').classList.add('hide');
     document.getElementById('tableContainer').classList.add('hide');
     document.getElementById('noRecordsMsg').classList.remove('hide');
 }
-
 
 function openFlyout(){ 
     document.getElementById("mainFlyout").style.width = "75%";

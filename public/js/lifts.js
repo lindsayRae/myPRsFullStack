@@ -1,26 +1,27 @@
 //! terminal command: ipconfig
 
 import { closeFlyout, buildFlyout } from "./flyout.js";
+
 buildMenuUI()
 
 document.getElementById('closeFlyout').addEventListener('click', closeFlyout);
 document.getElementById('secondaryFlyout').addEventListener('click', closeFlyout)
 
-let dialog = document.querySelector('dialog');
+let newMovementDialog = document.getElementById('newMovementDialog');
 let showModalButton = document.querySelector('.show-modal');
-if (!dialog.showModal) {
-    dialogPolyfill.registerDialog(dialog);
+if (!newMovementDialog.showModal) {
+    dialogPolyfill.registerDialog(newMovementDialog);
 }
 
 showModalButton.addEventListener('click', function () {
-    dialog.showModal();
+    newMovementDialog.showModal();
 });
-dialog.querySelector('.add-lift').addEventListener('click', function () {
-    dialog.close();
+newMovementDialog.querySelector('.add-lift').addEventListener('click', function () {
+    newMovementDialog.close();
     addNewLift("lifts");
 });
-dialog.querySelector('.close').addEventListener('click', function () {
-    dialog.close();    
+newMovementDialog.querySelector('.close').addEventListener('click', function () {
+    newMovementDialog.close();    
 });
 
 document.getElementById('clearFilter').addEventListener('click', () => {
@@ -40,20 +41,14 @@ document.getElementById('liftSearch').addEventListener('keyup', () => {
 document.getElementById('addNewLogBtn').addEventListener('click', () => {
     let name = document.getElementById('movementName').innerText;
     let movement = "lifts"
-    addNewPR(movement, name);    
+    addNewRecord(movement, name);    
 })
-
-function addNewPR(movement, name){
-    
-    addNewRecord(movement, name);
-
-}
 
 async function buildMenuUI() {
    
     let data = await buildLiftMenu();
     data = data.sort();
-    console.log(data)
+   console.log(data)
     let container = document.getElementById('liftMenuContainer');
     container.innerHTML = '';
     data.forEach(function (lift) {
@@ -77,9 +72,10 @@ async function buildMenuUI() {
 
 }
 async function defaultLiftsMenu() {
-    let movement = 'lifts';
-    try {
-        let url = `/api/${movement}`;
+    
+    let type = "lift"
+    try {       
+       let url = `/api/movements/${type}`;
         let headers = {
             "Content-Type": "application/json"
         }
@@ -89,7 +85,7 @@ async function defaultLiftsMenu() {
             headers: headers
         })
         let json = await res.json()
-      // console.table(json);
+       //console.table(json);
         if (res.status === 200) {            
             return json;
         } else if (res.status === 404) {
@@ -106,8 +102,9 @@ async function defaultLiftsMenu() {
 async function userLiftsMenu() {
 
     let user_id = localStorage.getItem('ID');
+    let movement = "lifts"
     try {
-        let url = `/api/personalrecord/${user_id}?movement=lifts`;       
+        let url = `/api/personalrecord/${user_id}?movement=${movement}`;       
         let headers = {
             "Content-Type": "application/json"
         }
@@ -118,11 +115,9 @@ async function userLiftsMenu() {
         })
        
         let json = await res.json()
-        console.log(json);
-        if (res.ok) {           
-            
-            return json;            
-           
+       // console.log(json);
+        if (res.ok) {                 
+            return json;                 
         } else if (res.status === 404) {
             console.log(json.message)
         } else if (res.status === 400) {
@@ -135,17 +130,13 @@ async function userLiftsMenu() {
     }
 }
 
-function currentDate(){
 
-    let today = new Date();
-    return `${(today.getMonth()+1)}/${today.getDate()}/${today.getFullYear()}`;
-}
 async function addNewLift(movement) {
 
     let body = {
         user_id: localStorage.getItem("ID"),
         name: sanitizeInput(document.getElementById('newName').value),
-        description: sanitizeInput(document.getElementById('newDescription').value), 
+        type: 'lift',       
         personalRecord:sanitizeInput(document.getElementById('newMax').value),
         comment: sanitizeInput(document.getElementById('newComment').value),
         date: currentDate(),
@@ -168,28 +159,40 @@ async function addNewLift(movement) {
         })
 
         let json = await res.json()
-      console.log(json)
+        console.log(json)
         if(json.message === "Success"){
             buildMenuUI();
             document.getElementById('newMovementForm').reset();
+            let liftData = {
+                name: name,
+                preDefined: preDefined
+            }
+           // localStorage.setItem('lifts', JSON.stringify(liftData))
         }
 
     } catch (error) {
         console.error(error);
     }
 }
-//! LINDSAY PICkUP HERE!
+
 async function addNewRecord(movement, name) {
 
+let obj = JSON.parse(sessionStorage.getItem("All Lifts"))
+obj = obj.find( item => item.name === name)
+
     let body = {
-        user_id: localStorage.getItem("ID"),        
+        user_id: localStorage.getItem("ID"), 
+        name: name, 
+        preDefined: obj.preDefined,
+        type: obj.type,      
         personalRecord:sanitizeInput(document.getElementById('newPREntry').value),
         comment: sanitizeInput(document.getElementById('PREntryNote').value),
         date: currentDate(),        
     }
-    
-    let url = `/api/personalrecord/${movement}/${name}`;
-        
+    console.log(body)
+    let url = `/api/personalrecord/${movement}`;
+      console.log(url)  
+      console.log(body)  
     try {
      
         body = JSON.stringify(body)
@@ -204,10 +207,12 @@ async function addNewRecord(movement, name) {
         })
 
         let json = await res.json()
-      console.log(json)
+        console.log(json)
         if(json.message === "Success"){
             buildMenuUI();
-            document.getElementById('newMovementForm').reset();
+            //refresh table
+            buildFlyout(name);
+            document.getElementById('newEntryForm').reset();
         }
 
     } catch (error) {
@@ -217,9 +222,11 @@ async function addNewRecord(movement, name) {
 //? Resource: https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c
 async function buildLiftMenu() {
     let defaultLifts = await defaultLiftsMenu();
-    let userLifts = await userLiftsMenu();
-    console.log(defaultLifts)
-    console.log(userLifts)
+    let userLifts = await userLiftsMenu();    
+
+    let allLifts = defaultLifts.concat(userLifts);
+
+    sessionStorage.setItem('All Lifts', JSON.stringify(allLifts))
 
     let defaultLiftNames = defaultLifts.map((lift) => {
         return lift.name
@@ -269,3 +276,10 @@ function sanitizeInput(inputStr){
 
 }
 
+function currentDate(){
+
+    let today = new Date();
+    let year = today.getFullYear().toString().substr(2,2);
+    
+    return `${(today.getMonth()+1)}/${today.getDate()}/${year}`;
+}

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-//const Joi = require('@hapi/joi');
 
 
 const MovementSchema = new mongoose.Schema({
@@ -9,12 +8,10 @@ const MovementSchema = new mongoose.Schema({
             minlength: 1,
             maxlength: 99
         },
-        description: {
+        type: {
             type: String,
-            required: false,
-            minlength: 1,
-            maxlength: 99
-        },
+            required: true            
+        },        
         preDefined: {
             type: Boolean,
             required: true            

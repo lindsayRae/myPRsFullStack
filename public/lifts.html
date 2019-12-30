@@ -12,20 +12,18 @@
         <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css"> -->
         <link rel="stylesheet" href="./stylesheets/style.css">
         <link rel="stylesheet" href="./stylesheets/flyout.css">
+        <link rel="stylesheet" href="./stylesheets/table.css">
 </head>
 
 <body>
 
-        <dialog class="mdl-dialog">
+        <dialog class="mdl-dialog" id="newMovementDialog">
                 <form class="mdl-dialog__content" id="newMovementForm">
                         <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="newName">
                                 <label class="mdl-textfield__label" for="newName">New Lift Name</label>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="newDescription">
-                                <label class="mdl-textfield__label" for="newDescription">Description</label>
-                        </div>
+                       
                         <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="newMax">
                                 <label class="mdl-textfield__label" for="newMax">Max</label>
@@ -39,6 +37,34 @@
 
                         <button type="button" class="mdl-button add-lift lt-border">Add</button>
                         <button type="button" class="mdl-button close lt-border">Close</button>
+                </div>
+        </dialog>
+
+        <dialog class="mdl-dialog" id="editMovementDialog">
+                <i class="material-icons">close</i>
+                <form class="mdl-dialog__content" id="editMovementForm">
+                        <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="editMovementName">
+                                <label class="mdl-textfield__label" for="editMovementName"></label>
+                        </div>
+                       
+                        <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="editMovementMax">
+                                <label class="mdl-textfield__label" for="editMovementMax"></label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="editMovementDate">
+                                <label class="mdl-textfield__label" for="editMovementDate"></label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="editMovementComment">
+                                <label class="mdl-textfield__label" for="editMovementComment"></label>
+                        </div>
+                </form>
+                <div class="mdl-dialog__actions">
+
+                        <button type="button" class="mdl-button lt-border" id="editMovement">Update</button>
+                        <button type="button" class="mdl-button lt-border" id="deleteMovement">Delete</button>
                 </div>
         </dialog>
 
@@ -62,7 +88,7 @@
                                 
                         <section>
                                 <div>New Entry</div>
-                                <form class="mdl-grid">
+                                <form class="mdl-grid" id="newEntryForm">
                                         <!-- <div class="one-rep-entry"> -->
 
                                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input mdl-cell mdl-cell--2-col mdl-cell--1-col-phone"
@@ -93,7 +119,8 @@
                         <section>
                                 <div id="noRecordsMsg" class="hide">No records.. start moving!</div>
                                 <div id="tableContainer">
-                                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp log-table fixed_header" id="recordTable">  
+                                        
+                                        <table class="log-table" id="recordTable">  
                                         </table>
                                 </div>                                
                         </section>

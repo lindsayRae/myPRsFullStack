@@ -43,13 +43,13 @@ function getDate() {
 //? Get lifts by user_id WORKING! 
 //! No authorization 
 router.get('/:id', async (req, res) => {
-  console.log('heard the GET')
+  //console.log('heard the GET')
     try {
        
     const id = req.params.id;
     const movement = req.query.movement;    
 
-    //! Steven hard coded the "user_id" from personal records collection  or _id user collection
+  
     let record = await PersonalRecord.findOne({ user_id: id});    
     if (!record){
         res.send({record: [], message: 'There are not any user defined lifts for this user'})
@@ -71,25 +71,25 @@ router.get('/:id', async (req, res) => {
 //! added auth as middleware
 //router.post('/', auth, async (req, res) => {
 router.post('/:movement', async (req, res) => {
-    
+   
     try {
         let movement = req.params.movement        
         let id = req.body.user_id 
 
         let pr = {
-            name: req.body.name,
-            description: req.body.description,
+            name: req.body.name,          
             preDefined: req.body.preDefined,
+            type: req.body.type,
             date: req.body.date,
             comment: req.body.comment,
             personalRecord: req.body.personalRecord
-        }        
+        }     
         
-        
+    
         let record = await PersonalRecord.findOne({ user_id: id});  
-            console.log(record)
+            
         if(!record){
-            console.log('did not find a record for this user')
+            res.send({ message: "Did not find a record for this user"});
         } else if (movement === 'lifts') {
             console.log("push to the lift array")
             record.lifts.push(pr)
@@ -107,50 +107,68 @@ router.post('/:movement', async (req, res) => {
     }
 })
 
-//? Create new PR for exisiting movement
-//! LINDSAY START HERE!
-//! added auth as middleware
-//router.post('/', auth, async (req, res) => {
-    router.post('/:movement/:name', async (req, res) => {
-    
-        try {
-            let movement = req.params.movement 
-            let name = req.params.name       
-            let id = req.body.user_id   
+// //? Create new PR for exisiting movement
+// //? need to grab the description and preDefined values to pass to new entry 
+// //! LINDSAY START HERE!
+// //! added auth as middleware
+// //router.post('/', auth, async (req, res) => {
+//     router.post('/newpr/:movement', async (req, res) => {
+//     console.log('made it..................')
+//         try {
+//             let movement = req.params.movement 
+//            // let name = req.body.name       
+//             let id = req.body.user_id   
             
             
-            let record = await PersonalRecord.findOne({ user_id: id});  
-                console.log(record)
+//             let record = await PersonalRecord.findOne({ user_id: id});  
+//                 console.log(record)
+                
+//             let currentArr = record.lifts;
+//             console.log('*************')
+//             console.log(currentArr)
+//             //! loop through array of objects and return the object that matches a condition 
 
-                let pr = {
-                    name: req.body.name,
-                    description: req.body.description,
-                    preDefined: req.body.preDefined,
-                    date: req.body.date,
-                    comment: req.body.comment,
-                    personalRecord: req.body.personalRecord
-                }        
+            
+//             //? if record[i].name === name req.params.name
+//                 //? get the 
+//                     //? req.body.name
+//                     //? record[i].description
+//                     //? record[i].preDefined                
+//                     //? req.body.date
+//                     //? req.body.comment
+//                     //? req.body.personalRecord
+
+//                 res.send({ message: "Success", results: record })
+
+//                 // let pr = {
+//                 //     name: req.body.name,
+//                 //     description: req.body.description,
+//                 //     preDefined: req.body.preDefined,
+//                 //     date: req.body.date,
+//                 //     comment: req.body.comment,
+//                 //     personalRecord: req.body.personalRecord
+//                 // }        
                 
 
 
-            // if(!record){
-            //     console.log('did not find a record for this user')
-            // } else if (movement === 'lifts') {
-            //     console.log("push to the lift array")
-            //     record.lifts.push(pr)
-            // } else if (movement === 'cardio') {
-            //     record.cardio.push(pr)
-            // } else if (movement === 'skills') {
-            //     record.skills.push(pr)
-            // }
+//             // if(!record){
+//             //     console.log('did not find a record for this user')
+//             // } else if (movement === 'lifts') {
+//             //     console.log("push to the lift array")
+//             //     record.lifts.push(pr)
+//             // } else if (movement === 'cardio') {
+//             //     record.cardio.push(pr)
+//             // } else if (movement === 'skills') {
+//             //     record.skills.push(pr)
+//             // }
     
-            // let result = await record.save(pr);
-            // res.send({ message: "Success", results: result })
+//             // let result = await record.save(pr);
+//             // res.send({ message: "Success", results: result })
     
-        } catch (error) {
-            res.send(error);
-        }
-    })
+//         } catch (error) {
+//             res.send(error);
+//         }
+//     })
 //! DONE
 router.post( '/usersetup/:id' , async (req, res) =>{
     
