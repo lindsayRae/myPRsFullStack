@@ -8,12 +8,12 @@ document.getElementById('closeFlyout').addEventListener('click', closeFlyout);
 document.getElementById('secondaryFlyout').addEventListener('click', closeFlyout)
 
 let newMovementDialog = document.getElementById('newMovementDialog');
-let showModalButton = document.querySelector('.show-modal');
+let showAddMovementModalButton = document.getElementById('addMovement');
 if (!newMovementDialog.showModal) {
     dialogPolyfill.registerDialog(newMovementDialog);
 }
 
-showModalButton.addEventListener('click', function () {
+showAddMovementModalButton.addEventListener('click', function () {
     newMovementDialog.showModal();
 });
 newMovementDialog.querySelector('.add-lift').addEventListener('click', function () {

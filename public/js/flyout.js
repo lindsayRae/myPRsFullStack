@@ -1,11 +1,11 @@
 
 
 export { closeFlyout, buildFlyout }
-
+import { fillEditForm } from './editMovement.js';
 
 
 function buildFlyout(lift){
-
+    
     let title = document.getElementById('movementName');
     title.innerText = lift;   
 
@@ -19,7 +19,7 @@ function buildFlyout(lift){
 //* find the PR from selected lift 
 async function liftPR(lift){
     let liftRecords = await selectedLiftRecords(lift);   
-   
+    
    if(liftRecords.length < 1){       
        noEntries();
    } else {
@@ -54,9 +54,9 @@ function highestRecord(liftRecords){
 async function selectedLiftRecords(lift){
 
     let allRecords = await allLiftRecords();
-    
+        
     if(allRecords.length <= 0){
-        console.log('no records')
+        return []
     } else {
         let selectedLift = allRecords.filter(el => el.name === lift);        
         return selectedLift;    
@@ -127,18 +127,13 @@ function recordTable(liftRecords){
         noteIcon.classList.add('material-icons');
         noteIcon.classList.add('edit-icon');
         noteIcon.innerText = 'edit';
+        
         noteIcon.addEventListener('click', ()=>{
-            console.log('edit heard');
-            //close the flyout 
-            closeFlyout();
-            // open the modal
-            fillEditForm(el);
-            
-            
-            // pass the selected data
-            // update or delete the data
-
+            console.log('edit heard');            
+            closeFlyout();            
+            fillEditForm(el);       
         })
+
         tdEdit.appendChild(noteIcon);
 
         let tdDate = document.createElement('td');
@@ -163,15 +158,7 @@ function recordTable(liftRecords){
 
 }
 
-function fillEditForm(el){
-console.log(el);
 
-    document.getElementById('editMovementName').value = el.name;
-    document.getElementById('editMovementMax').value = el.personalRecord;
-    document.getElementById('editMovementDate').value = el.date;
-    document.getElementById('editMovementComment').value = el.comment;
-    editMovementDialog.showModal();
-}
 function noEntries(){
     document.getElementById('flyoutHeader').classList.add('hide');
     document.getElementById('tableContainer').classList.add('hide');

@@ -51,7 +51,10 @@ console.log(req.body)
    const token = user.generateAuthToken();
    const id =  user._id;
    console.log("past token")
+   console.log(id)
+   console.log(token)
    res.send({token: token, id: id});
+     
 });
 
 
