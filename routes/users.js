@@ -21,8 +21,11 @@ router.get('/', async (req, res) => {
 });
 
 //! added auth middleware
-router.get('/me', auth, async (req, res) => {
-  const user = await User.findById(req.user._id).select('-password');
+//router.get('/me', auth, async (req, res) => {
+router.get('/me/:id', async (req, res) => {
+
+  let id = req.params.id;
+  const user = await User.findById(id).select('-password');
   res.send(user);
 });
 

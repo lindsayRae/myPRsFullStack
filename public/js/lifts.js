@@ -13,6 +13,17 @@ if (!newMovementDialog.showModal) {
     dialogPolyfill.registerDialog(newMovementDialog);
 }
 
+let closeIcon = document.querySelectorAll("i[data-action='close']");
+console.log(closeIcon)
+closeIcon.forEach(el => {
+    let parentID = el.parentElement.id;
+console.log(parentID);
+    el.addEventListener('click', ()=>{
+        console.log('heard click')
+        //parentID.close();
+    })
+})
+
 showAddMovementModalButton.addEventListener('click', function () {
     newMovementDialog.showModal();
 });

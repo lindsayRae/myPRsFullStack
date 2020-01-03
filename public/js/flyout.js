@@ -102,21 +102,18 @@ function recordTable(liftRecords){
     let trHead = document.createElement('tr'); 
     let thEdit = document.createElement('th');
     let thDate = document.createElement('th');
-    let thUnit = document.createElement('th');
-    let thNote = document.createElement('th');    
+    let thUnit = document.createElement('th');        
     let tbody = document.createElement('tbody');    
     
     thEdit.innerText = '';
     thDate.innerText = 'Date';
-    thUnit.innerText = 'Max lbs';
-    thNote.innerText = 'Note';
+    thUnit.innerText = 'Max lbs';    
 
     table.appendChild(thead);
     thead.appendChild(trHead);
     trHead.appendChild(thEdit);
     trHead.appendChild(thDate);
-    trHead.appendChild(thUnit);
-    trHead.appendChild(thNote);      
+    trHead.appendChild(thUnit);         
     
     liftRecords.forEach(el => {
     //    console.log(el);
@@ -129,7 +126,7 @@ function recordTable(liftRecords){
         noteIcon.innerText = 'edit';
         
         noteIcon.addEventListener('click', ()=>{
-            console.log('edit heard');            
+                       
             closeFlyout();            
             fillEditForm(el);       
         })
@@ -141,21 +138,16 @@ function recordTable(liftRecords){
         tdDate.innerText = el.date;
 
         let tdEntry = document.createElement('td');
-        tdEntry.innerText = el.personalRecord;
-
-        let tdNote = document.createElement('td');        
-        tdNote.innerText = el.comment;  
+        tdEntry.innerText = el.personalRecord;      
 
         tr.appendChild(tdEdit);
         tr.appendChild(tdDate);
-        tr.appendChild(tdEntry);
-        tr.appendChild(tdNote); 
+        tr.appendChild(tdEntry);       
         
         tbody.appendChild(tr);
     })
 
-    table.appendChild(tbody);   
-
+    table.appendChild(tbody); 
 }
 
 

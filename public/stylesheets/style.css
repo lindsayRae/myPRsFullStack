@@ -164,7 +164,8 @@
 .subtitle {
   font-size: .85rem;
 }
-#editMovementDialog i {
+
+i[data-action=close]{
   float: right;
   padding: 8px;
 }

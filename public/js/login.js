@@ -11,7 +11,7 @@ async function collectLoginForm() {
         password: pw
     }
     let url = "/api/auth";
-console.log(data)
+    console.log(data)
     try {
 
         let body = JSON.stringify(data)
@@ -26,7 +26,7 @@ console.log(data)
         })
 
         let json = await res.json()
-console.log(json)
+        console.log(json)
         if (res.status === 200) {                    
             localStorage.setItem("token", json.token)
             localStorage.setItem("ID", json.id)
