@@ -16,7 +16,7 @@
 
 <body>
         <dialog class="mdl-dialog" id="userAccountModal">
-                <i class="material-icons" data-action="close" id="">close</i>
+                <i class="material-icons close" data-action="close">close</i>
                 <form class="mdl-dialog__content" id="">
                         <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="userFirstName">
@@ -34,10 +34,11 @@
                 </form>
                 <div class="mdl-dialog__actions">
 
-                        <button type="button" class="mdl-button lt-border">Update</button>
+                        <button type="button" class="mdl-button lt-border" id="updateUserBtn">Update</button>
                         <button type="button" class="mdl-button lt-border" id="logOutBtn">Log Out</button>
                 </div>
         </dialog>
+
         <dialog class="mdl-dialog" id="newMovementDialog">
                 <i class="material-icons" data-action="close" id="">close</i>
                 <form class="mdl-dialog__content" id="newMovementForm">
@@ -64,12 +65,8 @@
 
         <dialog class="mdl-dialog" id="editMovementDialog">
                 <i class="material-icons" data-action="close" id="closeEditDialog">close</i>
-                <form class="mdl-dialog__content" id="editMovementForm">
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="editMovementName" readonly>
-                                <label class="mdl-textfield__label" for="editMovementName"></label>
-                        </div>
-                       
+                <h3 class="mdl-dialog__title" id="editMovementName"></h3>     
+                <form class="mdl-dialog__content" id="editMovementForm">                                          
                         <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" id="editMovementMax">
                                 <label class="mdl-textfield__label" for="editMovementMax"></label>
@@ -78,8 +75,9 @@
                                 <input class="mdl-textfield__input" type="text" id="editMovementDate">
                                 <label class="mdl-textfield__label" for="editMovementDate"></label>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="editMovementComment">
+                        <div class="mdl-textfield mdl-js-textfield">                              
+
+                                <textarea class="mdl-textfield__input" type="text" rows= "3" id="editMovementComment" ></textarea>
                                 <label class="mdl-textfield__label" for="editMovementComment"></label>
                         </div>
                 </form>
@@ -122,7 +120,7 @@
                                         </div>
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input  mdl-cell mdl-cell--2-col mdl-cell--2-col-phone"
                                                 >
-                                                <input class="mdl-textfield__input" type="text" maxlength="25"
+                                                <input class="mdl-textfield__input" type="text" maxlength="100"
                                                         id="PREntryNote">
                                                 <label class="mdl-textfield__label"
                                                         for="PREntryNote">Note</label>
@@ -184,7 +182,7 @@
                         <a href="#add" class="center-btn"><i class="material-icons" id="addMovement">
                                         add
                                 </i></a>
-                        <a href="#news"><i class="material-icons" id="userAccountBtn">
+                        <a href=""><i class="material-icons" id="userAccountBtn">
                                         perm_identity
                                 </i></a>
                 </div>

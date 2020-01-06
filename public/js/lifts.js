@@ -13,16 +13,6 @@ if (!newMovementDialog.showModal) {
     dialogPolyfill.registerDialog(newMovementDialog);
 }
 
-let closeIcon = document.querySelectorAll("i[data-action='close']");
-console.log(closeIcon)
-closeIcon.forEach(el => {
-    let parentID = el.parentElement.id;
-console.log(parentID);
-    el.addEventListener('click', ()=>{
-        console.log('heard click')
-        //parentID.close();
-    })
-})
 
 showAddMovementModalButton.addEventListener('click', function () {
     newMovementDialog.showModal();
@@ -59,7 +49,7 @@ async function buildMenuUI() {
    
     let data = await buildLiftMenu();
     data = data.sort();
-   console.log(data)
+   
     let container = document.getElementById('liftMenuContainer');
     container.innerHTML = '';
     data.forEach(function (lift) {
@@ -82,6 +72,7 @@ async function buildMenuUI() {
     })
 
 }
+
 async function defaultLiftsMenu() {
     
     let type = "lift"
@@ -110,6 +101,7 @@ async function defaultLiftsMenu() {
         console.log(error);
     }
 }
+
 async function userLiftsMenu() {
 
     let user_id = localStorage.getItem('ID');
@@ -170,15 +162,10 @@ async function addNewLift(movement) {
         })
 
         let json = await res.json()
-        console.log(json)
+        
         if(json.message === "Success"){
             buildMenuUI();
-            document.getElementById('newMovementForm').reset();
-            let liftData = {
-                name: name,
-                preDefined: preDefined
-            }
-           // localStorage.setItem('lifts', JSON.stringify(liftData))
+            document.getElementById('newMovementForm').reset();           
         }
 
     } catch (error) {
@@ -188,8 +175,8 @@ async function addNewLift(movement) {
 
 async function addNewRecord(movement, name) {
 
-let obj = JSON.parse(sessionStorage.getItem("All Lifts"))
-obj = obj.find( item => item.name === name)
+    let obj = JSON.parse(sessionStorage.getItem("All Lifts"))
+    obj = obj.find( item => item.name === name)
 
     let body = {
         user_id: localStorage.getItem("ID"), 
@@ -200,10 +187,9 @@ obj = obj.find( item => item.name === name)
         comment: sanitizeInput(document.getElementById('PREntryNote').value),
         date: currentDate(),        
     }
-    console.log(body)
+    
     let url = `/api/personalrecord/${movement}`;
-      console.log(url)  
-      console.log(body)  
+       
     try {
      
         body = JSON.stringify(body)
@@ -218,7 +204,7 @@ obj = obj.find( item => item.name === name)
         })
 
         let json = await res.json()
-        console.log(json)
+       
         if(json.message === "Success"){
             buildMenuUI();
             //refresh table
@@ -281,6 +267,7 @@ function findText() {
         }
     }
 }
+
 function sanitizeInput(inputStr){
 
     return inputStr.trim();

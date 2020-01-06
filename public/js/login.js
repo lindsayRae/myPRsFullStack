@@ -1,3 +1,15 @@
+
+
+document.getElementById("email").addEventListener("focus", ()=>{
+    document.getElementById('loginErrorMsg').classList.add('hide');
+})
+
+document.getElementById("password").addEventListener("focus", ()=>{
+    document.getElementById('loginErrorMsg').classList.add('hide');
+})
+
+document.getElementById("loginBtn").addEventListener("click", collectLoginForm)
+
 async function collectLoginForm() {
 
     let email = document.getElementById("email").value;
@@ -11,7 +23,7 @@ async function collectLoginForm() {
         password: pw
     }
     let url = "/api/auth";
-    console.log(data)
+    
     try {
 
         let body = JSON.stringify(data)
@@ -26,7 +38,7 @@ async function collectLoginForm() {
         })
 
         let json = await res.json()
-        console.log(json)
+     
         if (res.status === 200) {                    
             localStorage.setItem("token", json.token)
             localStorage.setItem("ID", json.id)
@@ -40,10 +52,3 @@ async function collectLoginForm() {
         console.log(error);
     }
 }
-document.getElementById("email").addEventListener("focus", ()=>{
-    document.getElementById('loginErrorMsg').classList.add('hide');
-})
-document.getElementById("password").addEventListener("focus", ()=>{
-    document.getElementById('loginErrorMsg').classList.add('hide');
-})
-document.getElementById("loginBtn").addEventListener("click", collectLoginForm)

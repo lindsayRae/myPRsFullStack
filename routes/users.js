@@ -100,4 +100,18 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.put('/me/:id', async (req, res) => {
+  // validation need to come here for post body
+
+  let user = await User.findByIdAndUpdate(req.params.id,
+    { 
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email
+    }, { new: true });
+console.log(user)
+    if (!user) return res.status(404).send('The user with the given ID was not found.');
+    
+    res.send({results: "The user has been updated.", user: user});
+})
 module.exports = router;

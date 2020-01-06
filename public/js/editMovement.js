@@ -1,7 +1,5 @@
 export { fillEditForm }
 
-
-
 document.getElementById('editMovementBtn').addEventListener('click', updateMovement);
 document.getElementById('deleteMovementBtn').addEventListener('click', deleteMovement);
 
@@ -17,16 +15,13 @@ async function updateMovement(){
     dataID = dataID.getAttribute('data-id');
         let body = {
             prID: dataID,
-            name: document.getElementById('editMovementName').value,
+            name: document.getElementById('editMovementName').innerText,
             personalRecord: document.getElementById('editMovementMax').value,
             date: document.getElementById('editMovementDate').value,
             comment: document.getElementById('editMovementComment').value,
         }
     
-    let url = `/api/personalrecord/${userID}`
-
-        console.log(url)
-        console.log(body)
+    let url = `/api/personalrecord/${userID}`        
 
     try {
         body = JSON.stringify(body)
@@ -42,7 +37,7 @@ async function updateMovement(){
         })
 
         let json = await res.json()
-        console.log(json)
+       
         if(json.ok == 1){
             document.getElementById('editMovementDialog').close();
         } else {
@@ -54,7 +49,6 @@ async function updateMovement(){
     }
 
 }
-
 
 async function deleteMovement(){
 
@@ -85,7 +79,7 @@ async function deleteMovement(){
         })
 
         let json = await res.json()
-        console.log(json)
+        
         if(json.removed){
             document.getElementById('editMovementDialog').close();
         } else {
@@ -101,7 +95,7 @@ async function deleteMovement(){
 function fillEditForm(el){
     console.log(el);
     
-        document.getElementById('editMovementName').value = el.name;
+        document.getElementById('editMovementName').innerText = el.name;
         document.getElementById('editMovementMax').value = el.personalRecord;
         document.getElementById('editMovementDate').value = el.date;
         document.getElementById('editMovementComment').value = el.comment;

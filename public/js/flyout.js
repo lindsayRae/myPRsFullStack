@@ -8,7 +8,6 @@ function buildFlyout(lift){
     
     let title = document.getElementById('movementName');
     title.innerText = lift;   
-
       
     liftPR(lift);    
      setTimeout(()=>{
@@ -16,6 +15,7 @@ function buildFlyout(lift){
         }, 300)
                
 }
+
 //* find the PR from selected lift 
 async function liftPR(lift){
     let liftRecords = await selectedLiftRecords(lift);   
@@ -29,9 +29,9 @@ async function liftPR(lift){
         
         highestRecord(liftRecords);
         recordTable(liftRecords);
-   }  
-
+   } 
 }
+
 function highestRecord(liftRecords){
     let highest;
         let record = [];
@@ -78,7 +78,7 @@ async function allLiftRecords(){
             headers: headers
         })
         let json = await res.json()
-        //console.log(json);
+        
         if (res.status === 200) {                       
             return json;
         } else if (res.status === 404) {

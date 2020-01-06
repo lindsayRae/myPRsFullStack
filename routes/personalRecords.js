@@ -259,8 +259,8 @@ router.put('/:id', async (req, res) => {
             let subRecord
 
             let record = await PersonalRecord.findOne({ user_id: id}); 
-            
-            if (movement === 'lifts') {
+            console.log(record)
+            if (movement === 'lift') {
             console.log("************")
                 subRecord = record.lifts.id(prID)          
             } 
@@ -272,6 +272,7 @@ router.put('/:id', async (req, res) => {
             } 
 
             let result = subRecord.remove();
+            console.log("** Result: ***")
             console.log(result)
             record.save()
             res.send({removed: true});
