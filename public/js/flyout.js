@@ -1,15 +1,15 @@
 
-
+//! LINDSAY PICK UP WITH FLYOUT REFACTOR
 export { closeFlyout, buildFlyout }
 import { fillEditForm } from './editMovement.js';
 
 
-function buildFlyout(lift){
-    
+function buildFlyout(movementName){
+    console.log(movementName)
     let title = document.getElementById('movementName');
-    title.innerText = lift;   
+    title.innerText = movementName;   
       
-    liftPR(lift);    
+    movementPR(movementName);    
      setTimeout(()=>{
             openFlyout();
         }, 300)
@@ -17,9 +17,9 @@ function buildFlyout(lift){
 }
 
 //* find the PR from selected lift 
-async function liftPR(lift){
-    let liftRecords = await selectedLiftRecords(lift);   
-    
+async function movementPR(movementName){
+    let liftRecords = await selectedLiftRecords(movementName);   
+    console.log(liftRecords)
    if(liftRecords.length < 1){       
        noEntries();
    } else {
@@ -54,7 +54,7 @@ function highestRecord(liftRecords){
 async function selectedLiftRecords(lift){
 
     let allRecords = await allLiftRecords();
-        
+        console.log(allRecords)
     if(allRecords.length <= 0){
         return []
     } else {
@@ -67,8 +67,9 @@ async function selectedLiftRecords(lift){
 async function allLiftRecords(){
 
     let userID = localStorage.getItem('ID');
+    let movement = sessionStorage.getItem('Movement')
     try {
-        let url = `/api/personalrecord/${userID}?movement=lifts`;
+        let url = `/api/personalrecord/${userID}?movement=${movement}`;
         let headers = {
             "Content-Type": "application/json"
         }

@@ -3,9 +3,6 @@ const auth = require('../middleware/auth');
 const express = require('express');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    res.send('Welcome to Personal Records Endpoint')
-})
 
 function getDate() {
     let date = new Date();
@@ -43,30 +40,30 @@ function getDate() {
 //? Get lifts by user_id WORKING! 
 //! No authorization 
 router.get('/:id', async (req, res) => {
-  //console.log('heard the GET')
+  
     try {
        
-    const id = req.params.id;
-    const movement = req.query.movement;    
+        let id = req.params.id;
+        let movement = req.query.movement;  
+        let record = await PersonalRecord.findOne({ user_id: id}); 
 
-  
-    let record = await PersonalRecord.findOne({ user_id: id});    
-    if (!record){
-        res.send({record: [], message: 'There are not any user defined lifts for this user'})
-    } else if (movement === 'lifts') {
-        res.send(record.lifts)
-    } else if (movement === 'cardio') {
-        res.send(record.cardio)
-    } else if (movement === 'skills') {
-        res.send(record.skills)
-    } else {
-        res.send({message: 'Something went wrong'})
-    }
+        if (!record){
+            res.send({record: [], message: 'There are not any user defined lifts for this user'})
+        } else if (movement === 'lift') {
+            res.send(record.lifts)
+        } else if (movement === 'cardio') {
+            res.send(record.cardio)
+        } else if (movement === 'skill') {
+            res.send(record.skills)
+        } else {
+            res.send({message: 'Something went wrong'})
+        }
    
     } catch (error) {
         res.send(error);
     }
 })
+
 //? Create new MOVEMENT with a PR
 //! added auth as middleware
 //router.post('/', auth, async (req, res) => {
@@ -90,12 +87,12 @@ router.post('/:movement', async (req, res) => {
             
         if(!record){
             res.send({ message: "Did not find a record for this user"});
-        } else if (movement === 'lifts') {
+        } else if (movement === 'lift') {
             console.log("push to the lift array")
             record.lifts.push(pr)
         } else if (movement === 'cardio') {
             record.cardio.push(pr)
-        } else if (movement === 'skills') {
+        } else if (movement === 'skill') {
             record.skills.push(pr)
         }
 

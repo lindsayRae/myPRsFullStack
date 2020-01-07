@@ -12,10 +12,13 @@ router.post('/addmovement', async (req, res) => {
         type: req.body.type,
         preDefined: req.body.preDefined
     }
+    console.log("body sending: ")
+    console.log(body)
 
     try {
       
         let validated = validate(body);
+        console.log("body validated")
         console.log(validated)
         if (validated.error) {
             let errorMsg = validated.error.details[0].message
@@ -27,8 +30,11 @@ router.post('/addmovement', async (req, res) => {
             type: req.body.type,
             preDefined: req.body.preDefined
         })
-       
-        let result = await movement.save()       
+        console.log("movement: ")
+       console.log(movement)
+        let result = await movement.save() 
+        console.log("result: ")
+        console.log(result)   
         res.send(result)
 
     } catch (error) {
