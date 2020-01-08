@@ -1,4 +1,4 @@
-const { Lifts, validate } = require('../models/lifts');
+const { Lifts, validate } = require('../../models/lifts');
 const Joi = require('@hapi/joi');
 
 const express = require('express');

@@ -1,6 +1,6 @@
 //! terminal command: ipconfig
 
-import { closeFlyout, buildFlyout } from "./flyout.js";
+import { closeFlyout, buildFlyout } from "../js/flyout.js";
 
 buildMenuUI()
 
@@ -50,7 +50,7 @@ async function buildMenuUI() {
     let data = await buildLiftMenu();
     data = data.sort();
    
-    let container = document.getElementById('liftMenuContainer');
+    let container = document.getElementById('movementRecordContainer');
     container.innerHTML = '';
     data.forEach(function (lift) {
         let idName = lift.replace(/\s/g, '');
@@ -87,7 +87,7 @@ async function defaultLiftsMenu() {
             headers: headers
         })
         let json = await res.json()
-       //console.table(json);
+       console.table(json);
         if (res.status === 200) {            
             return json;
         } else if (res.status === 404) {

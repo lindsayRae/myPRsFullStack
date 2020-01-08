@@ -13,33 +13,9 @@ function getDate() {
     return today;
 }
 
-//? get entries for 1 movement
-//! Added auth as middlerware 
-// router.get('/:id', auth, async (req, res) => {
-  
-//     try {
-       
-//     const id = req.params.id;
-//     const movement = req.query.movement;
-//     let record = await PersonalRecord.findById(id);
 
-//     if (movement === 'lifts') {
-//         res.send(record.lifts)
-//     } else if (movement === 'cardio') {
-//         res.send(record.cardio)
-//     } else if (movement === 'skills') {
-//         res.send(record.skills)
-//     }
-
-//     } catch (error) {
-//         res.send(error);
-//     }
-// })
-
-
-//? Get lifts by user_id WORKING! 
-//! No authorization 
-router.get('/:id', async (req, res) => {
+//? Get lifts by user_id 
+router.get('/:id', auth, async (req, res) => {
   
     try {
        
@@ -65,9 +41,7 @@ router.get('/:id', async (req, res) => {
 })
 
 //? Create new MOVEMENT with a PR
-//! added auth as middleware
-//router.post('/', auth, async (req, res) => {
-router.post('/:movement', async (req, res) => {
+router.post('/:movement', auth, async (req, res) => {
    
     try {
         let movement = req.params.movement        
@@ -104,68 +78,7 @@ router.post('/:movement', async (req, res) => {
     }
 })
 
-// //? Create new PR for exisiting movement
-// //? need to grab the description and preDefined values to pass to new entry 
-// //! LINDSAY START HERE!
-// //! added auth as middleware
-// //router.post('/', auth, async (req, res) => {
-//     router.post('/newpr/:movement', async (req, res) => {
-//     console.log('made it..................')
-//         try {
-//             let movement = req.params.movement 
-//            // let name = req.body.name       
-//             let id = req.body.user_id   
-            
-            
-//             let record = await PersonalRecord.findOne({ user_id: id});  
-//                 console.log(record)
-                
-//             let currentArr = record.lifts;
-//             console.log('*************')
-//             console.log(currentArr)
-//             //! loop through array of objects and return the object that matches a condition 
 
-            
-//             //? if record[i].name === name req.params.name
-//                 //? get the 
-//                     //? req.body.name
-//                     //? record[i].description
-//                     //? record[i].preDefined                
-//                     //? req.body.date
-//                     //? req.body.comment
-//                     //? req.body.personalRecord
-
-//                 res.send({ message: "Success", results: record })
-
-//                 // let pr = {
-//                 //     name: req.body.name,
-//                 //     description: req.body.description,
-//                 //     preDefined: req.body.preDefined,
-//                 //     date: req.body.date,
-//                 //     comment: req.body.comment,
-//                 //     personalRecord: req.body.personalRecord
-//                 // }        
-                
-
-
-//             // if(!record){
-//             //     console.log('did not find a record for this user')
-//             // } else if (movement === 'lifts') {
-//             //     console.log("push to the lift array")
-//             //     record.lifts.push(pr)
-//             // } else if (movement === 'cardio') {
-//             //     record.cardio.push(pr)
-//             // } else if (movement === 'skills') {
-//             //     record.skills.push(pr)
-//             // }
-    
-//             // let result = await record.save(pr);
-//             // res.send({ message: "Success", results: result })
-    
-//         } catch (error) {
-//             res.send(error);
-//         }
-//     })
 //! DONE
 router.post( '/usersetup/:id' , async (req, res) =>{
     
@@ -190,14 +103,11 @@ router.post( '/usersetup/:id' , async (req, res) =>{
     }
 })
 
-//? Add one entry DONE!!!
-//! added auth middleware
-//router.put('/:id', auth, async (req, res) => {
-router.put('/:id', async (req, res) => {
+//? Edit one entry 
+router.put('/:id', auth, async (req, res) => {
    
     try {
-
-       // let movement = 'lifts'
+      
         let id = req.params.id;
         let prID = req.body.prID;
 
@@ -205,48 +115,45 @@ router.put('/:id', async (req, res) => {
         let date = req.body.date;
         let personalRecord = req.body.personalRecord;
         let comment = req.body.comment;
+        let type = req.body.type
+        let record;
 
-         let record = await PersonalRecord.updateOne({user_id: id, 'lifts._id': prID}, 
+        if(type === 'lift'){
+            record = await PersonalRecord.updateOne({user_id: id, 'lifts._id': prID}, 
             {$set : {
                 'lifts.$.name': name,
                 'lifts.$.date': date, 
                 'lifts.$.personalRecord': personalRecord, 
                 'lifts.$.comment': comment                   
-             } });         
-        
-            
-        res.send(record);
-        res.save();              
-
+             } });
+        } else if(type === 'cardio'){
+            record = await PersonalRecord.updateOne({user_id: id, 'cardio._id': prID}, 
+            {$set : {
+                'cardio.$.name': name,
+                'cardio.$.date': date, 
+                'cardio.$.personalRecord': personalRecord, 
+                'cardio.$.comment': comment                   
+             } });
+        } else if(type === 'skill'){
+            record = await PersonalRecord.updateOne({user_id: id, 'skills._id': prID}, 
+            {$set : {
+                'skills.$.name': name,
+                'skills.$.date': date, 
+                'skills.$.personalRecord': personalRecord, 
+                'skills.$.comment': comment                   
+             } });
+        } 
+                 
+       res.send(record);
+                 
     } catch (error) {
         res.send(error);
     }
 })
 
-//? Delete One NOT DONE 
-// ! THIS DELETED THE WHOLE PR RECORD
-//! added auth middleware
 
-    // router.delete('/:id', async (req, res) => {
-   
-    //     try {
-    
-    //        // let movement = 'lifts'
-    //         let id = req.params.id;
-    //         let prID = req.body.prID;   
-            
-    // //
-    //         let record = await PersonalRecord.deleteOne({user_id: id, 'lifts._id': prID});         
-    //         console.log(record)
-    //         res.send(record);
-    //         res.save();              
-    
-    //     } catch (error) {
-    //         res.send(error);
-    //     }
-    // })
-//! Delete one entry DONE 
-    router.delete('/:id', async (req, res) => {
+//? Delete one entry  
+    router.delete('/:id', auth, async (req, res) => {
    
         try {       
 
@@ -255,22 +162,20 @@ router.put('/:id', async (req, res) => {
             let prID = req.body.prID;  
             let subRecord
 
-            let record = await PersonalRecord.findOne({ user_id: id}); 
-            console.log(record)
-            if (movement === 'lift') {
-            console.log("************")
+            let record = await PersonalRecord.findOne({ user_id: id});
+            
+            if (movement === 'lift') {            
                 subRecord = record.lifts.id(prID)          
             } 
             else if (movement === 'cardio') {
-                subRecord = record.cardio.id(child_id)   
+                subRecord = record.cardio.id(prID)   
             } 
-            else if (movement === 'skills') {
-                subRecord = record.skills.id(child_id)
+            else if (movement === 'skill') {                
+                subRecord = record.skills.id(prID)                
             } 
 
             let result = subRecord.remove();
-            console.log("** Result: ***")
-            console.log(result)
+            
             record.save()
             res.send({removed: true});
                           
@@ -279,41 +184,6 @@ router.put('/:id', async (req, res) => {
             res.send(error);
         }
     })
-
-
-//? remove one entry 
-//! added auth middleware
-// router.put('/delete/:parent_id', auth, async (req, res) => {
-//     try {           
-
-//         const movement = req.body.movement
-//         const child_id = req.body.child_id
-//         const parent_id = req.params.parent_id
-        
-//         let record = await PersonalRecord.findById(parent_id)
-//         let result 
-      
-//         if (movement === 'lifts') {
-//             let subRecord = record.lifts.id(child_id)
-//             result = subRecord.remove();
-//         } 
-//         else if (movement === 'cardio') {
-//             let subRecord = record.cardio.id(child_id)
-//             result = subRecord.remove();
-//         } 
-//         else if (movement === 'skills') {
-//             let subRecord = record.skills.id(child_id)
-//             result = subRecord.remove();
-//         }
-
-//         record.save()
-//         res.send(result)
-       
-//     } catch (error) {
-//         res.send(error);
-//     }
-
-// })
 
 
 module.exports = router;

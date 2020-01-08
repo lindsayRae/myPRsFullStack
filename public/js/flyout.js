@@ -1,11 +1,10 @@
 
-//! LINDSAY PICK UP WITH FLYOUT REFACTOR
 export { closeFlyout, buildFlyout }
 import { fillEditForm } from './editMovement.js';
 
 
 function buildFlyout(movementName){
-    console.log(movementName)
+    
     let title = document.getElementById('movementName');
     title.innerText = movementName;   
       
@@ -18,32 +17,32 @@ function buildFlyout(movementName){
 
 //* find the PR from selected lift 
 async function movementPR(movementName){
-    let liftRecords = await selectedLiftRecords(movementName);   
-    console.log(liftRecords)
-   if(liftRecords.length < 1){       
+    let movementRecords = await selectedMovementRecords(movementName);   
+  
+   if(movementRecords.length < 1){       
        noEntries();
    } else {
         document.getElementById('flyoutHeader').classList.remove('hide');
         document.getElementById('tableContainer').classList.remove('hide');
         document.getElementById('noRecordsMsg').classList.add('hide');
         
-        highestRecord(liftRecords);
-        recordTable(liftRecords);
+        highestRecord(movementRecords);
+        recordTable(movementRecords);
    } 
 }
 
-function highestRecord(liftRecords){
+function highestRecord(movementRecords){
     let highest;
         let record = [];
         // grab PRs, convert to a number and push to array 
-        liftRecords.forEach(el => {
+        movementRecords.forEach(el => {
             record.push(Number(el.personalRecord))
         });
         // find the highest number in the array   
         highest = Math.max(...record)    
 
         // find the first obj that the pr is the highest
-        let highestRecord = liftRecords.find(el => el.personalRecord == highest);
+        let highestRecord = movementRecords.find(el => el.personalRecord == highest);
      //   console.log(highestRecord);
 
         document.getElementById('currentPRLog').innerText = highestRecord.personalRecord;
@@ -51,27 +50,28 @@ function highestRecord(liftRecords){
 }
 
 //* find all the records for selected lift 
-async function selectedLiftRecords(lift){
+async function selectedMovementRecords(movementName){
 
-    let allRecords = await allLiftRecords();
-        console.log(allRecords)
+    let allRecords = await allMovementRecords();
+       
     if(allRecords.length <= 0){
         return []
     } else {
-        let selectedLift = allRecords.filter(el => el.name === lift);        
-        return selectedLift;    
+        let selectedMovement = allRecords.filter(el => el.name === movementName);        
+        return selectedMovement;    
     }  
 }
 
 //* get all of the lift records from the server
-async function allLiftRecords(){
+async function allMovementRecords(){
 
     let userID = localStorage.getItem('ID');
     let movement = sessionStorage.getItem('Movement')
     try {
         let url = `/api/personalrecord/${userID}?movement=${movement}`;
         let headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem('token')
         }
 
         let res = await fetch(url, {
@@ -94,8 +94,8 @@ async function allLiftRecords(){
     }
 }
 
-function recordTable(liftRecords){
-  //  console.log(liftRecords)
+function recordTable(movementRecords){
+  //  console.log(movementRecords)
     let table = document.getElementById('recordTable');
     table.innerHTML = '';
     let thead = document.createElement('thead');
@@ -116,7 +116,7 @@ function recordTable(liftRecords){
     trHead.appendChild(thDate);
     trHead.appendChild(thUnit);         
     
-    liftRecords.forEach(el => {
+    movementRecords.forEach(el => {
     //    console.log(el);
         let tr = document.createElement('tr');
 
@@ -163,7 +163,7 @@ function openFlyout(){
     document.getElementById("mainFlyout").style.paddingLeft = "5%";
     document.getElementById("mainFlyout").style.paddingRight = "5%";
     document.getElementById("secondaryFlyout").style.width = "15%";
-    document.getElementById("liftMenuContainer").classList.add('fixed-position');
+    document.getElementById("movementRecordContainer").classList.add('fixed-position');
      
   }
 
@@ -172,5 +172,5 @@ function openFlyout(){
     document.getElementById("mainFlyout").style.paddingLeft = "0";
     document.getElementById("mainFlyout").style.paddingRight = "0";
     document.getElementById("secondaryFlyout").style.width = "0"; 
-    document.getElementById("liftMenuContainer").classList.remove('fixed-position');
+    document.getElementById("movementRecordContainer").classList.remove('fixed-position');
 }

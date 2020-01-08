@@ -54,7 +54,7 @@ async function buildMenuUI() {
     let data = await buildMovementMenu();    
     data = data.sort();
    
-    let container = document.getElementById('liftMenuContainer');
+    let container = document.getElementById('movementRecordContainer');
     container.innerHTML = '';
     
     data.forEach(function (movementName) {
@@ -82,14 +82,16 @@ async function buildMenuUI() {
 //? type is always singular
 //* Good for dynamic movement 1-6-20
 async function defaultMovementMenu() {
-
+console.log('heererer')
     document.getElementById('movementTitle').innerText = sessionStorage.getItem('Movement Title');
     let type = sessionStorage.getItem('Movement')
 
     try {       
        let url = `/api/movements/${type}`;
+       console.log(url)
         let headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem('token')
         }
 
         let res = await fetch(url, {
@@ -97,7 +99,7 @@ async function defaultMovementMenu() {
             headers: headers
         })
         let json = await res.json()
-      // console.table(json);
+       console.table(json);
         if (res.status === 200) {            
             return json;
         } else if (res.status === 404) {
@@ -120,7 +122,8 @@ async function userMovementMenu() {
     try {
         let url = `/api/personalrecord/${user_id}?movement=${movement}`;       
         let headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem('token')
         }
 
         let res = await fetch(url, {
@@ -129,7 +132,7 @@ async function userMovementMenu() {
         })
        
         let json = await res.json()
-      //console.log(json);
+       console.table(json);
         if (res.ok) {                 
             return json;                 
         } else if (res.status === 404) {
@@ -164,7 +167,8 @@ async function addNewMovement() {
      
         body = JSON.stringify(body)
         let headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem('token')
         }
 
         let res = await fetch(url, {
@@ -174,7 +178,7 @@ async function addNewMovement() {
         })
 
         let json = await res.json()
-        
+        console.log(json)
         if(json.message === "Success"){
             buildMenuUI();
             document.getElementById('newMovementForm').reset();           
@@ -207,7 +211,8 @@ async function addNewRecord(name) {
      
         body = JSON.stringify(body)
         let headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem('token')
         }
 
         let res = await fetch(url, {
@@ -217,11 +222,13 @@ async function addNewRecord(name) {
         })
 
         let json = await res.json()
-       
+       console.log(json)
         if(json.message === "Success"){
             buildMenuUI();          
             buildFlyout(name);
             document.getElementById('newEntryForm').reset();
+        } else {
+            console.log(json.message)
         }
 
     } catch (error) {

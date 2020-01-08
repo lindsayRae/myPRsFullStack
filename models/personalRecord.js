@@ -24,8 +24,7 @@ const MovementSchema = new mongoose.Schema({
         },
         comment: {
             type: String,
-            required: false,
-            minlength: 1,
+            required: false,            
             maxlength: 999
         },
         personalRecord: {

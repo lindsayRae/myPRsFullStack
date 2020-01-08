@@ -13,9 +13,9 @@ const adminRouter = require('./routes/admin');
 const movementRouter = require('./routes/movements');
 const personalRecords = require('./routes/personalRecords');
 
-const liftsRouter = require('./routes/lifts');
-const skillsRouter = require('./routes/skills');
-const cardioRouter = require('./routes/cardio');
+//const liftsRouter = require('./routes/lifts');
+//const skillsRouter = require('./routes/skills');
+//const cardioRouter = require('./routes/cardio');
 
 
 const app = express();
@@ -35,9 +35,9 @@ app.use('/api/admin', adminRouter);
 app.use('/api/movements', movementRouter);
 app.use('/api/personalrecord', personalRecords);
 
-app.use('/api/lifts', liftsRouter);
-app.use('/api/skills', skillsRouter);
-app.use('/api/cardio', cardioRouter);
+//app.use('/api/lifts', liftsRouter);
+//app.use('/api/skills', skillsRouter);
+//app.use('/api/cardio', cardioRouter);
 
 
 //! set myPRs_jwtPrivateKey=mySecureKey

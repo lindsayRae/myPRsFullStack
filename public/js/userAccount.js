@@ -29,7 +29,8 @@ async function getUser(){
     try {       
         let url = `/api/users/me/${id}`;
          let headers = {
-             "Content-Type": "application/json"
+             "Content-Type": "application/json",
+             "x-auth-token": localStorage.getItem('token')
          }
  
          let res = await fetch(url, {
@@ -66,7 +67,8 @@ async function updateUser(){
 
         body = JSON.stringify(body)
         let headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem('token')
         }
 
         let res = await fetch(url, {

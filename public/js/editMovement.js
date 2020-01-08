@@ -19,15 +19,17 @@ async function updateMovement(){
             personalRecord: document.getElementById('editMovementMax').value,
             date: document.getElementById('editMovementDate').value,
             comment: document.getElementById('editMovementComment').value,
+            type: sessionStorage.getItem('Movement')
         }
-    
+    console.log(body)
     let url = `/api/personalrecord/${userID}`        
 
     try {
         body = JSON.stringify(body)
 
         let headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem('token')
         }
 
         let res = await fetch(url, {
@@ -37,7 +39,7 @@ async function updateMovement(){
         })
 
         let json = await res.json()
-       
+       console.log(json)
         if(json.ok == 1){
             document.getElementById('editMovementDialog').close();
         } else {
@@ -62,14 +64,15 @@ async function deleteMovement(){
             prID: dataID,
             type: dataType       
         }
-    
+  
     let url = `/api/personalrecord/${userID}`
 
     try {
         body = JSON.stringify(body)
 
         let headers = {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem('token')
         }
 
         let res = await fetch(url, {
@@ -92,8 +95,7 @@ async function deleteMovement(){
 
 }
 
-function fillEditForm(el){
-    console.log(el);
+function fillEditForm(el){    
     
         document.getElementById('editMovementName').innerText = el.name;
         document.getElementById('editMovementMax').value = el.personalRecord;

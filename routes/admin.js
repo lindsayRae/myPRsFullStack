@@ -44,5 +44,25 @@ router.post('/addmovement', async (req, res) => {
     }
 });
 
+// ! THIS DELETED THE WHOLE PR RECORD
+//! added auth middleware
 
+    // router.delete('/:id', async (req, res) => {
+   
+    //     try {
+    
+    //        // let movement = 'lifts'
+    //         let id = req.params.id;
+    //         let prID = req.body.prID;   
+            
+    // //
+    //         let record = await PersonalRecord.deleteOne({user_id: id, 'lifts._id': prID});         
+    //         console.log(record)
+    //         res.send(record);
+    //         res.save();              
+    
+    //     } catch (error) {
+    //         res.send(error);
+    //     }
+    // })
 module.exports = router;

@@ -1,13 +1,4 @@
 
-
-
-
-
-// document.getElementById("liftsMenuBtn").addEventListener("click", ()=> {  
-//   sessionStorage.setItem('Movement', 'lifts');
-//   location.href = "/lifts.html";
-// })
-
 document.getElementById("liftsMenuBtn").addEventListener("click", ()=> {  
   sessionStorage.setItem('Movement', 'lift');
   sessionStorage.setItem('Movement Title', 'Lifts');

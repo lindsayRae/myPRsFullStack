@@ -1,4 +1,4 @@
-const { Cardio, validate } = require('../models/cardio');
+const { Cardio, validate } = require('../../models/cardio');
 const express = require('express');
 const router = express.Router();
 

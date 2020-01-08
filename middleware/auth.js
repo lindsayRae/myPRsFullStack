@@ -1,5 +1,7 @@
+
+
 const jwt = require('jsonwebtoken');
-const config = require('config');
+//const config = require('config');
 
 function auth(req, res, next){
     
@@ -8,6 +10,7 @@ function auth(req, res, next){
     if (!token) return res.status(401).send('Access denied. No token provided.');
 
     try {
+        // decoded payload
         const decoded = jwt.verify(token, process.env.jwtPrivateKey);
         req.user = decoded;
         next();

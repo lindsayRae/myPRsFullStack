@@ -20,9 +20,8 @@ router.get('/', async (req, res) => {
   res.send(user);
 });
 
-//! added auth middleware
-//router.get('/me', auth, async (req, res) => {
-router.get('/me/:id', async (req, res) => {
+//? get user by ID
+router.get('/me/:id', auth, async (req, res) => {
 
   let id = req.params.id;
   const user = await User.findById(id).select('-password');
@@ -100,7 +99,8 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/me/:id', async (req, res) => {
+//? update user
+router.put('/me/:id', auth, async (req, res) => {
   // validation need to come here for post body
 
   let user = await User.findByIdAndUpdate(req.params.id,
