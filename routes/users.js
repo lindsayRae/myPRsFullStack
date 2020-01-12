@@ -61,23 +61,35 @@ router.post('/', async (req, res) => {
   }
   
   user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password']));
-  
+
+  console.log("user:")
+  console.log(user)
+
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
   let newUser = await user.save();  
+
+  console.log("NewUSer:")
+  console.log(newUser)
 
   if (!newUser) {
     return res.status(500).send("There was a problem creating your user, please try again later")
   } else {
     const token = user.generateAuthToken();
-    //* pick what you want returned back to the user 
-    
+
+    console.log("Token:")
+    console.log(token)
+
+    //* pick what you want returned back to the user     
     //! you will need to create a header for the creation of the blank you document in personalRecord
-    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastName', 'email']));
+
+    res.header('x-auth-token', token).send( {_id: user._id, token: token} );
+    // res.header('x-auth-token', token).send(_.pick(user, ['_id', 'firstName', 'lastName', 'email'] ) );
 
     let headers = {
-      "Content-Type": "application/json"
-  }
+      "Content-Type": "application/json",
+    }
+
     //! Call out to your existing endpoint to create a new PR record with empty arrays (lifts, cardio, skills)
     let baseURL = req.headers.host
     let url = `http://${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
@@ -89,8 +101,9 @@ router.post('/', async (req, res) => {
       })
   
       let json = await response.json()
-      console.log("Steven look at my backend")
+      console.log("JSON:")
       console.log(json)
+      
     } catch (error) {
       console.log(error)
     }

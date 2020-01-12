@@ -28,11 +28,12 @@ async function signUp() {
             })
 
             let json = await res.json()
-           
+            console.log(json)
             if (res.status === 200) {
-                console.log(json)
+                
                 localStorage.setItem("ID", json._id)
-                location.href = "/dashboard.html"
+               localStorage.setItem("token", json.token)
+               location.href = "/dashboard.html"
             } else {
                 console.log(json.message);
                 document.getElementById('signupError').innerText = json.message;

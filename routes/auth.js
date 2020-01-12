@@ -9,7 +9,6 @@ const express = require('express');
 const router = express.Router();
 
 
-
 router.get('/', async (req, res) => {
   const user = await User.find();
   res.send(user);
@@ -18,7 +17,7 @@ router.get('/', async (req, res) => {
 //? Login endpoint 
 router.post('/', async (req, res) => {
   console.log('in login post')
-console.log(req.body)
+  console.log(req.body)
     const { error } = validate(req.body);
     if (error) {
       // ! This error is generated when your validate function at the bottom of 
