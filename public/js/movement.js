@@ -99,7 +99,7 @@ console.log('heererer')
             headers: headers
         })
         let json = await res.json()
-       console.table(json);
+       //console.table(json);
         if (res.status === 200) {            
             return json;
         } else if (res.status === 404) {
@@ -132,7 +132,7 @@ async function userMovementMenu() {
         })
        
         let json = await res.json()
-       console.table(json);
+       //console.table(json);
         if (res.ok) {                 
             return json;                 
         } else if (res.status === 404) {
