@@ -9,17 +9,17 @@ userAccountModal.querySelector('.close').addEventListener('click', function () {
 
 document.getElementById('userAccountBtn').addEventListener('click', () => {
     event.preventDefault();
-    populateUserDialog();
+    populateUserAccount();
 });
 document.getElementById('updateUserBtn').addEventListener('click', updateUser);
 
-async function populateUserDialog(){
+async function populateUserAccount(){
 
     let data = await getUser();    
     document.getElementById('userFirstName').value = data.firstName;
     document.getElementById('userLastName').value = data.lastName;
     document.getElementById('userEmail').value = data.email;
-    document.getElementById('userAccountModal').showModal();
+   // document.getElementById('userAccountModal').showModal();
 }
 
 async function getUser(){

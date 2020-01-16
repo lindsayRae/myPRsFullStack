@@ -1,5 +1,5 @@
 
-export { closeFlyout, buildFlyout }
+export { closeFlyout, buildFlyout, movementPR, openFlyout }
 import { fillEditForm } from './editMovement.js';
 
 
@@ -7,7 +7,11 @@ function buildFlyout(movementName){
     
     let title = document.getElementById('movementName');
     title.innerText = movementName;   
-      
+
+    document.getElementById('editMovementContainer').classList.add('hide');
+    document.getElementById('newMovementContainer').classList.add('hide');
+    document.getElementById('movementStats').classList.remove('hide');
+
     movementPR(movementName);    
      setTimeout(()=>{
             openFlyout();
@@ -17,8 +21,9 @@ function buildFlyout(movementName){
 
 //* find the PR from selected lift 
 async function movementPR(movementName){
+    console.log(movementName)
     let movementRecords = await selectedMovementRecords(movementName);   
-  
+  console.log(movementRecords)
    if(movementRecords.length < 1){       
        noEntries();
    } else {
@@ -126,9 +131,8 @@ function recordTable(movementRecords){
         noteIcon.classList.add('edit-icon');
         noteIcon.innerText = 'edit';
         
-        noteIcon.addEventListener('click', ()=>{
-                       
-            closeFlyout();            
+        noteIcon.addEventListener('click', ()=>{                       
+                      
             fillEditForm(el);       
         })
 

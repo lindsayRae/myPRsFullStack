@@ -29,8 +29,6 @@ async function collectLoginForm() {
    
     try {
 
-        console.log("In the try")
-
         let res = await fetch(url, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -38,16 +36,15 @@ async function collectLoginForm() {
             credentials: "include"
         })
 
-        console.log(res.status)
         let json = await res.json();
-        console.log(json)
+       // console.log(json)
         if (res.status === 200) {
-            console.log(`response was 200`)
+            
             localStorage.setItem("token", json.token)
             localStorage.setItem("ID", json.id)
             location.href = "/dashboard.html"
         } else {
-            console.log(`response was not 200`)
+           
             document.getElementById('loginErrorMsg').classList.remove('hide');
             document.getElementById('loginErrorMsg').innerText = json.message;
         }

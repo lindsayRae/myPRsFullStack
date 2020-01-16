@@ -1,35 +1,29 @@
 //! terminal command: ipconfig
 
-import { closeFlyout, buildFlyout } from "./flyout.js";
+import { closeFlyout, buildFlyout, openFlyout } from "./flyout.js";
 
 buildMenuUI()
 
 document.getElementById('closeFlyout').addEventListener('click', closeFlyout);
 document.getElementById('secondaryFlyout').addEventListener('click', closeFlyout)
 
-let newMovementDialog = document.getElementById('newMovementDialog');
-let showAddMovementModalButton = document.getElementById('addMovement');
 
-    if (!newMovementDialog.showModal) {
-        dialogPolyfill.registerDialog(newMovementDialog);
-    }
-
-showAddMovementModalButton.addEventListener('click', function () {
-    newMovementDialog.showModal();
-});
-
+document.getElementById('addMovement').addEventListener('click', ()=>{
+    
+    
+    document.getElementById('movementStats').classList.add('hide')
+    document.getElementById('movementName').innerText = ''
+   
+    openFlyout();
+    
+    document.getElementById('newMovementContainer').classList.remove('hide')
+})
 document.getElementById('addNewMovement').addEventListener('click', function () {
-    newMovementDialog.close();
+    
     addNewMovement();
 });
 
-document.getElementById('closeNewMovementX').addEventListener('click', function () {
-    newMovementDialog.close();    
-});
 
-document.getElementById('closeNewMovementBtn').addEventListener('click', function () {
-    newMovementDialog.close();    
-});
 
 document.getElementById('clearFilter').addEventListener('click', () => {    
     document.getElementById('searchLiftForm').reset();
@@ -88,7 +82,7 @@ console.log('heererer')
 
     try {       
        let url = `/api/movements/${type}`;
-       console.log(url)
+       //console.log(url)
         let headers = {
             "Content-Type": "application/json",
             "x-auth-token": localStorage.getItem('token')
@@ -181,6 +175,7 @@ async function addNewMovement() {
         console.log(json)
         if(json.message === "Success"){
             buildMenuUI();
+            closeFlyout()
             document.getElementById('newMovementForm').reset();           
         }
 

@@ -1,11 +1,12 @@
 export { fillEditForm }
+import { movementPR } from './flyout.js'
 
 document.getElementById('editMovementBtn').addEventListener('click', updateMovement);
 document.getElementById('deleteMovementBtn').addEventListener('click', deleteMovement);
 
-document.getElementById('closeEditDialog').addEventListener('click', ()=>{
-    document.getElementById('editMovementDialog').close();
-})
+// document.getElementById('closeEditDialog').addEventListener('click', ()=>{
+//     document.getElementById('editMovementDialog').close();
+// })
 
 async function updateMovement(){
 
@@ -13,9 +14,11 @@ async function updateMovement(){
 
     let dataID = document.getElementById('editMovementBtn');
     dataID = dataID.getAttribute('data-id');
+
+    let movementName = document.getElementById('movementName').innerText
         let body = {
             prID: dataID,
-            name: document.getElementById('editMovementName').innerText,
+            name: movementName,
             personalRecord: document.getElementById('editMovementMax').value,
             date: document.getElementById('editMovementDate').value,
             comment: document.getElementById('editMovementComment').value,
@@ -41,7 +44,10 @@ async function updateMovement(){
         let json = await res.json()
        console.log(json)
         if(json.ok == 1){
-            document.getElementById('editMovementDialog').close();
+            //document.getElementById('editMovementDialog').close();
+            movementPR(movementName)
+            document.getElementById('movementStats').classList.remove('hide');
+            document.getElementById('editMovementContainer').classList.add('hide');
         } else {
             console.error('Something went wrong');
         }
@@ -84,7 +90,11 @@ async function deleteMovement(){
         let json = await res.json()
         
         if(json.removed){
-            document.getElementById('editMovementDialog').close();
+           // document.getElementById('editMovementDialog').close();
+           let movementName = document.getElementById('movementName').innerText
+           movementPR(movementName)
+            document.getElementById('movementStats').classList.remove('hide');
+            document.getElementById('editMovementContainer').classList.add('hide');
         } else {
             console.error('Something went wrong');
         }
@@ -96,13 +106,15 @@ async function deleteMovement(){
 }
 
 function fillEditForm(el){    
-    
-        document.getElementById('editMovementName').innerText = el.name;
+    console.log(el)
+        //document.getElementById('editMovementName').innerText = el.name;
         document.getElementById('editMovementMax').value = el.personalRecord;
         document.getElementById('editMovementDate').value = el.date;
         document.getElementById('editMovementComment').value = el.comment;
         document.getElementById('editMovementBtn').setAttribute('data-id', el._id);
         document.getElementById('deleteMovementBtn').setAttribute('data-id', el._id);
         document.getElementById('deleteMovementBtn').setAttribute('data-type', el.type);
-        editMovementDialog.showModal();
+        //editMovementDialog.showModal();
+        document.getElementById('movementStats').classList.add('hide');
+        document.getElementById('editMovementContainer').classList.remove('hide');
     }

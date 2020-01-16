@@ -16,7 +16,7 @@
 </head>
 
 <body>
-        <dialog class="mdl-dialog" id="userAccountModal">
+        <!-- <dialog class="mdl-dialog" id="userAccountModal">
                 <i class="material-icons close" data-action="close">close</i>
                 <form class="mdl-dialog__content" id="">
                         <div class="mdl-textfield mdl-js-textfield">
@@ -38,66 +38,16 @@
                         <button type="button" class="mdl-button lt-border" id="updateUserBtn">Update</button>
                         <button type="button" class="mdl-button lt-border" id="logOutBtn">Log Out</button>
                 </div>
-        </dialog>
-
-        <dialog class="mdl-dialog" id="newMovementDialog">
-                <i class="material-icons close" data-action="close" id="closeNewMovementX">close</i>
-                <form class="mdl-dialog__content" id="newMovementForm">
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="newName">
-                                <label class="mdl-textfield__label" for="newName">New Movement Name</label>
-                        </div>
-                       
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="newMax">
-                                <label class="mdl-textfield__label" for="newMax">Max</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="newComment">
-                                <label class="mdl-textfield__label" for="newComment">Comment</label>
-                        </div>
-                </form>
-                <div class="mdl-dialog__actions">
-
-                        <button type="button" class="mdl-button lt-border" id="addNewMovement">Add</button>
-                        <button type="button" class="mdl-button lt-border" id="closeNewMovementBtn">Close</button>
-                </div>
-        </dialog>
-
-        <dialog class="mdl-dialog" id="editMovementDialog">
-                <i class="material-icons" data-action="close" id="closeEditDialog">close</i>
-                <h3 class="mdl-dialog__title" id="editMovementName"></h3>     
-                <form class="mdl-dialog__content" id="editMovementForm">                                          
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="editMovementMax">
-                                <label class="mdl-textfield__label" for="editMovementMax"></label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="editMovementDate">
-                                <label class="mdl-textfield__label" for="editMovementDate"></label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">                              
-
-                                <textarea class="mdl-textfield__input" type="text" rows= "3" id="editMovementComment" ></textarea>
-                                <label class="mdl-textfield__label" for="editMovementComment"></label>
-                        </div>
-                </form>
-                <div class="mdl-dialog__actions">
-
-                        <button type="button" class="mdl-button lt-border" id="editMovementBtn">Update</button>
-                        <button type="button" class="mdl-button lt-border" id="deleteMovementBtn">Delete</button>
-                </div>
-        </dialog>
+        </dialog> -->
 
 
-        <!-- <div id="" class=""> -->
                 <div class="sidenav" id="mainFlyout">
                         <a href="javascript:void(0)" class="closebtn" id="closeFlyout">&times;</a>
                         <div class="name-container">
                                 <h4 id="movementName"></h4>
                         </div>
 
-                        <div class="hide" id="movementStats">
+                        <div class="" id="movementStats">
                                 <section id="flyoutHeader">
                                         <div class="max-container">
                                                 <p>PR: <span id="currentPRLog">195</span><span id="currentPRunit">lbs</span><p>
@@ -144,21 +94,45 @@
                         </div>
 
 
-                        <div class="form-style-8">
+                        <div class="hide form-style-8" id="editMovementContainer">
                                 <h6>Edit Movement</h6>
                                 <form>
-                                  <input type="text" name="field1" placeholder="Max Entry" />
-                                  <input type="text" name="field1" placeholder="Date" />
+                                  <input type="text" name="field1" placeholder="Max Entry" id="editMovementMax" />
+                                  <input type="text" name="field1" placeholder="Date" id="editMovementDate" />
                                   
-                                  <textarea placeholder="Notes" onkeyup="adjust_textarea(this)"></textarea>
-                                  <button type="button">Delete</button>
-                                  <button type="button">Update</button>
+                                  <textarea placeholder="Notes" onkeyup="adjust_textarea(this)" id="editMovementComment"></textarea>
+                                  <button type="button" id="deleteMovementBtn">Delete</button>
+                                  <button type="button" id="editMovementBtn">Update</button>
                                 </form>
-                              </div>
+                        </div>
+
+                        <div class="hide form-style-8" id="newMovementContainer">
+                                <h6>Add a Movement</h6>
+                                <form id="newMovementForm">
+                                  <input type="text" name="newName" placeholder="Movement Name" id="newName" />
+                                  <input type="text" name="newMax" placeholder="Max" id="newMax" />
+                                  
+                                  <textarea placeholder="Notes" id="newComment"></textarea>
+                                  
+                                  <button type="button" id="addNewMovement">Add</button>
+                                </form>
+                        </div>
+
+                        <div class="hide form-style-8" id="userAccountContainer">
+                                <h6>Account</h6>
+                                <form id="">
+                                  <input type="text" name="newName" placeholder="First Name" id="userFirstName" />
+                                  <input type="text" name="newMax" placeholder="Last Name" id="userLastName" />
+                                  <input type="text" name="newMax" placeholder="Email" id="userEmail" />
+                                  
+                                  <button type="button" id="updateUserBtn">Update</button>
+                                  <button type="button" id="logOutBtn">Log Out</button>
+                                </form>
+                        </div>
                 </div>
                 <div class="secondary-flyout" id="secondaryFlyout">
                 </div>
-        <!-- </div> -->
+        
 
 
 
@@ -192,18 +166,17 @@
                         <a href="dashboard.html"><i class="material-icons">
                                         dashboard
                                 </i></a>
-                        <a href="" class="center-btn"><i class="material-icons" id="addMovement">
+                        <a href="javascript:void(0)" class="center-btn"><i class="material-icons" id="addMovement">
                                         add
                                 </i></a>
-                        <a href=""><i class="material-icons" id="userAccountBtn">
+                        <a href="javascript:void(0)"><i class="material-icons" id="userAccountBtn">
                                         perm_identity
                                 </i></a>
                 </div>
         </div>
 
         <script src="./mdl/material.min.js"></script> 
-        <script src="./js/movement.js" type="module"></script>
-        <!-- <script src="./js/lifts.js" type="module"></script> -->
+        <script src="./js/movement.js" type="module"></script>      
         <script src="./js/editMovement.js" type="module"></script>
         <script src="./js/userAccount.js" type="module"></script>
 
