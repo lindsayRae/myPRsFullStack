@@ -15,123 +15,98 @@
         <link rel="stylesheet" href="./stylesheets/forms.css">
 </head>
 
-<body>
-        <!-- <dialog class="mdl-dialog" id="userAccountModal">
-                <i class="material-icons close" data-action="close">close</i>
-                <form class="mdl-dialog__content" id="">
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="userFirstName">
-                                <label class="mdl-textfield__label" for="userFirstName"></label>
-                        </div>
-                       
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="userLastName">
-                                <label class="mdl-textfield__label" for="userLastName"></label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="userEmail">
-                                <label class="mdl-textfield__label" for="userEmail"></label>
-                        </div>
-                </form>
-                <div class="mdl-dialog__actions">
+<body>       
 
-                        <button type="button" class="mdl-button lt-border" id="updateUserBtn">Update</button>
-                        <button type="button" class="mdl-button lt-border" id="logOutBtn">Log Out</button>
+        <div class="sidenav" id="mainFlyout">
+                <a href="javascript:void(0)" class="closebtn" id="closeFlyout">&times;</a>
+                <div class="name-container">
+                        <h4 id="movementName"></h4>
                 </div>
-        </dialog> -->
 
+                <div class="" id="movementStats">
+                        <section id="flyoutHeader">
+                                <div class="max-container">
+                                        <p>PR: <span id="currentPRLog">195</span><span id="currentPRunit">lbs</span><p>
+                                        <p id="currentPRDate">11/10/18</p>
+                                </div>
+                                <div class="chart-container mdl-shadow--2dp" id="chart">
+                                        <!-- <img src="./img/chart-sample.png" width="100%" height="160" border="0" alt=""> -->
+                                        
+                                </div>
+                        </section>                                
+                        <section>
+                                <div>New Entry</div>
+                                <form class="mdl-grid" id="newEntryForm">                                     
 
-                <div class="sidenav" id="mainFlyout">
-                        <a href="javascript:void(0)" class="closebtn" id="closeFlyout">&times;</a>
-                        <div class="name-container">
-                                <h4 id="movementName"></h4>
-                        </div>
-
-                        <div class="" id="movementStats">
-                                <section id="flyoutHeader">
-                                        <div class="max-container">
-                                                <p>PR: <span id="currentPRLog">195</span><span id="currentPRunit">lbs</span><p>
-                                                <p id="currentPRDate">11/10/18</p>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                                                <input class="mdl-textfield__input" type="text"
+                                                        pattern="-?[0-9]*(\.[0-9]+)?" id="newPREntry"
+                                                        maxlength="3">
+                                                <label class="mdl-textfield__label"
+                                                        for="newPREntry">Entry..</label>
+                                                <span class="mdl-textfield__error">Input is not a number!</span>
                                         </div>
-                                        <div class="chart-container mdl-shadow--2dp">
-                                                <img src="./img/chart-sample.png" width="100%" height="160" border="0" alt="">
-
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input  mdl-cell mdl-cell--2-col mdl-cell--2-col-phone"
+                                                >
+                                                <input class="mdl-textfield__input" type="text" maxlength="100"
+                                                        id="PREntryNote">
+                                                <label class="mdl-textfield__label"
+                                                        for="PREntryNote">Note</label>
+                                                <span class="mdl-textfield__error">Please shorten your note!</span>
                                         </div>
-                                </section>                                
-                                <section>
-                                        <div>New Entry</div>
-                                        <form class="mdl-grid" id="newEntryForm">                                     
-
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-                                                        <input class="mdl-textfield__input" type="text"
-                                                                pattern="-?[0-9]*(\.[0-9]+)?" id="newPREntry"
-                                                                maxlength="3">
-                                                        <label class="mdl-textfield__label"
-                                                                for="newPREntry">Entry..</label>
-                                                        <span class="mdl-textfield__error">Input is not a number!</span>
-                                                </div>
-                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label entry-input  mdl-cell mdl-cell--2-col mdl-cell--2-col-phone"
-                                                        >
-                                                        <input class="mdl-textfield__input" type="text" maxlength="100"
-                                                                id="PREntryNote">
-                                                        <label class="mdl-textfield__label"
-                                                                for="PREntryNote">Note</label>
-                                                        <span class="mdl-textfield__error">Please shorten your note!</span>
-                                                </div>
-                                                <div class="entry-button  mdl-cell mdl-cell--2-col mdl-cell--1-col-phone" id="addNewLogBtn">
-                                                        <i class="material-icons">add</i>
-                                                </div>                                      
-                                        </form>
-                                </section>
-                                <section>
-                                        <div id="noRecordsMsg" class="hide">No records.. start moving!</div>
-                                        <div id="tableContainer">
-                                                
-                                                <table class="log-table" id="recordTable">  
-                                                </table>
-                                        </div>                                
-                                </section>
-                        </div>
-
-
-                        <div class="hide form-style-8" id="editMovementContainer">
-                                <h6>Edit Movement</h6>
-                                <form>
-                                  <input type="text" name="field1" placeholder="Max Entry" id="editMovementMax" />
-                                  <input type="text" name="field1" placeholder="Date" id="editMovementDate" />
-                                  
-                                  <textarea placeholder="Notes" onkeyup="adjust_textarea(this)" id="editMovementComment"></textarea>
-                                  <button type="button" id="deleteMovementBtn">Delete</button>
-                                  <button type="button" id="editMovementBtn">Update</button>
+                                        <div class="entry-button  mdl-cell mdl-cell--2-col mdl-cell--1-col-phone" id="addNewLogBtn">
+                                                <i class="material-icons">add</i>
+                                        </div>                                      
                                 </form>
-                        </div>
-
-                        <div class="hide form-style-8" id="newMovementContainer">
-                                <h6>Add a Movement</h6>
-                                <form id="newMovementForm">
-                                  <input type="text" name="newName" placeholder="Movement Name" id="newName" />
-                                  <input type="text" name="newMax" placeholder="Max" id="newMax" />
-                                  
-                                  <textarea placeholder="Notes" id="newComment"></textarea>
-                                  
-                                  <button type="button" id="addNewMovement">Add</button>
-                                </form>
-                        </div>
-
-                        <div class="hide form-style-8" id="userAccountContainer">
-                                <h6>Account</h6>
-                                <form id="">
-                                  <input type="text" name="newName" placeholder="First Name" id="userFirstName" />
-                                  <input type="text" name="newMax" placeholder="Last Name" id="userLastName" />
-                                  <input type="text" name="newMax" placeholder="Email" id="userEmail" />
-                                  
-                                  <button type="button" id="updateUserBtn">Update</button>
-                                  <button type="button" id="logOutBtn">Log Out</button>
-                                </form>
-                        </div>
+                        </section>
+                        <section>
+                                <div id="noRecordsMsg" class="hide">No records.. start moving!</div>
+                                <div id="tableContainer">
+                                        
+                                        <table class="log-table" id="recordTable">  
+                                        </table>
+                                </div>                                
+                        </section>
                 </div>
-                <div class="secondary-flyout" id="secondaryFlyout">
+
+
+                <div class="hide form-style-8" id="editMovementContainer">
+                        <h6>Edit Movement</h6>
+                        <form>
+                                <input type="text" name="field1" placeholder="Max Entry" id="editMovementMax" />
+                                <input type="text" name="field1" placeholder="Date" id="editMovementDate" />
+                                
+                                <textarea placeholder="Notes" onkeyup="adjust_textarea(this)" id="editMovementComment"></textarea>
+                                <button type="button" id="deleteMovementBtn">Delete</button>
+                                <button type="button" id="editMovementBtn">Update</button>
+                        </form>
                 </div>
+
+                <div class="hide form-style-8" id="newMovementContainer">
+                        <h6>Add a Movement</h6>
+                        <form id="newMovementForm">
+                                <input type="text" name="newName" placeholder="Movement Name" id="newName" />
+                                <input type="text" name="newMax" placeholder="Max" id="newMax" />
+                                
+                                <textarea placeholder="Notes" id="newComment"></textarea>
+                                
+                                <button type="button" id="addNewMovement">Add</button>
+                        </form>
+                </div>
+
+                <div class="hide form-style-8" id="userAccountContainer">
+                        <h6>Account</h6>
+                        <form id="">
+                                <input type="text" name="newName" placeholder="First Name" id="userFirstName" />
+                                <input type="text" name="newMax" placeholder="Last Name" id="userLastName" />
+                                <input type="text" name="newMax" placeholder="Email" id="userEmail" />
+                                
+                                <button type="button" id="updateUserBtn">Update</button>
+                                <button type="button" id="logOutBtn">Log Out</button>
+                        </form>
+                </div>
+        </div>
+        <div class="secondary-flyout" id="secondaryFlyout"></div>
         
 
 
@@ -140,8 +115,13 @@
                 <div class="search-ribbon">
                         <div class="mdl-grid">
                                 <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone list-title-wrapper">
-                                        <img src="./img/logo200x200.png" style="width: 40px; height: 40px;">
-                                        <span class="mdl-layout-title list-title" id="movementTitle"></span>
+                                        <div class="d-flex">
+                                                <img src="./img/logo200x200.png" style="width: 40px; height: 40px;">
+                                                <span class="mdl-layout-title list-title" id="movementTitle"></span>
+                                        </div>
+                                        <a href="javascript:void(0)"><i class="material-icons" id="logOutIcon">
+                                                exit_to_app
+                                        </i></a>
                                 </div>
                                 <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone">
                                         <form action="#" class="text-white" id="searchLiftForm">
@@ -150,7 +130,7 @@
                                                         <label class="mdl-textfield__label" for="filter-search">Search...</label>
                                                 </div>
                                                 <i class="material-icons" id="clearFilter">
-                                                        clear_all
+                                                        refresh
                                                 </i>
                                         </form>
                                 </div>
@@ -174,11 +154,12 @@
                                 </i></a>
                 </div>
         </div>
-
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script src="./mdl/material.min.js"></script> 
         <script src="./js/movement.js" type="module"></script>      
         <script src="./js/editMovement.js" type="module"></script>
         <script src="./js/userAccount.js" type="module"></script>
+        <script src="./js/main.js" type="module"></script>
 
 
 </body>

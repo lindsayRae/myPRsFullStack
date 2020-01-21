@@ -1,25 +1,34 @@
 
-let userAccountModal = document.getElementById('userAccountModal');
+//export { populateUserAccount }
 
-document.getElementById('logOutBtn').addEventListener('click', logOut)
+import { openFlyout, resetFlyout, closeFlyout } from './flyout.js'
 
-userAccountModal.querySelector('.close').addEventListener('click', function () {
-   userAccountModal.close();    
-});
+//let userAccountModal = document.getElementById('userAccountModal');
+if(document.getElementById('logOutBtn')){
+    document.getElementById('logOutBtn').addEventListener('click', logOut)
+    document.getElementById('logOutIcon').addEventListener('click', logOut)
+       
+    document.getElementById('userAccountBtn').addEventListener('click', () => {
+        event.preventDefault();
+        populateUserAccount();
+    });
 
-document.getElementById('userAccountBtn').addEventListener('click', () => {
-    event.preventDefault();
-    populateUserAccount();
-});
+}
+
 document.getElementById('updateUserBtn').addEventListener('click', updateUser);
 
 async function populateUserAccount(){
 
-    let data = await getUser();    
+    let data = await getUser();
+
+    resetFlyout()
+    document.getElementById('userAccountContainer').classList.remove('hide');
+    
     document.getElementById('userFirstName').value = data.firstName;
     document.getElementById('userLastName').value = data.lastName;
     document.getElementById('userEmail').value = data.email;
-   // document.getElementById('userAccountModal').showModal();
+    openFlyout();
+   
 }
 
 async function getUser(){
@@ -80,7 +89,7 @@ async function updateUser(){
         let json = await res.json()
        
         if(json){
-            document.getElementById('userAccountModal').close();
+            closeFlyout()
         }
         
     } catch (error) {

@@ -13,11 +13,6 @@ const adminRouter = require('./routes/admin');
 const movementRouter = require('./routes/movements');
 const personalRecords = require('./routes/personalRecords');
 
-//const liftsRouter = require('./routes/lifts');
-//const skillsRouter = require('./routes/skills');
-//const cardioRouter = require('./routes/cardio');
-
-
 const app = express();
 
 app.use(logger('dev'));
@@ -27,13 +22,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 
-// app.use(function(req, res, next){
-//   res.header("Access-Control-Allow-Origin", "localhost:9999");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// })
-
-
 app.use('/', indexRouter);
 
 app.use('/api/users', users);
@@ -41,10 +29,6 @@ app.use('/api/auth', auth);
 app.use('/api/admin', adminRouter);
 app.use('/api/movements', movementRouter);
 app.use('/api/personalrecord', personalRecords);
-
-//app.use('/api/lifts', liftsRouter);
-//app.use('/api/skills', skillsRouter);
-//app.use('/api/cardio', cardioRouter);
 
 
 //! set myPRs_jwtPrivateKey=mySecureKey

@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* font-family: 'Rubik', sans-serif; - main fonts 
+font-family: 'Questrial', sans-serif; - mostly for numbers */
+
+/*? COLOR PALATE */
+/** https://dribbble.com/shots/5471461-Kenko-workout-app-onboarding */
+
+.theme-white {
+    color: #E5E4EC;
+  }
+  .theme-light-gray {
+    color: #BBC3D0;
+  }
+  .theme-mid-gray {
+    color: #817D8C;
+  }
+  .theme-dark {
+    color: #0E0F22;
+  }
+  .theme-primary {
+    color: #2E359D;
+  }
+  .theme-dark-gray {
+    color: #4A4B64;
+  }
+  
+
+header {     
+    width: 100%;       
+}
+
+
+.login-title { 
+  width: 80%;
+  margin: 13% 10%;
+  color: #817D8C;  
+}
+
+.login-title h1{
+  font-size: 35px;
+}
+.login-title p{
+  margin-top: 15px;
+}
+
+.signup-link {
+  line-height: 1.5rem;
+  text-align: right; 
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  color: #817D8C;  
+}
+
+
+.logo {
+  height: 85px;
+  width: 85px;
+  color: #E9ECF2; 
+  padding: 20px; 
+  padding-left: 10%;
+}
+
+.logo div {
+  text-decoration: underline;
+  font-size: 50px;
+}
+
+
+
+
+.signup-link a {
+   
+    color: #2E359D;
+    font-weight: bold;
+    
+}
+/* 
+.foot-section {
+    margin: 30px;
+    line-height: 1.5rem;
+    text-align: right;
+    font-size: .75rem;
+
+}
+.foot-section a {
+    text-transform: uppercase;
+    color: #2E359D;
+   
+    text-decoration: none;
+} */

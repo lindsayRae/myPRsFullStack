@@ -21,20 +21,23 @@
   color: #4A4B64;
 }
 
+/** NEw Color Pallet */
+.ClassBook-1-hex { color: #2E2C73; }
+.ClassBook-2-hex { color: #0540F2; }
+.ClassBook-3-hex { color: #E9ECF2; }
+.ClassBook-4-hex { color: #367FBF; }
+.ClassBook-5-hex { color: #36C8D9; }
+
+.header-gradient {
+  background-image: linear-gradient(to bottom right, #2E2C73, rgb(56, 53, 145)); /* Standard syntax (must be last) */
+  color: #E5E4EC;
+}
 .theme-gradient {
-  background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); /* Standard syntax (must be last) */
+  background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); 
   color: #E5E4EC;
 }
 
 
-
-.login-ribbon {
-  width: 100%;
-  background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); /* Standard syntax (must be last) */
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
 
 .signup-ribbon {
   width: 100%;
@@ -64,6 +67,7 @@
 .list-title-wrapper {
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
 }
 .list-title {
   padding-left: 15px;
@@ -138,6 +142,7 @@
 
 .error {
   color: rgb(179, 24, 24);
+  padding: 5px;
 }
 
 .text-white{
@@ -161,9 +166,7 @@
   align-self: flex-end;
 }
 
-.subtitle {
-  font-size: .85rem;
-}
+
 
 i[data-action=close]{
   float: right;

@@ -1,6 +1,6 @@
 //! terminal command: ipconfig
 
-import { closeFlyout, buildFlyout, openFlyout } from "./flyout.js";
+import { closeFlyout, buildFlyout, openFlyout, resetFlyout } from "./flyout.js";
 
 buildMenuUI()
 
@@ -11,7 +11,7 @@ document.getElementById('secondaryFlyout').addEventListener('click', closeFlyout
 document.getElementById('addMovement').addEventListener('click', ()=>{
     
     
-    document.getElementById('movementStats').classList.add('hide')
+    resetFlyout()
     document.getElementById('movementName').innerText = ''
    
     openFlyout();

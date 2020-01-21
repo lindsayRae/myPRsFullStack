@@ -1,5 +1,5 @@
 
-export { closeFlyout, buildFlyout, movementPR, openFlyout }
+export { closeFlyout, buildFlyout, movementPR, openFlyout, resetFlyout }
 import { fillEditForm } from './editMovement.js';
 
 
@@ -8,11 +8,52 @@ function buildFlyout(movementName){
     let title = document.getElementById('movementName');
     title.innerText = movementName;   
 
-    document.getElementById('editMovementContainer').classList.add('hide');
-    document.getElementById('newMovementContainer').classList.add('hide');
+    resetFlyout()
     document.getElementById('movementStats').classList.remove('hide');
 
-    movementPR(movementName);    
+    movementPR(movementName); 
+    
+    var options = {
+        series: [{
+          name: "Weight",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 160]
+      }],
+        chart: {
+        height: 150,
+        type: 'line',
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      title: {
+        text: 'Max History',
+        align: 'left'
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          opacity: 0.5
+        },
+      },
+      xaxis: {
+        categories: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'],
+      }
+      };
+
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+    
+
+
+
+
+
      setTimeout(()=>{
             openFlyout();
         }, 300)
@@ -167,7 +208,10 @@ function openFlyout(){
     document.getElementById("mainFlyout").style.paddingLeft = "5%";
     document.getElementById("mainFlyout").style.paddingRight = "5%";
     document.getElementById("secondaryFlyout").style.width = "15%";
-    document.getElementById("movementRecordContainer").classList.add('fixed-position');
+    if(document.getElementById("movementRecordContainer")){
+      document.getElementById("movementRecordContainer").classList.add('fixed-position');
+    }
+
      
   }
 
@@ -176,5 +220,19 @@ function openFlyout(){
     document.getElementById("mainFlyout").style.paddingLeft = "0";
     document.getElementById("mainFlyout").style.paddingRight = "0";
     document.getElementById("secondaryFlyout").style.width = "0"; 
-    document.getElementById("movementRecordContainer").classList.remove('fixed-position');
+
+    if(document.getElementById("movementRecordContainer")){
+      document.getElementById("movementRecordContainer").classList.remove('fixed-position');
+    }
+    
 }
+
+function resetFlyout(){
+    document.getElementById('movementStats').classList.add('hide');
+    document.getElementById('editMovementContainer').classList.add('hide');
+    document.getElementById('newMovementContainer').classList.add('hide');
+    document.getElementById('userAccountContainer').classList.add('hide');
+}
+
+              
+               
