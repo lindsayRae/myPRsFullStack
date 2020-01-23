@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>myPRs - Dashboard</title>
-
-    
-    <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-orange.min.css"> --> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>myPRs - Dashboard</title>    
    
-    <link rel="stylesheet" href="./mdl/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">   
+    <script src="https://kit.fontawesome.com/eb3603b296.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/flyout.css">
     <link rel="stylesheet" href="./stylesheets/forms.css">
+    <link rel="stylesheet" href="./stylesheets/login.css"> 
     <link rel="stylesheet" href="./stylesheets/dashboard.css">     
     
 </head>
@@ -38,55 +36,50 @@
                         <button type="button" id="logOutBtn2">Log Out</button>
                 </form>
         </div>
-</div>
-<div class="secondary-flyout" id="secondaryFlyout"></div>
+    </div>
+    <div class="secondary-flyout" id="secondaryFlyout"></div>
 
 
+    <header class="header-gradient flex-exit">       
+        <div class="logo">
+            <p>my</p>
+            <div>PRs</div>
+        </div> 
+        <div class="exit-icon">
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+        </div>    
+    </header>
+        
+    <main class="main">
+        <ul class="category-container">
+            <li class="category" id="liftsMenuBtn">
+                <i class="fas fa-dumbbell"></i>
+                <p>Lifts</p>                     
+            </li>
+            <li class="category" id="cardioMenuBtn">
+                <i class="fas fa-running"></i>
+                <p>Cardio</p>                     
+            </li>
+            <li class="category" id="skillsMenuBtn">
+                <i class="fas fa-star"></i>
+                <p>Skills</p>                  
+            </li>
+        </ul>
 
-        <div class="signup-ribbon">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone list-title-wrapper">
-                        <img src="./img/logo200x200.png" style="width: 75px; height: 75px;">
-                    <span class="mdl-layout-title list-title">Dashboard</span>
-                </div>
-                
-            </div>           
+    </main>
 
+    <div class="navbar">
+        <a href="#home" class="active"><i class="material-icons">
+            dashboard
+        </i></a>
+        
+        <a href="javascript:void(0)"><i class="material-icons" id="contact">
+            email
+        </i></a>
+        <a href="javascript:void(0)"><i class="material-icons" id="userAccount">
+            perm_identity
+        </i></a>
         </div>
-        <main class="main">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
-                    <a class="category mdl-shadow--2dp" id="liftsMenuBtn">
-                        <p>Lifts</p>                    
-                    </a>
-                </div>
-                <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
-
-                    <a  class="category mdl-shadow--2dp" id="cardioMenuBtn">
-                        <p>Cardio</p>                    
-                    </a>                   
-                </div>
-                <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
-                    <a class="category mdl-shadow--2dp" id="skillsMenuBtn">
-                        <p>Skills</p>                    
-                    </a>                  
-                </div>
-            </div>
-
-        </main>
-
-        <div class="navbar">
-            <a href="#home" class="active"><i class="material-icons">
-                dashboard
-            </i></a>
-            
-            <a href="javascript:void(0)"><i class="material-icons" id="contact">
-                email
-            </i></a>
-            <a href="javascript:void(0)"><i class="material-icons" id="userAccount">
-                perm_identity
-            </i></a>
-          </div>
   
 
           <script src="./mdl/material.min.js"></script>
