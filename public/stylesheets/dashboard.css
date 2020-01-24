@@ -3,20 +3,7 @@
     
   }
 
-  .flex-exit {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .exit-icon {
-    padding: 20px;
-    padding-right: 10%;
-    
-  }
-  .exit-icon i {
-    cursor: pointer;
-  }
-
+ 
   .category{  
     border-bottom: 1px solid #bbc3d09c;
     padding-bottom: 5%;

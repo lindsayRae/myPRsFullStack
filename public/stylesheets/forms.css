@@ -12,6 +12,12 @@ padding: 0;
 
 }
 
+.form-style-8 h4 {
+	font-size: 22px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
 .form-style-8 h6 {
     font-size: 18px;
 }

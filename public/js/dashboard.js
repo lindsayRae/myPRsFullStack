@@ -1,5 +1,4 @@
-import { openFlyout, closeFlyout } from './flyout.js';
-//import { populateUserAccount } from './userAccount.js';
+
 
 document.getElementById("liftsMenuBtn").addEventListener("click", ()=> {  
   sessionStorage.setItem('Movement', 'lift');
@@ -19,19 +18,7 @@ document.getElementById("skillsMenuBtn").addEventListener("click", ()=> {
   location.href = "/movements.html";
 })
 
-document.getElementById("userAccount").addEventListener("click", ()=> {  
-  
- // populateUserAccount()
-
-})
 
 
-document.getElementById("closeFlyout").addEventListener("click", ()=> {  
-  console.log('heard click')
-  closeFlyout();
-})
 
-document.getElementById("secondaryFlyout").addEventListener("click", ()=> {  
-  console.log('heard click')
-  closeFlyout();
-})
+

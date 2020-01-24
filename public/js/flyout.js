@@ -204,7 +204,8 @@ function noEntries(){
 }
 
 function openFlyout(){ 
-    document.getElementById("mainFlyout").style.width = "75%";
+  console.log('heard')
+    document.getElementById("mainFlyout").style.width = "85%";
     document.getElementById("mainFlyout").style.paddingLeft = "5%";
     document.getElementById("mainFlyout").style.paddingRight = "5%";
     document.getElementById("secondaryFlyout").style.width = "15%";
@@ -215,7 +216,7 @@ function openFlyout(){
      
   }
 
-  function closeFlyout(){   
+function closeFlyout(){   
     document.getElementById("mainFlyout").style.width = "0";
     document.getElementById("mainFlyout").style.paddingLeft = "0";
     document.getElementById("mainFlyout").style.paddingRight = "0";
@@ -228,9 +229,13 @@ function openFlyout(){
 }
 
 function resetFlyout(){
+  if(document.getElementById('movementStats')){
     document.getElementById('movementStats').classList.add('hide');
     document.getElementById('editMovementContainer').classList.add('hide');
     document.getElementById('newMovementContainer').classList.add('hide');
+  }
+    
+    
     document.getElementById('userAccountContainer').classList.add('hide');
 }
 

@@ -75,6 +75,19 @@
   color: whitesmoke;
 }
 
+.flex-exit {
+  display: flex;
+  justify-content: space-between;
+}
+
+.exit-icon {
+  padding: 20px;
+  padding-right: 10%;
+  
+}
+.exit-icon i {
+  cursor: pointer;
+}
 
 .border-danger{
   border-bottom-color: red;
@@ -113,13 +126,12 @@
 }
 
 .navbar a.active {
-  background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); /* Standard syntax (must be last) */
-  color: white;
+  background-image: linear-gradient(to bottom right, #2E2C73, rgb(56, 53, 145)); /* Standard syntax (must be last) */
+  color: #E5E4EC;
 }
 
 .navbar a i {
-  align-self: center;
- 
+  align-self: center; 
 }
 .center-btn {
   border-left: 1px solid rgba(201, 201, 201, 0.34);

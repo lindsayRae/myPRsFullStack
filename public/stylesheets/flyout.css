@@ -46,6 +46,10 @@
     color: #f1f1f1;
   } */
   
+  .center-form {
+    height: 350px;
+    margin-top: 50%;
+  }
   /* Position and style the close button (top right corner) */
   .sidenav .closebtn {
     position: absolute;
