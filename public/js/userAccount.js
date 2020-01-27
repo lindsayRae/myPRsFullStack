@@ -3,30 +3,17 @@ export { populateUserAccount, updateUser, logOut }
 
 import { openFlyout, resetFlyout, closeFlyout } from './flyout.js'
 
-//let userAccountModal = document.getElementById('userAccountModal');
-// if(document.getElementById('logOutBtn')){
-//     document.getElementById('logOutBtn').addEventListener('click', logOut)
-//     document.getElementById('logOutIcon').addEventListener('click', logOut)
-       
-//     document.getElementById('userAccountBtn').addEventListener('click', () => {
-//         event.preventDefault();
-//         populateUserAccount();
-//     });
-
-// }
-
-
 async function populateUserAccount(){
 
     let data = await getUser();
 
-    resetFlyout()
+   // resetFlyout()
     document.getElementById('userAccountContainer').classList.remove('hide');
     
     document.getElementById('userFirstName').value = data.firstName;
     document.getElementById('userLastName').value = data.lastName;
     document.getElementById('userEmail').value = data.email;
-    openFlyout();
+    //openFlyout();
    
 }
 

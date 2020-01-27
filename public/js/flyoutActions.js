@@ -1,21 +1,21 @@
 
-import { closeFlyout, openFlyout } from './flyout.js';
+import { closeFlyout, openFlyout, resetFlyout } from './flyout.js';
 import { populateUserAccount, updateUser, logOut } from './userAccount.js';
 
 // NAVIGATION - BOTH 
 document.getElementById("userAccount").addEventListener("click", ()=> {
-    console.log('heard') 
-    document.getElementById('userAccountContainer').classList.remove('hide')  
-    document.getElementById('contactUsContainer').classList.add('hide') 
-    populateUserAccount();
+    
+    resetFlyout()    
+    document.getElementById('userAccountContainer').classList.remove('hide')     
+    populateUserAccount()
+    openFlyout()
  })
 
  document.getElementById("contact").addEventListener("click", ()=> {
-    console.log('heard')   
-     
-    document.getElementById('userAccountContainer').classList.add('hide')  
-    document.getElementById('contactUsContainer').classList.remove('hide') 
-    openFlyout(); 
+      
+   resetFlyout()     
+   document.getElementById('contactUsContainer').classList.remove('hide') 
+   openFlyout(); 
  })
  
  document.getElementById("closeFlyout").addEventListener("click", ()=> {    
@@ -30,3 +30,4 @@ document.getElementById("userAccount").addEventListener("click", ()=> {
   document.getElementById('updateUserBtn').addEventListener('click', updateUser);
 
   document.getElementById('logOutBtn').addEventListener('click', logOut)
+  document.getElementById('logoutIcon').addEventListener('click', logOut)

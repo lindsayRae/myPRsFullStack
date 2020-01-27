@@ -1,28 +1,29 @@
 //! terminal command: ipconfig
 
-import { closeFlyout, buildFlyout, openFlyout, resetFlyout } from "./flyout.js";
+import { closeFlyout, buildStatFlyout, openFlyout, resetFlyout } from "./flyout.js";
 
-buildMenuUI()
-
-document.getElementById('closeFlyout').addEventListener('click', closeFlyout);
-document.getElementById('secondaryFlyout').addEventListener('click', closeFlyout)
+export { buildMenuUI }
 
 
-document.getElementById('addMovement').addEventListener('click', ()=>{
+
+
+
+// document.getElementById('addMovement').addEventListener('click', ()=>{
     
+    
+//     resetFlyout()
+//     document.getElementById('movementName').innerText = ''
+   
+//     openFlyout();
+    
+//     document.getElementById('newMovementContainer').classList.remove('hide')
+// })
+document.getElementById('addNewMovement').addEventListener('click', () => {
     
     resetFlyout()
-    document.getElementById('movementName').innerText = ''
-   
+    document.getElementById('newMovementContainer').classList.remove('hide');
     openFlyout();
-    
-    document.getElementById('newMovementContainer').classList.remove('hide')
-})
-document.getElementById('addNewMovement').addEventListener('click', function () {
-    
-    addNewMovement();
 });
-
 
 
 document.getElementById('clearFilter').addEventListener('click', () => {    
@@ -45,44 +46,36 @@ document.getElementById('addNewLogBtn').addEventListener('click', () => {
 
 async function buildMenuUI() {   
     
-    let data = await buildMovementMenu();    
+    let data = await buildMovementMenu(); 
+      
     data = data.sort();
-   
+    
     let container = document.getElementById('movementRecordContainer');
     container.innerHTML = '';
     
-    data.forEach(function (movementName) {
-        
-        let idName = movementName.replace(/\s/g, '');
-      
-        let div = document.createElement('div');
-        div.classList.add('mdl-cell');
-        div.classList.add('mdl-cell--2-col');
-        div.classList.add('mdl-cell--2-col-phone');
-        div.classList.add('mdl-shadow--2dp');
-        div.classList.add('single-movement');
-        div.setAttribute('id', idName)        
-        div.innerText = movementName;
+    data.forEach(function (movementName) {        
+        let idName = movementName.replace(/\s/g, '');      
+        let li = document.createElement('li');    
+        li.setAttribute('id', idName)        
+        li.innerText = movementName;
 
-        div.addEventListener('click', () =>{   
-                    
-            buildFlyout(movementName);            
+        li.addEventListener('click', () =>{           
+            buildStatFlyout(movementName);            
         })
-
-        container.append(div);
+        container.append(li);
     })
 }
 
 //? type is always singular
-//* Good for dynamic movement 1-6-20
+
 async function defaultMovementMenu() {
-console.log('heererer')
-    document.getElementById('movementTitle').innerText = sessionStorage.getItem('Movement Title');
+
+   // document.getElementById('movementTitle').innerText = sessionStorage.getItem('Movement Title');
     let type = sessionStorage.getItem('Movement')
 
     try {       
        let url = `/api/movements/${type}`;
-       //console.log(url)
+       
         let headers = {
             "Content-Type": "application/json",
             "x-auth-token": localStorage.getItem('token')
@@ -93,7 +86,7 @@ console.log('heererer')
             headers: headers
         })
         let json = await res.json()
-       //console.table(json);
+      
         if (res.status === 200) {            
             return json;
         } else if (res.status === 404) {
@@ -126,7 +119,7 @@ async function userMovementMenu() {
         })
        
         let json = await res.json()
-       //console.table(json);
+      
         if (res.ok) {                 
             return json;                 
         } else if (res.status === 404) {
@@ -141,9 +134,10 @@ async function userMovementMenu() {
     }
 }
 
+document.getElementById('addMovementBtn').addEventListener('click', addNewMovement)
 
 async function addNewMovement() {
-
+    
     let movement = sessionStorage.getItem('Movement')
     let body = {
         user_id: localStorage.getItem("ID"),
@@ -156,7 +150,7 @@ async function addNewMovement() {
     }
     
     let url = `/api/personalrecord/${movement}`;
-      console.log(url)  
+    
     try {
      
         body = JSON.stringify(body)
@@ -172,7 +166,7 @@ async function addNewMovement() {
         })
 
         let json = await res.json()
-        console.log(json)
+        
         if(json.message === "Success"){
             buildMenuUI();
             closeFlyout()
@@ -220,7 +214,7 @@ async function addNewRecord(name) {
        console.log(json)
         if(json.message === "Success"){
             buildMenuUI();          
-            buildFlyout(name);
+            buildStatFlyout(name);
             document.getElementById('newEntryForm').reset();
         } else {
             console.log(json.message)
@@ -271,8 +265,8 @@ async function buildMovementMenu() {
 function findText() {
     let input = document.getElementById("movementSearch")
     let filter = input.value.toUpperCase();
-    let list = document.getElementById("movementList");
-    let items = list.querySelectorAll('.single-movement')
+    let list = document.getElementById("movementRecordContainer");
+    let items = list.querySelectorAll('li')
 
     for (let i = 0; i < items.length; i++) {
         let text = items[i].innerText;

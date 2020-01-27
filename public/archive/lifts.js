@@ -1,6 +1,6 @@
 //! terminal command: ipconfig
 
-import { closeFlyout, buildFlyout } from "../js/flyout.js";
+import { closeFlyout, buildStatFlyout } from "../js/flyout.js";
 
 buildMenuUI()
 
@@ -65,7 +65,7 @@ async function buildMenuUI() {
         div.innerText = lift;
 
         div.addEventListener('click', () =>{            
-            buildFlyout(lift);            
+            buildStatFlyout(lift);            
         })
 
         container.append(div);
@@ -208,7 +208,7 @@ async function addNewRecord(movement, name) {
         if(json.message === "Success"){
             buildMenuUI();
             //refresh table
-            buildFlyout(name);
+            buildStatFlyout(name);
             document.getElementById('newEntryForm').reset();
         }
 

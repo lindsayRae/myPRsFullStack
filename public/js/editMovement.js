@@ -1,16 +1,9 @@
 export { fillEditForm }
 import { movementPR, resetFlyout } from './flyout.js'
 
-if(document.getElementById('editMovementBtn')){
 
-    document.getElementById('editMovementBtn').addEventListener('click', updateMovement);
-    document.getElementById('deleteMovementBtn').addEventListener('click', deleteMovement);
-}
-
-
-// document.getElementById('closeEditDialog').addEventListener('click', ()=>{
-//     document.getElementById('editMovementDialog').close();
-// })
+document.getElementById('editMovementBtn').addEventListener('click', updateMovement);
+document.getElementById('deleteMovementBtn').addEventListener('click', deleteMovement);
 
 async function updateMovement(){
 
@@ -48,10 +41,10 @@ async function updateMovement(){
         let json = await res.json()
        console.log(json)
         if(json.ok == 1){
-            //document.getElementById('editMovementDialog').close();
+           
             movementPR(movementName)
-            resetFlyout()
-            document.getElementById('movementStats').classList.remove('hide');
+            document.getElementById('editMovementContainer').classList.add('hide');          
+            document.getElementById('movementStatsContainer').classList.remove('hide');
             
         } else {
             console.error('Something went wrong');
@@ -98,8 +91,8 @@ async function deleteMovement(){
            // document.getElementById('editMovementDialog').close();
            let movementName = document.getElementById('movementName').innerText
            movementPR(movementName)
-           resetFlyout()
-            document.getElementById('movementStats').classList.remove('hide');
+          // resetFlyout()
+            document.getElementById('movementStatsContainer').classList.remove('hide');
            
         } else {
             console.error('Something went wrong');
@@ -120,6 +113,8 @@ function fillEditForm(el){
         document.getElementById('editMovementBtn').setAttribute('data-id', el._id);
         document.getElementById('deleteMovementBtn').setAttribute('data-id', el._id);
         document.getElementById('deleteMovementBtn').setAttribute('data-type', el.type);
-        resetFlyout()
+       // resetFlyout()
+       
+        document.getElementById('movementStatsContainer').classList.add('hide');
         document.getElementById('editMovementContainer').classList.remove('hide');
     }

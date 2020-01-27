@@ -8,26 +8,27 @@
    
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">   
     <script src="https://kit.fontawesome.com/eb3603b296.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/flyout.css">
     <link rel="stylesheet" href="./stylesheets/forms.css">
     <link rel="stylesheet" href="./stylesheets/login.css"> 
-    <link rel="stylesheet" href="./stylesheets/dashboard.css">     
+    <link rel="stylesheet" href="./stylesheets/dashboard.css">    
+    <link rel="stylesheet" href="./stylesheets/movement.css"> 
+    <link rel="stylesheet" href="./stylesheets/table.css">  
+
     
 </head>
 <body>
 
 
     <div class="sidenav" id="mainFlyout">
-        <a href="javascript:void(0)" class="closebtn" id="closeFlyout">&times;</a>
-        <div class="name-container">
-                <h4 id="movementName"></h4>
-        </div>               
+        <a href="javascript:void(0)" class="closebtn" id="closeFlyout">&times;</a>                  
 
         
         <div class="hide form-style-8 center-form" id="userAccountContainer">
                 <h4>Account</h4>
-                <form id="">
+                <form>
                         <input type="text" name="newName" placeholder="First Name" id="userFirstName" />
                         <input type="text" name="newMax" placeholder="Last Name" id="userLastName" />
                         <input type="text" name="newMax" placeholder="Email" id="userEmail" />
@@ -39,14 +40,70 @@
 
         <div class="hide form-style-8 center-form" id="contactUsContainer">
             <h4>Contact Us</h4>
-            <form id="">
+            <form>
                     <input type="text" name="yourName" placeholder="Name" id="yourName" />                    
                     <input type="text" name="yourEmail" placeholder="Email" id="yourEmail" />
                     <textarea type="text" name="yourMessage" placeholder="Your Message ..." id="yourMessage"></textarea>
                     
                     <button type="button" id="sendContactUs">Send</button>                    
             </form>
+        </div>
+
+        <div class="hide form-style-8 center-form" id="newMovementContainer">
+            <h6>Add a Movement</h6>
+            <form id="newMovementForm">
+                    <input type="text" name="newName" placeholder="Movement Name" id="newName" />
+                    <input type="text" name="newMax" placeholder="Max" id="newMax" />
+                    
+                    <textarea placeholder="Notes" id="newComment"></textarea>
+                    
+                    <button type="button" id="addMovementBtn">Add</button>
+            </form>
+        </div>
+
+        <div class="hide form-style-8 center-form" id="editMovementContainer">
+            <h6>Edit Movement</h6>
+            <form>
+                    <input type="text" name="field1" placeholder="Max Entry" id="editMovementMax" />
+                    <input type="text" name="field1" placeholder="Date" id="editMovementDate" />
+                    
+                    <textarea placeholder="Notes" id="editMovementComment"></textarea>
+                    <button type="button" id="deleteMovementBtn">Delete</button>
+                    <button type="button" id="editMovementBtn">Update</button>
+            </form>
+        </div>
+
+        <div class="hide" id="movementStatsContainer">
+            
+            
+            
+            <section id="flyoutHeader" class="max-container">
+                <h3 class="name-container" id="movementName"></h3>  
+                <div><p>PR: <span id="currentPRLog"></span><span id="currentPRunit">lbs</span></p><p id="currentPRDate"></p></div>                         
+            </section> 
+            <div id="noRecordsMsg" class="hide">No records.. start moving!</div>                               
+            
+            <section id="tableContainer">                    
+                                        
+                <table class="log-table" id="recordTable">
+                     
+
+                </table>
+                                                
+            </section>
+
+            <section class="footer-form">
+                <div class="sm-form-title">New Entry</div>
+                <form class="form-style-sm" id="newEntryForm">                                  
+
+                    <input class="" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="newPREntry" maxlength="3" placeholder="Entry..">
+                    <textarea placeholder="Notes" maxlength="100" id="PREntryNote" placeholder="Note..."></textarea>
+                    <button type="button" id="addNewLogBtn">Add Entry</button>
+                                                       
+                </form>
+        </section>
     </div>
+
     </div>
     <div class="secondary-flyout" id="secondaryFlyout"></div>
 
@@ -57,12 +114,12 @@
             <div>PRs</div>
         </div> 
         <div class="exit-icon">
-            <i class="fas fa-sign-out-alt fa-lg"></i>
+            <i class="fas fa-sign-out-alt fa-lg" id='logoutIcon'></i>
         </div>    
     </header>
         
-    <main class="main">
-        <div class="hide" id="mainDashboard">
+    <main>
+        <div class="" id="mainDashboard">
             <ul class="category-container">
                 <li class="category" id="liftsMenuBtn">
                     <i class="fas fa-dumbbell"></i>
@@ -79,43 +136,27 @@
             </ul>
         </div>
 
-        <div class="" id="mainMovements">
-             <div>
-                <input type="text" placeholder="search...">
-                <p><span>Clear search </span>or <span>Add new lift</span></p>
-             </div>         
-             <div>
-                <ul>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                    <li>test</li>
-                </ul>
-             </div>   
+        <div class="hide" id="mainMovements">
+             <form class="form-style-search" id="searchLiftForm">
+                <input type="text" placeholder="search..." id="movementSearch">
+                <p><span class="link" id="clearFilter">Clear search </span> or <span class="link" id="addNewMovement">Add new movement</span></p>
+             </form>       
+            <ul class="movement-list" id="movementRecordContainer">                    
+            </ul>              
             
          </div>
 
     </main>
 
-    <div class="navbar">
-        <a href="javascript:void(0)" class="active" id="home"><i class="fas fa-warehouse"></i></a>        
+    <footer class="navbar">
+        <a href="javascript:void(0)" id="home" class="active"><i class="fas fa-warehouse"></i></a>        
         <a href="javascript:void(0)" id="contact"><i class="fas fa-envelope"></i></a>
         <a href="javascript:void(0)" id="userAccount"><i class="fas fa-user"></i></a>
-    </div>
-  
-
-          <!-- <script src="./mdl/material.min.js"></script> -->
-  
+    </footer>
+   
     <script src="./js/dashboard.js" type="module"></script>
     <script src="./js/flyoutActions.js" type="module"></script>
+    
 
 </body>
 </html>

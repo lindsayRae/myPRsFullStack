@@ -28,52 +28,33 @@
 .ClassBook-4-hex { color: #367FBF; }
 .ClassBook-5-hex { color: #36C8D9; }
 
+html, body {
+  height:100%;
+  min-height:100%;
+  overflow: hidden;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header, footer {
+  flex: 0 0 auto; 
+}
+
+main {
+  flex: 1 1 auto;
+  overflow-y: scroll;
+  margin: 5% 10%;
+    
+}
+
 .header-gradient {
   background-image: linear-gradient(to bottom right, #2E2C73, rgb(56, 53, 145)); /* Standard syntax (must be last) */
   color: #E5E4EC;
 }
-.theme-gradient {
-  background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); 
-  color: #E5E4EC;
-}
 
 
-
-.signup-ribbon {
-  width: 100%;
-  height: 20vh;
-  background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); /* Standard syntax (must be last) */
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-.search-ribbon {
-  width: 100%;
-  height: 155px;
-  background-color: #3F51B5;
-  background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); /* Standard syntax (must be last) */
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
- 
-}
-#searchLiftForm{
-  display: flex;
-  align-items: center;
-}
-.list-title-wrapper {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-.list-title {
-  padding-left: 15px;
-  font-size: 40px;
-  color: whitesmoke;
-}
 
 .flex-exit {
   display: flex;
@@ -93,9 +74,6 @@
   border-bottom-color: red;
 }
 
-.main-movements {
-  margin-top: 155px;
-}
 .navbar {
   overflow: hidden;
   background-color: #f1f1f1;
@@ -138,15 +116,6 @@
   border-right: 1px solid rgba(201, 201, 201, 0.34);
 }
 
-.single-movement {
-  height: 150px;
-  padding-bottom: 0;
-  display: flex;
-  justify-content: center;
-  font-size: 20px;
-  align-items: center;
-  text-align: center;
-}
 
 .hide {
   display: none;
@@ -157,27 +126,10 @@
   padding: 5px;
 }
 
-.text-white{
-  color: #f1f1f1;
-}
-.text-white label{
-  color: #f1f1f1;
-}
-
-.lt-border {
-  border: 1px solid #BBC3D0;
-  background-color: rgba(63,81,181,.26);
-}
 
 .d-flex {
   display: flex;
 }
-
-.page-title {
-  padding-left: 20px;
-  align-self: flex-end;
-}
-
 
 
 i[data-action=close]{
