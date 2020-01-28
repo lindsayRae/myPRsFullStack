@@ -4,62 +4,25 @@
     
 }
 
-table {
-    border-collapse: collapse; 
-}
-table thead {    
-    /* background-image: linear-gradient(to bottom right, #262D9D, #0E0F21); Standard syntax (must be last) */
-    /* color: #E5E4EC; */
-    font-size: .85rem;    
-}
-
-td {
-    text-align: right;
-}
-table thead tr th {
-    padding: 8px;
-    text-align: right;
-}
-
-table tbody tr td {
-    padding: 8px;
-}
-
-
-thead tr > :first-child {
-    width: 10px;
-}
-
-.edit-icon {
-    font-size: 15px;
-}
-
-
-/* log list */
-.log-table {
-    white-space: normal;
-    table-layout: fixed;
-    width: 80%;
-    margin-top: 5%;
-    margin-left: 10%;
-  }
-  
-  .log-table tbody{
-    display:block;
-  width: 100%;
-  overflow: auto;
-    height: 150px;
-  
-  }
-  .log-table thead tr{
-    display:block;
+#tableContainer {   
+    height: 60%;
+    overflow-y: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
   }
 
-  .log-table th, .log-table td {
-    padding: 5px;
-    text-align: right;
-    width: 100%;
+  #tableContainer thead th {
+    position: sticky; 
+    top: 0;
   }
+
+
+  table  { border-collapse: collapse; width: 100%; }
+  th, td { padding: 8px 16px; text-align: center; }
+  th     { background:#eee; }
+
+
+
   #noRecordsMsg {
       margin: 30% 10%;
   }

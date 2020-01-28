@@ -40,8 +40,12 @@ async function movementPR(movementName) {
 }
 
 function highestRecord(movementRecords) {
+  console.log(movementRecords)
   let highest;
   let record = [];
+  let type = movementRecords[0].type;
+  let unit = document.getElementById('currentPRunit')
+
   // grab PRs, convert to a number and push to array 
   movementRecords.forEach(el => {
     record.push(Number(el.personalRecord))
@@ -52,6 +56,9 @@ function highestRecord(movementRecords) {
   // find the first obj that the pr is the highest
   let highestRecord = movementRecords.find(el => el.personalRecord == highest);
   //   console.log(highestRecord);
+  if(type == 'lift') unit.innerText = ' lbs'
+  else if(type == 'skill') unit.innerText = ' reps'
+  else if(type == 'cardio') unit.innerText = ' minutes'
 
   document.getElementById('currentPRLog').innerText = highestRecord.personalRecord;
   document.getElementById('currentPRDate').innerText = highestRecord.date;
@@ -103,7 +110,7 @@ async function allMovementRecords() {
 }
 
 function recordTable(movementRecords) {
-  //  console.log(movementRecords)
+  console.log(movementRecords)
   let table = document.getElementById('recordTable');
 
   table.innerHTML = '';
@@ -117,7 +124,7 @@ function recordTable(movementRecords) {
 
   thEdit.innerText = '';
   thDate.innerText = 'Date';
-  thUnit.innerText = 'Max lbs';
+  thUnit.innerText = 'Max';
 
   table.appendChild(thead);
   thead.appendChild(trHead);

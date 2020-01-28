@@ -42,7 +42,7 @@ padding: 0;
 	border-bottom: 1px solid #ddd;
 	background: transparent;
 	margin-bottom: 10px;
-	text-transform: uppercase;
+	
 }
 
 .form-style-search p{
@@ -79,7 +79,7 @@ padding: 0;
 	margin-bottom: 10px;
 	/* font: 16px Arial, Helvetica, sans-serif; */
 	height: 45px;
-	text-transform: uppercase;
+	
 }
 .form-style-8 textarea{
 	resize:none;
