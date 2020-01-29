@@ -1,3 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Signika Negative', sans-serif;
+}
+
+/* 
+font-family: 'Crimson Text', serif;
+font-family: 'Signika Negative', sans-serif;
+font-family: 'Six Caps', sans-serif; 
+*/
 
 /*? COLOR PALATE */
 /** https://dribbble.com/shots/5471461-Kenko-workout-app-onboarding */
@@ -20,6 +32,8 @@
 .theme-dark-gray {
   color: #4A4B64;
 }
+
+
 
 /** NEw Color Pallet */
 .ClassBook-1-hex { color: #2E2C73; }

@@ -1,38 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Signika Negative', sans-serif;
-}
 
-/* 
-font-family: 'Crimson Text', serif;
-font-family: 'Signika Negative', sans-serif;
-font-family: 'Six Caps', sans-serif; 
-*/
-
-/*? COLOR PALATE */
-/** https://dribbble.com/shots/5471461-Kenko-workout-app-onboarding */
-
-.theme-white {
-    color: #E5E4EC;
-  }
-  .theme-light-gray {
-    color: #BBC3D0;
-  }
-  .theme-mid-gray {
-    color: #817D8C;
-  }
-  .theme-dark {
-    color: #0E0F22;
-  }
-  .theme-primary {
-    color: #2E359D;
-  }
-  .theme-dark-gray {
-    color: #4A4B64;
-  }
-  
 
 header {     
     width: 100%;

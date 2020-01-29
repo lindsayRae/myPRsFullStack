@@ -1,4 +1,4 @@
-  /* ***** START  ************ */
+
 /* The side navigation menu */
 .sidenav {
     height: 100%; /* 100% Full-height */
@@ -45,9 +45,7 @@
     height: 350px;
     margin-top: 50%;
   }
-.sidenav {
-  
-}
+
   #movementStatsContainer{
     margin-top: 15%;
     height: 90%;
@@ -65,15 +63,11 @@
   }
   /* ***** END   ************ */
   .max-container {
-      height: 50px;
-      /* flex: 0 0 auto; */
-      
+      height: 50px;      
   }
 
   .footer-form {
-    height: 150px;
-      /* flex: 0 0 auto; */
-      
+    height: 150px;      
   }
   .name-container h3 {
     margin-top: 10px;
@@ -92,10 +86,6 @@
 .fixed-position
 {
    position: fixed;
-}
-
-.note {
-  word-break: break-word;
 }
 
 .hide {
