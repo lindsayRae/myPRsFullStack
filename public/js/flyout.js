@@ -203,4 +203,7 @@ function resetFlyout() {
   document.getElementById('newMovementContainer').classList.add('hide');
   document.getElementById('userAccountContainer').classList.add('hide');
   document.getElementById('contactUsContainer').classList.add('hide');
+
+  document.getElementById('contactForm').reset();
+  document.getElementById('emailResponse').innerText = '';
 }

@@ -12,6 +12,7 @@ const auth = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 const movementRouter = require('./routes/movements');
 const personalRecords = require('./routes/personalRecords');
+const contact = require('./routes/email');
 
 const app = express();
 
@@ -29,16 +30,18 @@ app.use('/api/auth', auth);
 app.use('/api/admin', adminRouter);
 app.use('/api/movements', movementRouter);
 app.use('/api/personalrecord', personalRecords);
+app.use('/api/contact', contact);
 
 
 //! set myPRs_jwtPrivateKey=mySecureKey
 const jwtPrivateKey = process.env.jwtPrivateKey;
+const uri = process.env.dbConnectString;
 
 if(!jwtPrivateKey) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
   process.exit(1)
 }
-mongoose.connect('mongodb://localhost/myprs', {
+mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

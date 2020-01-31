@@ -43,12 +43,13 @@
         <div class="hide form-style-8 center-form" id="contactUsContainer">
             <h4>Contact</h4>
             <p>Questions or feedback? I would love to hear from you! Send me a note.</p>
-            <form>
-                    <input type="text" name="yourName" placeholder="Name" id="yourName" />                    
-                    <input type="text" name="yourEmail" placeholder="Email" id="yourEmail" />
-                    <textarea type="text" name="yourMessage" placeholder="Your Message ..." id="yourMessage"></textarea>
+            <form id="contactForm">
+                    <input type="text" name="yourName" placeholder="Name" id="yourName" required/>                    
+                    <input type="email" name="yourEmail" placeholder="Email" id="yourEmail" required/>
+                    <textarea type="text" name="yourMessage" placeholder="Your Message ..." id="yourMessage" required></textarea>
                     
-                    <button type="button" id="sendContactUs">Send</button>                    
+                    <p id='emailResponse'></p>
+                    <button type="button" id="sendMessage">Send</button>                    
             </form>
         </div>
 
@@ -159,6 +160,7 @@
    
     <script src="./js/dashboard.js" type="module"></script>
     <script src="./js/flyoutActions.js" type="module"></script>
+    <script src="./js/contact.js"></script>
     
 
 </body>

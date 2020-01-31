@@ -65,6 +65,7 @@
 
 .form-style-8 input[type="text"],
 .form-style-8 input[type="password"],
+.form-style-8 input[type="email"],
 .form-style-8 textarea 
 {
 	box-sizing: border-box;
