@@ -53,5 +53,5 @@ async function collectLoginForm() {
 
     } catch (error) {
         console.error(error)
-  
+    }
 }
