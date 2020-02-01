@@ -15,14 +15,14 @@ router.get('/', async function (req, res) {
 
 
 router.get('/:id', (req, res) => {
-    console.log(req.params.id)
+    
     let lift = lifts.find(g => g.id === parseInt(req.params.id));
     if (!lift) return res.status(404).send('The lift with the given ID was not found');
     res.send(lift);
 });
 
 router.post('/', async (req, res) => {
-    console.log("YOOOOOOOOOO")
+    
     let bodyLift = {
         name: req.body.name,
         description: req.body.description,
@@ -30,9 +30,9 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        //let { error } = validate(bodyLift);
+        
         let validated = validate(bodyLift);
-        console.log(validated)
+       
         if (validated.error) {
             let errorMsg = validated.error.details[0].message
             return res.status(400).send(errorMsg);
@@ -43,16 +43,15 @@ router.post('/', async (req, res) => {
             description: bodyLift.description,
             preDefined: false
         })
-        console.log(lift)
-        console.log('*****************')
+      
         let result = await lift.save()
-        console.log(result)
+      
         res.send(result)
 
     } catch (error) {
-        console.log('In catch')
+       
         console.log(error)
-        //return res.status(400).send(ex.errors.message);
+ 
 
     }
 

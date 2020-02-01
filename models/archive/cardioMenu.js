@@ -1,5 +1,4 @@
-let getCardio = function(user_id){
-    console.log("in get cardio")
+let getCardio = function(user_id){    
 
     const fs = require('fs');
     const userDefinedDataBuffer = fs.readFileSync('./models/docs/pr.json', 'utf8')

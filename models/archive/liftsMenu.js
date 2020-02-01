@@ -1,5 +1,4 @@
 let getLifts = function(user_id){
-    console.log("in get lifts")
 
     const fs = require('fs');
     const userDefinedDataBuffer = fs.readFileSync('./models/docs/pr.json', 'utf8')

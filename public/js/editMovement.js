@@ -21,7 +21,7 @@ async function updateMovement(){
             comment: document.getElementById('editMovementComment').value,
             type: sessionStorage.getItem('Movement')
         }
-    console.log(body)
+    
     let url = `/api/personalrecord/${userID}`        
 
     try {
@@ -39,7 +39,7 @@ async function updateMovement(){
         })
 
         let json = await res.json()
-       console.log(json)
+       
         if(json.ok == 1){
            
             movementPR(movementName)
@@ -104,16 +104,14 @@ async function deleteMovement(){
 
 }
 
-function fillEditForm(el){    
-    console.log(el)
-        //document.getElementById('editMovementName').innerText = el.name;
+function fillEditForm(el){  
+       
         document.getElementById('editMovementMax').value = el.personalRecord;
         document.getElementById('editMovementDate').value = el.date;
         document.getElementById('editMovementComment').value = el.comment;
         document.getElementById('editMovementBtn').setAttribute('data-id', el._id);
         document.getElementById('deleteMovementBtn').setAttribute('data-id', el._id);
         document.getElementById('deleteMovementBtn').setAttribute('data-type', el.type);
-       // resetFlyout()
        
         document.getElementById('movementStatsContainer').classList.add('hide');
         document.getElementById('editMovementContainer').classList.remove('hide');

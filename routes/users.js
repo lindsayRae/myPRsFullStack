@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
   
   const { error } = validate(req.body);
   if (error) {
-    console.log(error)
+    
     return res.status(400).send({
       message: error.details[0].message
     });
@@ -62,23 +62,14 @@ router.post('/', async (req, res) => {
   
   user = new User(_.pick(req.body, ['firstName', 'lastName', 'email', 'password']));
 
-  console.log("user:")
-  console.log(user)
-
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
   let newUser = await user.save();  
-
-  console.log("NewUSer:")
-  console.log(newUser)
 
   if (!newUser) {
     return res.status(500).send("There was a problem creating your user, please try again later")
   } else {
     const token = user.generateAuthToken();
-
-    console.log("Token:")
-    console.log(token)
 
     //* pick what you want returned back to the user     
     //! you will need to create a header for the creation of the blank you document in personalRecord
@@ -93,7 +84,7 @@ router.post('/', async (req, res) => {
     //! Call out to your existing endpoint to create a new PR record with empty arrays (lifts, cardio, skills)
     let baseURL = req.headers.host
     let url = `https://${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
-    console.log(url)
+ 
     try {
       let response = await fetch(url, {
         method: "POST",
@@ -101,8 +92,6 @@ router.post('/', async (req, res) => {
       })
   
       let json = await response.json()
-      console.log("JSON:")
-      console.log(json)
       
     } catch (error) {
       console.log(error)
@@ -122,7 +111,7 @@ router.put('/me/:id', auth, async (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email
     }, { new: true });
-console.log(user)
+
     if (!user) return res.status(404).send('The user with the given ID was not found.');
     
     res.send({results: "The user has been updated.", user: user});

@@ -16,8 +16,7 @@ router.get('/', async (req, res) => {
 
 //? Login endpoint 
 router.post('/', async (req, res) => {
-  console.log('in login post')
-  console.log(req.body)
+
     const { error } = validate(req.body);
     if (error) {
       // ! This error is generated when your validate function at the bottom of 
@@ -29,7 +28,7 @@ router.post('/', async (req, res) => {
 
     // ! We are looking to see if the email address is in the database
     let user = await User.findOne({ email: req.body.email });
-    console.log(user)
+   
     if (!user) {
       // ! If the user is not in the database we will send back a 404 (not found)
       return res.status(400).send({
@@ -48,10 +47,7 @@ router.post('/', async (req, res) => {
    }
 
    const token = user.generateAuthToken();
-   const id =  user._id;
-   console.log("past token")
-   console.log(id)
-   console.log(token)
+   const id =  user._id;  
    res.send({token: token, id: id});
      
 });

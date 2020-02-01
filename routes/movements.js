@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/:type', auth, async function (req, res) {
     
     let type = req.params.type;   
-    console.log(type) 
+    
     // need to only get the the subdoc where type = type
     const movements = await Movements.find({ type: type });  
     res.send(movements);   

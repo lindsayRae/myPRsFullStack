@@ -61,8 +61,7 @@ router.post('/:movement', auth, async (req, res) => {
             
         if(!record){
             res.send({ message: "Did not find a record for this user"});
-        } else if (movement === 'lift') {
-            console.log("push to the lift array")
+        } else if (movement === 'lift') {           
             record.lifts.push(pr)
         } else if (movement === 'cardio') {
             record.cardio.push(pr)
@@ -95,7 +94,7 @@ router.post( '/usersetup/:id' , async (req, res) =>{
         let personalRecord = new PersonalRecord(newUserEntry)      
 
         let result = await personalRecord.save();
-        console.log(result)
+        
         res.send(result)
 
     } catch (error) {

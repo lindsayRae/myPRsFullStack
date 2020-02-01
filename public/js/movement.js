@@ -97,7 +97,7 @@ async function defaultMovementMenu() {
             console.log("Some other error")
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
@@ -130,7 +130,7 @@ async function userMovementMenu() {
             console.log("Some other error")
         }
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
@@ -195,7 +195,7 @@ async function addNewRecord(name) {
     }
     
     let url = `/api/personalrecord/${movement}`;
-    console.log(url)     
+     
     try {
      
         body = JSON.stringify(body)
@@ -211,7 +211,7 @@ async function addNewRecord(name) {
         })
 
         let json = await res.json()
-       console.log(json)
+      
         if(json.message === "Success"){
             buildMenuUI();          
             buildStatFlyout(name);
@@ -245,16 +245,13 @@ async function buildMovementMenu() {
             return movement.name
         })
         //* concat() the two arrays together 
-        let allMovements = userDefinedMovementNames.concat(defaultMovementName);
-        //console.log(allMovements)
+        let allMovements = userDefinedMovementNames.concat(defaultMovementName);        
     
         //* new Set() removes duplicate values -> returns object 
-        let uniqueMenu = new Set(allMovements);
-        //console.log(uniqueMenu)
+        let uniqueMenu = new Set(allMovements);      
     
         //* ... spread puts back into array 
-        let usersMenu = [...uniqueMenu];
-        //console.log(usersMenu)
+        let usersMenu = [...uniqueMenu];        
     
         return usersMenu;
     } else {

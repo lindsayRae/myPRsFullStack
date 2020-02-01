@@ -40,7 +40,7 @@ async function movementPR(movementName) {
 }
 
 function highestRecord(movementRecords) {
-  console.log(movementRecords)
+
   let highest;
   let record = [];
   let type = movementRecords[0].type;
@@ -55,7 +55,7 @@ function highestRecord(movementRecords) {
 
   // find the first obj that the pr is the highest
   let highestRecord = movementRecords.find(el => el.personalRecord == highest);
-  //   console.log(highestRecord);
+
   if(type == 'lift') unit.innerText = ' lbs'
   else if(type == 'skill') unit.innerText = ' reps'
   else if(type == 'cardio') unit.innerText = ' minutes'
@@ -110,7 +110,7 @@ async function allMovementRecords() {
 }
 
 function recordTable(movementRecords) {
-  console.log(movementRecords)
+  
   let table = document.getElementById('recordTable');
 
   table.innerHTML = '';
@@ -133,7 +133,7 @@ function recordTable(movementRecords) {
   trHead.appendChild(thUnit);
 
   movementRecords.forEach(el => {
-    //    console.log(el);
+  
     let tr = document.createElement('tr');
 
     let tdEdit = document.createElement('td');
@@ -174,8 +174,7 @@ function noEntries() {
 }
 
 function openFlyout() {
-  console.log('heard')
-  //resetFlyout();
+ 
   document.getElementById("mainFlyout").style.width = "85%";
   document.getElementById("mainFlyout").style.paddingLeft = "5%";
   document.getElementById("mainFlyout").style.paddingRight = "5%";

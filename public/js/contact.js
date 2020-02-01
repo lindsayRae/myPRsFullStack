@@ -23,7 +23,7 @@ async function sendMessage(){
       })
 
       let json = await res.json()
-      console.log(json)
+     
       let message = document.getElementById('emailResponse') 
       message.innerText = json.message
 

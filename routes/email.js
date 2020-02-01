@@ -4,7 +4,6 @@ const nodemailer = require('nodemailer');
 
 router.post('/', async (req, res) => {
 
-    console.log('*************** heard email post ****************')
     let name = req.body.name;  
     let email = req.body.email; 
     let message = req.body.message;   
@@ -26,8 +25,7 @@ router.post('/', async (req, res) => {
     };
 
     transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
+        if (error) {            
             res.send({error: error})
         } else {
             res.send({status: 200, message: 'Email was sent. Thank you!'})            

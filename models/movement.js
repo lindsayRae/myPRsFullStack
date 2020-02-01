@@ -27,7 +27,7 @@ function validateMovementJoi(movement){
         type: Joi.string().min(1).max(99).required(),       
         preDefined: Joi.bool().required()        
     };
-   console.log(movement)
+  
     return Joi.validate(movement, schema);
 }
 

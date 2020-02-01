@@ -28,18 +28,18 @@ async function signUp() {
             })
 
             let json = await res.json()
-            console.log(json)
+           
             if (res.status === 200) {
                 
                 localStorage.setItem("ID", json._id)
                localStorage.setItem("token", json.token)
                location.href = "/dashboard.html"
             } else {
-                console.log(json.message);
+               
                 document.getElementById('signupError').innerText = json.message;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 }

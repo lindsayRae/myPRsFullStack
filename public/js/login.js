@@ -37,7 +37,7 @@ async function collectLoginForm() {
         })
 
         let json = await res.json();
-       // console.log(json)
+       
         if (res.status === 200) {
             
             localStorage.setItem("token", json.token)
@@ -52,7 +52,6 @@ async function collectLoginForm() {
 
 
     } catch (error) {
-        console.log("In error:")
-        console.log(error);
-    }
+        console.error(error)
+  
 }
