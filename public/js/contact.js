@@ -1,9 +1,12 @@
+import { getUser } from './userAccount.js';
 
 async function sendMessage(){
+    let data = await getUser();
+
     let form = document.getElementById('contactForm')
     let body = {
-        name: document.getElementById("yourName").value,       
-        email: document.getElementById("yourEmail").value,
+        name: `${data.firstName} ${data.lastName}`,       
+        email: document.getElementById("yourEmail").data.email,
         message: document.getElementById("yourMessage").value,
     }
     let isValid = validateForm(form, body)

@@ -1,5 +1,5 @@
 
-export { populateUserAccount, updateUser, logOut }
+export { populateUserAccount, updateUser, logOut, getUser }
 
 import { openFlyout, resetFlyout, closeFlyout } from './flyout.js'
 
