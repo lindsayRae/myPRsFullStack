@@ -15,6 +15,7 @@ const personalRecords = require('./routes/personalRecords');
 const contact = require('./routes/email');
 
 const app = express();
+require('custom-env').env()
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,7 +32,6 @@ app.use('/api/admin', adminRouter);
 app.use('/api/movements', movementRouter);
 app.use('/api/personalrecord', personalRecords);
 app.use('/api/contact', contact);
-
 
 //! set myPRs_jwtPrivateKey=mySecureKey
 const jwtPrivateKey = process.env.jwtPrivateKey;

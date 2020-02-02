@@ -166,7 +166,6 @@ async function addNewMovement() {
         })
 
         let json = await res.json()
-        
         if(json.message === "Success"){
             buildMenuUI();
             closeFlyout()
@@ -211,7 +210,7 @@ async function addNewRecord(name) {
         })
 
         let json = await res.json()
-      
+     
         if(json.message === "Success"){
             buildMenuUI();          
             buildStatFlyout(name);
@@ -230,7 +229,6 @@ async function addNewRecord(name) {
 async function buildMovementMenu() {
     let defaultMovements = await defaultMovementMenu();
     let userMovements = await userMovementMenu();  
-
     let allMovements = defaultMovements.concat(userMovements);
 
     sessionStorage.setItem('All Movements', JSON.stringify(allMovements))

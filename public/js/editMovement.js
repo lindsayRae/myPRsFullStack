@@ -85,14 +85,14 @@ async function deleteMovement(){
             headers: headers
         })
 
-        let json = await res.json()
-        
-        if(json.removed){
-           // document.getElementById('editMovementDialog').close();
+        let json = await res.json()      
+          
+        if(json.removed){           
+          
            let movementName = document.getElementById('movementName').innerText
            movementPR(movementName)
-          // resetFlyout()
-            document.getElementById('movementStatsContainer').classList.remove('hide');
+           resetFlyout()
+           document.getElementById('movementStatsContainer').classList.remove('hide');           
            
         } else {
             console.error('Something went wrong');

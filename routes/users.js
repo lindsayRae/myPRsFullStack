@@ -83,7 +83,15 @@ router.post('/', async (req, res) => {
 
     //! Call out to your existing endpoint to create a new PR record with empty arrays (lifts, cardio, skills)
     let baseURL = req.headers.host
-    let url = `https://${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
+    let url = ""
+
+    const env = process.env.APP_ENV;
+
+    if(env === "DEV"){
+      url = `http://${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
+    } else {
+      url = `https://${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
+    }
  
     try {
       let response = await fetch(url, {
@@ -94,6 +102,7 @@ router.post('/', async (req, res) => {
       let json = await response.json()
       
     } catch (error) {
+      
       console.log(error)
     }
 

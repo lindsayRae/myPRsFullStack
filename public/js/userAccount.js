@@ -33,7 +33,7 @@ async function getUser(){
              headers: headers
          })
          let json = await res.json()
-       console.log(json);
+       
         if(json){
             return json
         } else {

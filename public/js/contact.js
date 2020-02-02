@@ -2,7 +2,7 @@ import { getUser } from './userAccount.js';
 
 async function sendMessage(){
     let data = await getUser();
-
+    console.log(data)
     let form = document.getElementById('contactForm')
     let body = {
         name: `${data.firstName} ${data.lastName}`,       

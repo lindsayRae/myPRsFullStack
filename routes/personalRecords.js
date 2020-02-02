@@ -46,7 +46,7 @@ router.post('/:movement', auth, async (req, res) => {
     try {
         let movement = req.params.movement        
         let id = req.body.user_id 
-
+        
         let pr = {
             name: req.body.name,          
             preDefined: req.body.preDefined,
@@ -55,10 +55,9 @@ router.post('/:movement', auth, async (req, res) => {
             comment: req.body.comment,
             personalRecord: req.body.personalRecord
         }     
-        
-    
+       
         let record = await PersonalRecord.findOne({ user_id: id});  
-            
+          
         if(!record){
             res.send({ message: "Did not find a record for this user"});
         } else if (movement === 'lift') {           
@@ -91,9 +90,8 @@ router.post( '/usersetup/:id' , async (req, res) =>{
             skills: []
         }
       
-        let personalRecord = new PersonalRecord(newUserEntry)      
-
-        let result = await personalRecord.save();
+        let personalRecord = new PersonalRecord(newUserEntry)       
+        let result = await personalRecord.save()
         
         res.send(result)
 
