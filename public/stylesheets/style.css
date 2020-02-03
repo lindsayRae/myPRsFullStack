@@ -155,7 +155,7 @@ i[data-action=close]{
 
 @media only screen and (min-width: 768px) {
   main {
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     margin: 8% 25%;
   }
 }
