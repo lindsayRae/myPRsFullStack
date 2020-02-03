@@ -59,7 +59,8 @@ header, footer {
 main {
   flex: 1 1 auto;
   overflow-y: scroll;
-  margin: 5% 10%;
+  margin: 5% 5%;
+  padding-right: 15px;
     
 }
 li, i{
