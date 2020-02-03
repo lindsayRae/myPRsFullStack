@@ -21,3 +21,17 @@
   #noRecordsMsg {
       margin: 30% 10%;
   }
+
+  @media only screen and (min-width: 768px) {
+    #noRecordsMsg {
+      margin: 10% 25% !important;
+    }
+    #tableContainer{
+      width: 50%;
+      height: 50%;
+      margin: 5% 25%;
+    }
+    #movementStatsContainer{
+      margin-top: 5%;
+    }
+  }

@@ -62,7 +62,9 @@ main {
   margin: 5% 10%;
     
 }
-
+li, i{
+  cursor: pointer;
+}
 .header-gradient {
   background-image: linear-gradient(to bottom right, #2E2C73, rgb(56, 53, 145)); /* Standard syntax (must be last) */
   color: #E5E4EC;
@@ -136,7 +138,7 @@ main {
 }
 
 .error {
-  color: rgb(179, 24, 24);
+  color: rgb(179, 24, 24) !important;
   padding: 5px;
 }
 
@@ -151,3 +153,9 @@ i[data-action=close]{
   padding: 8px;
 }
 
+@media only screen and (min-width: 768px) {
+  main {
+    overflow-y: hidden;
+    margin: 8% 25%;
+  }
+}

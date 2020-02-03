@@ -97,4 +97,16 @@
     .sidenav a {font-size: 18px;}
   }
   
-  
+  @media only screen and (min-width: 768px) {
+    .center-form {
+      margin-top: 25% !important;
+    }
+    .footer-form{
+      width: 50%;
+      margin-left: 25%;
+    }
+    .max-container{
+      width: 50%;
+      margin-left: 25%;
+    }
+  }

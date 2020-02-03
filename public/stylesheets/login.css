@@ -66,3 +66,19 @@ header {
   font-size: .75rem;
   margin-bottom: 1rem;
 }
+@media only screen and (min-width: 768px) {
+  .login-title {
+    width: 50%;
+    margin: 5% 25%;
+  }
+  .signup-title {   
+    margin: 5% 25%;
+   
+  }
+
+  .signup-link{
+    width: 50%;
+    margin: 3% 25%;
+  }
+
+}
