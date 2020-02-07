@@ -48,7 +48,10 @@ mongoose.connect(uri, {
     useCreateIndex: true 
 })
     .then(() => console.log('Connected to MongoDB...'))
-    .catch(err => console.error('Could not connect to MongoDB...'));
+    .catch(err =>{
+      console.error('Could not connect to MongoDB...')
+      process.exit()
+    });
 
 
 // catch 404 and forward to error handler

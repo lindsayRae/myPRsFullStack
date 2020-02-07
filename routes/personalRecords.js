@@ -4,17 +4,17 @@ const express = require('express');
 const router = express.Router();
 
 
-function getDate() {
-    let date = new Date();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let year = date.getFullYear();
-    let today = month.toString() + "-" + day.toString() + "-" + year.toString();
-    return today;
-}
+// function getDate() {
+//     let date = new Date();
+//     let month = date.getMonth() + 1;
+//     let day = date.getDate();
+//     let year = date.getFullYear();
+//     let today = month.toString() + "-" + day.toString() + "-" + year.toString();
+//     return today;
+// }
 
 
-//? Get lifts by user_id 
+//? Get movement by user_id 
 router.get('/:id', auth, async (req, res) => {
   
     try {
@@ -22,12 +22,14 @@ router.get('/:id', auth, async (req, res) => {
         let id = req.params.id;
         let movement = req.query.movement;  
         let record = await PersonalRecord.findOne({ user_id: id}); 
-
+        console.log("record below")
+        console.log(record)
         if (!record){
-            res.send({record: [], message: 'There are not any user defined lifts for this user'})
+            return res.status(404).send('Resource does not exist');
+           // res.send({record: [], message: 'There are not any user defined lifts for this user'})
         } else if (movement === 'lift') {
             res.send(record.lifts)
-        } else if (movement === 'cardio') {
+        } else if (movement === 'cardio') {            
             res.send(record.cardio)
         } else if (movement === 'skill') {
             res.send(record.skills)
@@ -56,8 +58,9 @@ router.post('/:movement', auth, async (req, res) => {
             personalRecord: req.body.personalRecord
         }     
        
-        let record = await PersonalRecord.findOne({ user_id: id});  
-          
+        let record = await PersonalRecord.findOne({ user_id: id}); 
+        console.log("**************")
+          console.log(record)
         if(!record){
             res.send({ message: "Did not find a record for this user"});
         } else if (movement === 'lift') {           
@@ -77,7 +80,7 @@ router.post('/:movement', auth, async (req, res) => {
 })
 
 
-//! DONE
+//? Called in create new user to set up empty PRs
 router.post( '/usersetup/:id' , async (req, res) =>{
     
     try {

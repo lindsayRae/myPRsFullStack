@@ -24,8 +24,6 @@ async function collectLoginForm() {
         password: pw
     }
     let url = "/api/auth";
-
-
    
     try {
 
@@ -48,8 +46,6 @@ async function collectLoginForm() {
             document.getElementById('loginErrorMsg').classList.remove('hide');
             document.getElementById('loginErrorMsg').innerText = json.message;
         }
-
-
 
     } catch (error) {
         console.error(error)

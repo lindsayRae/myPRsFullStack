@@ -99,7 +99,7 @@ li, i{
   width: 100%;
   display: flex;
   justify-content: space-between;
-  height: 10vh;
+  height: 60px;
 }
 
 .navbar a {

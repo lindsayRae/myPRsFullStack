@@ -28,10 +28,10 @@ async function signUp() {
             })
 
             let json = await res.json()
-           
+            
             if (res.status === 200) {
                 
-                localStorage.setItem("ID", json._id)
+               localStorage.setItem("ID", json._id)
                localStorage.setItem("token", json.token)
                location.href = "/dashboard.html"
             } else {
@@ -66,10 +66,12 @@ function sanitizeSignupForm() {
 
     if (email === "" || email === " ") {
         
-        document.getElementById("email").classList.add('border-danger')
+        document.getElementById("signupEmail").classList.add('border-danger')
         return "Email is required."
     }
-
+    if(!validateEmail(email)){
+        return "Please enter a valid Email"
+    }
     if (pw === "" || pw === " ") {
         
         document.getElementById("signupPassword").classList.add('border-danger')
@@ -96,4 +98,9 @@ function sanitizeSignupForm() {
     }
 
     return body;
+}
+
+function validateEmail(email) {
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) return true
+ else return false
 }

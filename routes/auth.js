@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
    
     if (!user) {
       // ! If the user is not in the database we will send back a 404 (not found)
-      return res.status(400).send({
+      return res.status(404).send({
         message: 'Invalid username or password.'
       });
     } 

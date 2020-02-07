@@ -24,8 +24,15 @@ router.get('/', async (req, res) => {
 router.get('/me/:id', auth, async (req, res) => {
 
   let id = req.params.id;
-  const user = await User.findById(id).select('-password');
-  res.send(user);
+
+  try {    
+    const user = await User.findById(id).select('-password');    
+    res.send(user);
+  } catch (error) { 
+    console.log(error.message)   
+    res.status(404).send('Resource does not exist');
+  }
+  
 });
 
 router.get('/:email', async (req, res) => {
@@ -44,8 +51,8 @@ router.get('/:email', async (req, res) => {
 router.post('/', async (req, res) => {
   
   const { error } = validate(req.body);
-  if (error) {
-    
+  
+  if (error) {    
     return res.status(400).send({
       message: error.details[0].message
     });
@@ -98,19 +105,17 @@ router.post('/', async (req, res) => {
         method: "POST",
         headers: headers
       })
-  
+      
       let json = await response.json()
+      console.log(json)       
       
-    } catch (error) {
-      
+    } catch (error) {      
       console.log(error)
-    }
-
-    
+    }    
   }
 });
 
-//? update user
+//? Update user
 router.put('/me/:id', auth, async (req, res) => {
   // validation need to come here for post body
 
