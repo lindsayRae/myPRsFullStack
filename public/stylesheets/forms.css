@@ -81,11 +81,10 @@
 	background: transparent;
 	margin-bottom: 10px;	
 	height: 45px;
-	
+	font-size: 14px;
 }
-.form-style-8 textarea{
-	resize:none;
-	overflow: hidden;
+.form-style-8 textarea {
+	
 	height: 75px;
 }
 
@@ -103,7 +102,8 @@
 	border-bottom: 1px solid #ddd;
 	background: transparent;
 	margin-bottom: 10px;	
-	height: 25px;
+	height: 35px;
+	font-size: 12px;
 	
 }
 .form-style-sm textarea{

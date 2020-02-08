@@ -119,11 +119,12 @@ async function userMovementMenu() {
         })
        
         let json = await res.json()
-       
+      
         if (res.ok) {                 
             return json;               
         } else if (res.status === 404) {
             console.log(json.message)
+            return [];
         } else if (res.status === 400) {
             console.log(json.message)
         } else {
@@ -231,9 +232,7 @@ async function buildMovementMenu() {
     let defaultMovements = await defaultMovementMenu();
     let userMovements = await userMovementMenu();  
     let allMovements = defaultMovements.concat(userMovements);
-    console.log(defaultMovements)
-    console.log(userMovements)
-    console.log(allMovements)
+
     sessionStorage.setItem('All Movements', JSON.stringify(allMovements))
 
     let defaultMovementName = defaultMovements.map((movement) => {

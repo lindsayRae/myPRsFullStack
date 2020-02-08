@@ -1,6 +1,6 @@
 
 import { closeFlyout, openFlyout, resetFlyout } from './flyout.js';
-import { populateUserAccount, updateUser, logOut } from './userAccount.js';
+import { populateUserAccount, populateContact, updateUser, logOut } from './userAccount.js';
 
 // NAVIGATION - BOTH 
 document.getElementById("userAccount").addEventListener("click", ()=> {
@@ -15,6 +15,7 @@ document.getElementById("userAccount").addEventListener("click", ()=> {
       
    resetFlyout()     
    document.getElementById('contactUsContainer').classList.remove('hide') 
+   populateContact()
    openFlyout(); 
  })
  

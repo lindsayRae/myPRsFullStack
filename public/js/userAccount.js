@@ -1,22 +1,27 @@
 
-export { populateUserAccount, updateUser, logOut, getUser }
+export { populateUserAccount, populateContact, updateUser, logOut, getUser }
 
 import { openFlyout, resetFlyout, closeFlyout } from './flyout.js'
 
 async function populateUserAccount(){
 
     let data = await getUser();
-
-   // resetFlyout()
+  
     document.getElementById('userAccountContainer').classList.remove('hide');
     
     document.getElementById('userFirstName').value = data.firstName;
     document.getElementById('userLastName').value = data.lastName;
     document.getElementById('userEmail').value = data.email;
-    //openFlyout();
-   
+    
 }
 
+async function populateContact(){
+    let data = await getUser();
+
+    document.getElementById('yourName').value = `${data.firstName} ${data.lastName}`
+    document.getElementById('yourEmail').value = `${data.email}`
+
+}
 async function getUser(){
 
     let id = localStorage.getItem('ID');

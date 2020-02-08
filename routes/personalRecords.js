@@ -24,9 +24,10 @@ router.get('/:id', auth, async (req, res) => {
         let record = await PersonalRecord.findOne({ user_id: id}); 
         console.log("record below")
         console.log(record)
-        if (!record){
-            return res.status(404).send('Resource does not exist');
-           // res.send({record: [], message: 'There are not any user defined lifts for this user'})
+        if (record == null){
+            console.log('record is null')
+           return res.status(404).send({record: [], message: 'There are not any user defined lifts for this user'});
+           //res.send({record: [], message: 'There are not any user defined lifts for this user'})
         } else if (movement === 'lift') {
             res.send(record.lifts)
         } else if (movement === 'cardio') {            
@@ -57,10 +58,9 @@ router.post('/:movement', auth, async (req, res) => {
             comment: req.body.comment,
             personalRecord: req.body.personalRecord
         }     
-       
+      
         let record = await PersonalRecord.findOne({ user_id: id}); 
-        console.log("**************")
-          console.log(record)
+        
         if(!record){
             res.send({ message: "Did not find a record for this user"});
         } else if (movement === 'lift') {           
