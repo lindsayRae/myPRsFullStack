@@ -9,7 +9,6 @@ async function sendMessage(){
         email: document.getElementById("yourEmail").data.email,
         message: document.getElementById("yourMessage").value,
     }
-    let isValid = validateForm(form, body)
 
     let url = "/api/contact"
 
@@ -40,8 +39,11 @@ async function sendMessage(){
    
 }
 
-function validateForm(body){
-
-
-}
 document.getElementById("sendMessage").addEventListener("click", sendMessage)
+document.getElementById("yourMessage").addEventListener("keyup", (event)=>{
+
+  if (event.keyCode === 13) {
+    event.preventDefault()
+    sendMessage()
+  }
+})

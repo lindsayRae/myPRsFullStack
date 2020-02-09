@@ -5,19 +5,6 @@ import { closeFlyout, buildStatFlyout, openFlyout, resetFlyout } from "./flyout.
 export { buildMenuUI }
 
 
-
-
-
-// document.getElementById('addMovement').addEventListener('click', ()=>{
-    
-    
-//     resetFlyout()
-//     document.getElementById('movementName').innerText = ''
-   
-//     openFlyout();
-    
-//     document.getElementById('newMovementContainer').classList.remove('hide')
-// })
 document.getElementById('addNewMovement').addEventListener('click', () => {
     
     resetFlyout()
@@ -43,6 +30,8 @@ document.getElementById('addNewLogBtn').addEventListener('click', () => {
     let name = document.getElementById('movementName').innerText;    
     addNewRecord(name);    
 })
+
+document.getElementById('addMovementBtn').addEventListener('click', addNewMovement)
 
 async function buildMenuUI() {   
     
@@ -134,8 +123,6 @@ async function userMovementMenu() {
         console.error(error);
     }
 }
-
-document.getElementById('addMovementBtn').addEventListener('click', addNewMovement)
 
 async function addNewMovement() {
     
