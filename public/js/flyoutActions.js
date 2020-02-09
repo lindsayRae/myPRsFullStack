@@ -1,6 +1,6 @@
 
 import { closeFlyout, openFlyout, resetFlyout } from './flyout.js';
-import { populateUserAccount, populateContact, updateUser, logOut } from './userAccount.js';
+import { populateUserAccount, populateContact, updateUser, logOut, resetUserAcct } from './userAccount.js';
 
 // NAVIGATION - BOTH 
 document.getElementById("userAccount").addEventListener("click", ()=> {
@@ -32,3 +32,5 @@ document.getElementById("userAccount").addEventListener("click", ()=> {
 
   document.getElementById('logOutBtn').addEventListener('click', logOut)
   document.getElementById('logoutIcon').addEventListener('click', logOut)
+
+  document.getElementById('resetAccountBtn').addEventListener('click', resetUserAcct);

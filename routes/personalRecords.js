@@ -4,16 +4,6 @@ const express = require('express');
 const router = express.Router();
 
 
-// function getDate() {
-//     let date = new Date();
-//     let month = date.getMonth() + 1;
-//     let day = date.getDate();
-//     let year = date.getFullYear();
-//     let today = month.toString() + "-" + day.toString() + "-" + year.toString();
-//     return today;
-// }
-
-
 //? Get movement by user_id 
 router.get('/:id', auth, async (req, res) => {
   
@@ -82,7 +72,7 @@ router.post('/:movement', auth, async (req, res) => {
 
 //? Called in create new user to set up empty PRs
 router.post( '/usersetup/:id' , async (req, res) =>{
-    
+    console.log("Lindsay in the right post")
     try {
         
         let user_id = req.params.id
@@ -92,9 +82,11 @@ router.post( '/usersetup/:id' , async (req, res) =>{
             cardio: [],
             skills: []
         }
-      
-        let personalRecord = new PersonalRecord(newUserEntry)       
+       
+        let personalRecord = new PersonalRecord(newUserEntry)    
+         
         let result = await personalRecord.save()
+        console.log(result)  
         
         res.send(result)
 

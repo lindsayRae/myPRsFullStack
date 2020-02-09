@@ -34,9 +34,9 @@ document.getElementById('addNewLogBtn').addEventListener('click', () => {
 document.getElementById('addMovementBtn').addEventListener('click', addNewMovement)
 
 async function buildMenuUI() {   
-    
+    console.log('heerererer')
     let data = await buildMovementMenu(); 
-      
+     console.log(data) 
     data = data.sort();
     
     let container = document.getElementById('movementRecordContainer');
@@ -108,7 +108,7 @@ async function userMovementMenu() {
         })
        
         let json = await res.json()
-      
+      console.log(json)
         if (res.ok) {                 
             return json;               
         } else if (res.status === 404) {

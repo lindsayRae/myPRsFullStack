@@ -1,7 +1,8 @@
 
-export { populateUserAccount, populateContact, updateUser, logOut, getUser }
+export { populateUserAccount, populateContact, updateUser, logOut, getUser, resetUserAcct }
 
 import { openFlyout, resetFlyout, closeFlyout } from './flyout.js'
+import { buildMenuUI } from './movement.js';
 
 async function populateUserAccount(){
 
@@ -92,4 +93,42 @@ function logOut(){
     localStorage.removeItem('token');
     localStorage.removeItem('ID');
     window.location.href = "/";
+}
+
+async function resetUserAcct(){
+    console.log('heard')
+
+    let id = localStorage.getItem('ID')
+
+
+    let url = `/api/personalrecord/usersetup/${id}`
+    
+    try {
+
+      
+        let headers = {
+            "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem('token')
+        }
+
+        let res = await fetch(url, {
+            method: "POST",           
+            headers: headers
+        })
+
+        let json = await res.json()
+       console.log(json)
+       if(json){
+           console.log('remove session storage here')
+           sessionStorage.removeItem('All Movements');
+           buildMenuUI();
+       } 
+        
+    } catch (error) {
+        console.error(error);
+    }
+
+
+
+
 }
