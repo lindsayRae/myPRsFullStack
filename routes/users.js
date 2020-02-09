@@ -97,7 +97,7 @@ router.post('/', async (req, res) => {
     if(env === "DEV"){
       url = `http://${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
     } else {
-      url = `https://${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
+      url = `http://${baseURL}/api/personalrecord/usersetup/${newUser._id}`;
     }
  
     try {
